@@ -1,0 +1,43 @@
+# CityMETER · University
+
+> Students the MHESI student file reports (academic year 2568, semester 2) per reporting unit and per province across Thailand, with the universities' campuses the research team reviewed: points, approximate extents from OpenStreetMap, faculties and faculty buildings, programmes and fee lines as the universities announce them (pilot areas), quality observations, logos, and straight-line distance to rail stations (CityMETER Transit). A Landometer CityMETER public demo, release 0.1.0 (2026-11-12), Thai with an English reading (?lang=en). Research master read and built 2026-11-12; the research team's checks run to 2026-11-10.
+
+What one figure means:
+- students = the students the MHESI student file 2568/2 reports for a reporting unit, summed per province by the province the file names for the unit. Not people on a campus, unique persons, seats, capacity, demand, an enrolment rate or a market size. A unit's students are never allocated to a campus, a polygon, a building or a district.
+- reporting unit (หน่วยรายงาน) = a university, campus or institution the file reports separately (303). A reporting path, not a place.
+- provinces = the 77 CityMETER production provinces; 9 have no reporting unit in this file (measured zero, not “no teaching”). The two open-admission universities (Ramkhamhaeng, Sukhothai Thammathirat) report all their students in their unit's province, so the first screen also shows the share without them.
+- types = eight presentation groups from the file's institution type: autonomous public, public (selective), public (open admission), Rajabhat, Rajamangala, private university, private institute or college, outside MHESI. Not a quality grade.
+- levels = the file's level columns: bachelor's, master's, doctoral, other (vocational certificates, graduate diplomas, certificates, associate degrees).
+- campus / site (วิทยาเขต) = one of 190 university areas the research team reviewed for the demo (not a census). A site linked to a reporting unit (135) shows that unit's students, named as the unit's figure, with how the link was made (pilot list, exact roster name, roster name ignoring spaces, campus-qualified name). A site without a link shows no student figure (never 0).
+- extent = an OpenStreetMap area the research team matched, approximate (“about N rai” = m² ÷ 1,600). Not a deed, a legal boundary or an official land size; an area the university publishes is shown as written.
+- faculty buildings = drawn buildings holding the interior point of a faculty's geometry (research team, OpenStreetMap). “Faculties in this building” = faculties whose geometry falls in that outline.
+- fees = fee lines of the universities' announcements for 14 pilot areas (Kasetsart, Chulalongkorn, Khon Kaen, Prince of Songkla): each line with its track, component, period, student category, intake and its own currency (THB, CNY; never converted). A programme in an announcement is not a programme admitting students now. Never summed, averaged or compared; not the cost of a degree.
+- quality = accreditation observations as published (framework, status, dates, authority, link). Not a score or a rank.
+- roster points = 2023 (B.E. 2566) MHESI roster points no reviewed site represents: quiet context, never counted.
+- distances = straight lines between reference points (operating stations within 1 km of a site); not walking routes, travel times or catchments.
+
+Snapshot (release 0.1.0; fixtures, recompute from data):
+- 303 reporting units, 1,786,753 students, 170 universities shown, 68 provinces with a unit; 190 sites (188 with a point, 164 with an extent), 135 linked to a unit.
+- 55% of the students nationwide (988,359 of 1,786,753) are in Bangkok, Pathum Thani and Chiang Mai; without the two open-admission universities, 49% (710,594 of 1,460,444).
+- In Bangkok, 47% of the students (354,957 of 750,679) are with Ramkhamhaeng, Chulalongkorn and Kasetsart universities.
+- 91% of the students in the file are at bachelor's level (1,623,464).
+
+Deep links (https://montri-th.github.io/university/):
+- ?at={province code} — e.g. BKK, CMI, PTE (production codes)
+- ?e=site:{site id} · ?e=uni:{university id} · ?e=unit:{unit id} · ?e=station:{CityMETER Transit station id}
+- ?m=units — measure reporting units instead of students
+- ?f.type={autonomous|public|open|rajabhat|rmut|private|private_other|outside} · ?f.search={text}
+- ?view={provinces|types|unis} — chart view · ?v3d=0 — plan view · ?lang=en — English
+
+Data and method:
+- [Product statement](https://montri-th.github.io/university/PRODUCT_STATEMENT.md): users, problem, claim boundary
+- [Data and method](https://montri-th.github.io/university/DATA_METHOD.md): sources, grains, links, geometry, fees, limits
+- [Dataset](https://montri-th.github.io/university/data/universities.json): units, universities, sites, roster points, stations + provenance (meta)
+- [Campus file](https://montri-th.github.io/university/data/campus.json): extents and faculty geometry, faculties, programmes and fees, quality
+- [Developer handoff](https://montri-th.github.io/university/handoff/START_HERE.md)
+
+Map reading: provinces filled by the measure (41 LDS steps, li.supply for students, count for units); one pin per site with a point, coloured and shaped by type; dashed extents; faculty buildings outlined in the open campus, which opens in 3D; quiet grey roster points; quiet rings for rail stations. Buildings per area: the units of CityMETER · Hotel (CityMETER Building V4 or OpenStreetMap; data/building-units/).
+
+Ask Google: every view links to a Google Search for the question of the view. Google's answers are not CityMETER data and are never copied into it.
+
+Do not claim from this data: how many students study on a campus or live in a province, unique persons, demand, seats, enrolment rates, market size, revenue, that a programme admits students this year, the cost of a degree, a price level or a fee comparison, a quality rank, a legal campus boundary or land size, that a province without a reporting unit has no higher education, walking time, or that a building height is measured.

@@ -1,0 +1,136 @@
+/* LDS 0.9.7 approved nav-7 icon subset, unchanged bytes; Apache-2.0.
+   SHA-256 d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657.
+   Static outline FILL 0 / wght 300 / GRAD 0 / opsz 24. Glyphs never change
+   with state; selection is shown by surface, text and outline instead. */
+@font-face {
+  font-family: "LDS Material Symbols Rounded Nav";
+  src: url("assets/icons/material-nav-300.woff2?v=d7e28310") format("woff2");
+  font-style: normal; font-weight: 300; font-display: block;
+  unicode-range: U+E518, U+E51C, U+E5CD, U+E5D2, U+E89E, U+EB37, U+F233;
+}
+.nav-icon {
+  display: inline-block; flex: 0 0 22px; width: 22px; height: 22px;
+  font-family: "LDS Material Symbols Rounded Nav" !important; font-size: 22px !important;
+  font-style: normal !important; font-weight: 300 !important; line-height: 1 !important;
+  letter-spacing: normal !important; text-transform: none !important; font-synthesis: none;
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  vertical-align: middle; overflow: hidden; visibility: hidden; pointer-events: none;
+}
+.nav-icons-ready .nav-icon { visibility: visible; }
+.nav-icons-unavailable .nav-icon { display: none; }
+.nav-decorated { align-items: center; justify-content: center; gap: 5px; }
+button.nav-decorated { display: inline-flex; }
+a.nav-decorated { display: inline-flex; justify-content: flex-start; vertical-align: middle; gap: 3px; }
+a.nav-decorated .nav-icon { flex-basis: 16px; width: 16px; height: 16px; font-size: 16px !important; }
+.theme-control { display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+.theme-visible-label { font-size: 12px; font-weight: 600; }
+.theme-control .nav-icon { margin-right: 1px; }
+
+/* Help dialog */
+.usage-dialog { width: min(660px, calc(100vw - 32px)); max-height: 90dvh; margin: auto; padding: 24px; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 16px; overflow: auto; overscroll-behavior: contain; box-shadow: none; font: 400 14px/1.7 "Bai Jamjuree", sans-serif; }
+.usage-dialog::backdrop { background: rgba(17, 25, 29, .55); }
+.help-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.help-heading h2 { font-size: 24px; line-height: 1.4; }
+.help-heading .eyebrow { font-size: 12px; }
+.help-heading button { flex-shrink: 0; min-height: 44px; font-size: 13px; }
+.help-intro { margin-top: 16px; color: var(--text-secondary); }
+.help-steps { margin: 20px 0; padding-left: 24px; }
+.help-steps li { padding-left: 5px; margin: 0 0 16px; }
+.help-steps p { margin-top: 4px; color: var(--text-secondary); }
+.help-keyboard { padding-top: 16px; border-top: 1px solid var(--border-hairline); }
+.help-links { margin-top: 16px; font-size: 13px; }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .theme-control { gap: 2px; }
+  .theme-control select { width: 66px; }
+  .usage-dialog { padding: 18px; }
+  .help-heading { gap: 10px; }
+  .help-heading h2 { font-size: 21px; }
+  .help-heading button { padding: 6px 10px; }
+  .help-steps { padding-left: 20px; }
+}
+@media (max-width: 359px) {
+  .theme-visible-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .theme-control select { width: 61px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .usage-dialog, .nav-icon { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Dataset picker in the header (citymeter-shell 0.3.0, js/shell/header.js; this file is checked as shared bytes
+   by js/shell/manifest.json). A disclosure of links; the current demo reads bold on the quiet surface. */
+.dataset-switch { position: relative; display: flex; align-items: center; min-width: 0; }
+.dataset-picker { display: inline-flex; align-items: center; gap: 4px; min-width: 44px; min-height: 44px; margin-left: -6px; padding: 0 8px 0 6px; border: 0; border-radius: 8px; background: none; color: var(--text-primary); font: inherit; cursor: pointer; }
+.dataset-picker:hover, .dataset-picker[aria-expanded="true"] { background: var(--surface-alt); }
+.picker-caret { font-size: 11px; line-height: 1; color: var(--text-secondary); }
+.dataset-menu { position: absolute; top: calc(100% + 2px); left: -6px; z-index: 40; width: 300px; max-height: calc(100dvh - 64px); overflow: auto; overscroll-behavior: contain; padding: 10px; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 12px; font-size: 13px; line-height: 1.5; }
+.dataset-lead { margin: 2px 8px 8px; font-size: 12px; color: var(--text-secondary); }
+.dataset-group + .dataset-group { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border-hairline); }
+.dataset-group-label { margin: 4px 8px 0; font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-secondary); }
+.dataset-group ul { margin: 0; padding: 0; list-style: none; }
+.dataset-link { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0 8px; border-radius: 8px; color: var(--text-primary); text-decoration: none; }
+.dataset-link:hover { background: var(--surface-alt); }
+.dataset-link[aria-current="page"] { font-weight: 600; background: var(--surface-alt); }
+.dataset-note { font-size: 11px; font-weight: 400; color: var(--text-secondary); }
+.dataset-utility { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-bottom: 6px; padding: 2px 8px 8px; border-bottom: 1px solid var(--border-hairline); }
+.dataset-utility:empty { display: none; }
+/* The theme control lives at the top of the list on every width (0.5.0). */
+.dataset-utility .theme-control { min-height: 44px; justify-content: flex-start; gap: 6px; }
+.dataset-utility .theme-visible-label { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+.dataset-utility .theme-control select { width: auto; }
+.dataset-hub { margin: 6px 0 0; padding-top: 6px; border-top: 1px solid var(--border-hairline); }
+.dataset-hub .dataset-link { font-weight: 600; }
+/* Every header control is a 44 × 44 px target (LDS NAV-01), the Product statement and language links included. */
+.top-actions a.text-link { min-height: 44px; }
+a.lang-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 8px; border-radius: 8px; color: var(--text-primary); font-weight: 600; text-underline-offset: 3px; }
+a.lang-link:hover { background: var(--surface-alt); }
+.dataset-utility a.lang-link { justify-content: flex-start; padding: 0; }
+@media (max-width: 760px) and (orientation: portrait) {
+  .dataset-menu { position: fixed; top: 52px; left: 10px; right: 10px; width: auto; }
+}
+/* English pages stay hidden until js/shell/i18n.js has done its first pass; the launch card stays readable
+   (launch.js sets the mark and lifts it after a few seconds whatever happens). */
+html[data-i18n="pending"] body { visibility: hidden; }
+html[data-i18n="pending"] #launch-status { visibility: visible; }
+/* A result that lacks a part (0.6.0, js/shell/launch.js `citymeter:partial`): a card under the header that says what
+   did not load and what that does to the numbers; folded, a mark with its words stays in the header band until the
+   page is reloaded. A sign and words, never a colour alone; no rail, no bracket (LDS). */
+.data-notice { position: fixed; z-index: 35; top: 2px; left: 50%; transform: translateX(-50%); display: grid; justify-items: center; gap: 6px; width: max-content; max-width: calc(100vw - 20px); color: var(--text-primary, #182327); font-size: 14px; line-height: 1.6; pointer-events: none; }
+.data-notice > * { pointer-events: auto; }
+.data-notice-toggle { display: inline-flex; align-items: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 0 12px; border: 1px solid var(--border-default, #C9D0CB); border-radius: 999px; background: var(--surface-card, #FCFCFA); color: inherit; font: inherit; font-weight: 600; cursor: pointer; }
+.data-notice-toggle svg { flex: none; }
+.data-notice-body { box-sizing: border-box; width: min(520px, calc(100vw - 20px)); max-height: calc(100dvh - 120px); overflow: auto; margin-top: 4px; padding: 16px; border: 1px solid var(--border-default, #C9D0CB); border-radius: 16px; background: var(--surface-card, #FCFCFA); box-shadow: 0 8px 24px rgb(0 0 0 / .16); }
+.data-notice-body[hidden] { display: none; }
+.data-notice-lead { margin: 0 0 8px; font-weight: 600; }
+.data-notice-list { margin: 0 0 8px; padding-left: 20px; }
+.data-notice-list li + li { margin-top: 4px; }
+.data-notice-hint { margin: 0 0 12px; font-size: 12px; color: var(--text-secondary, #4A5A5F); }
+.data-notice-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.data-notice-actions button { min-height: 44px; padding: 8px 16px; border: 1px solid var(--border-default, #C9D0CB); border-radius: 8px; background: var(--surface-alt, #EEF0EC); color: inherit; font: inherit; cursor: pointer; }
+.data-notice-actions .data-notice-retry { font-weight: 600; }
+.data-notice :focus-visible { outline: 3px solid var(--interaction-focus-ring, #176B82); outline-offset: 3px; }
+.data-notice-mode { margin: 0 0 12px; }
+.data-notice-list + .data-notice-mode, .data-notice-hint + .data-notice-mode { padding-top: 10px; border-top: 1px solid var(--border-hairline, #DCE1DD); }
+.data-notice-detail { margin-top: 10px; font-size: 12px; color: var(--text-secondary, #4A5A5F); }
+.data-notice-detail summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; }
+.data-notice-detail pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 400 12px/1.6 "JetBrains Mono", monospace; }
+/* The map after the data (0.6.0): one line over the map's place until the map reports loaded. */
+.map-loading { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; padding: 6px 14px; border: 1px solid var(--border-default, #C9D0CB); border-radius: 999px; background: var(--surface-card, #FCFCFA); color: var(--text-primary, #182327); font-size: 13px; line-height: 1.6; white-space: nowrap; pointer-events: none; }
+/* A phone: the mark is a sign beside the language link (its words stay for screen readers), and the open card is a
+   short one under the header — it never takes the whole map (owner 2026-11-11 20:38). */
+@media (max-width: 760px) and (orientation: portrait) {
+  .data-notice { left: auto; right: 50px; transform: none; justify-items: end; }
+  .data-notice .data-notice-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .data-notice .data-notice-toggle { padding: 0; justify-content: center; }
+  .data-notice-body { position: fixed; top: 50px; left: 8px; right: 8px; width: auto; max-height: 46dvh; margin: 0; padding: 12px 14px; font-size: 13px; line-height: 1.55; }
+  .data-notice-lead { margin-bottom: 6px; }
+  .data-notice-hint { margin-bottom: 10px; }
+  /* The sheet covers the lower half of the map: the line stands under the toolbar. */
+  .map-loading { top: 68px; transform: translateX(-50%); }
+}
+/* The map's own buttons in the dark theme (0.6.0, owner 2026-11-11 20:38: a white box on the dark map): the vendor's
+   white group takes the card surface and its dark glyphs are inverted. Fallbacks are the dark theme's own values. */
+:root[data-theme="dark"] .maplibregl-ctrl-group { background: var(--surface-card, #20292D); box-shadow: 0 0 0 1px var(--border-default, #46524F); }
+:root[data-theme="dark"] .maplibregl-ctrl-group button + button { border-top-color: var(--border-hairline, #33403D); }
+:root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(1); }
+:root[data-theme="dark"] .maplibregl-ctrl-group button:not(:disabled):hover { background-color: var(--surface-alt, #172126); }

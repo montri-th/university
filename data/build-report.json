@@ -1,0 +1,235 @@
+{
+ "checks": {
+  "unitsStudents": 1786753,
+  "logos": 15,
+  "siteUnitProvinceConflicts": [
+   {
+    "site": "NATIONAL-MHESI2566-R000015",
+    "pointProvince": "NPT",
+    "unitProvince": "BKK"
+   },
+   {
+    "site": "NATIONAL-MHESI2566-R000182",
+    "pointProvince": "AYA",
+    "unitProvince": "PTE"
+   },
+   {
+    "site": "NATIONAL-MHESI2566-R000413",
+    "pointProvince": "PTE",
+    "unitProvince": "BKK"
+   }
+  ],
+  "sitesWithoutPoint": [
+   "PILOT-KU-AFFILIATE-IRRIGATION-COLLEGE",
+   "PILOT-CMU-SAMUT-SAKHON"
+  ],
+  "sitesWithoutProvince": [
+   "PILOT-KU-AFFILIATE-IRRIGATION-COLLEGE",
+   "PILOT-CMU-SAMUT-SAKHON"
+  ],
+  "sitesOutsideBuildingUnits": [
+   "NATIONAL-MHESI2566-R000017",
+   "NATIONAL-MHESI2566-R000166",
+   "NATIONAL-OFFICIAL-CMRU-MAE-RIM"
+  ],
+  "rosterPointsNotDrawn": [
+   {
+    "record": 86,
+    "name": "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",
+    "recordProvince": "BKK",
+    "pointProvince": "NPT",
+    "lookup": "inside"
+   },
+   {
+    "record": 114,
+    "name": "มหาวิทยาลัยเกริก",
+    "recordProvince": "BKK",
+    "pointProvince": "NSN",
+    "lookup": "inside"
+   },
+   {
+    "record": 154,
+    "name": "มหาวิทยาลัยการจัดการและเทคโนโลยีอีสเทิร์น",
+    "recordProvince": "UBN",
+    "pointProvince": "ACR",
+    "lookup": "inside"
+   },
+   {
+    "record": 168,
+    "name": "มหาวิทยาลัยกาฬสินธุ์",
+    "recordProvince": "KSN",
+    "pointProvince": "KPT",
+    "lookup": "inside"
+   },
+   {
+    "record": 271,
+    "name": "มหาวิทยาลัยมหามกุฏราชวิทยาลัย วิทยาเขตศรีล้านช้าง",
+    "recordProvince": "KKN",
+    "pointProvince": "LEI",
+    "lookup": "inside"
+   },
+   {
+    "record": 297,
+    "name": "มหาวิทยาลัยเทคโนโลยีราชมงคลรัตนโกสินทร์",
+    "recordProvince": "BKK",
+    "pointProvince": "NPT",
+    "lookup": "inside"
+   },
+   {
+    "record": 316,
+    "name": "มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ",
+    "recordProvince": "NBI",
+    "pointProvince": "AYA",
+    "lookup": "inside"
+   },
+   {
+    "record": 362,
+    "name": "วิทยาลัยพยาบาลทหารอากาศ",
+    "recordProvince": "BKK",
+    "pointProvince": "",
+    "lookup": ""
+   },
+   {
+    "record": 366,
+    "name": "สถาบันพระบรมราชชนก",
+    "recordProvince": "BKK",
+    "pointProvince": "NBI",
+    "lookup": "inside"
+   },
+   {
+    "record": 410,
+    "name": "สถาบันบัณฑิตพัฒนศิลป์",
+    "recordProvince": "BKK",
+    "pointProvince": "NPT",
+    "lookup": "inside"
+   },
+   {
+    "record": 441,
+    "name": "วิทยาลัยเทคโนโลยีพนมวันท์",
+    "recordProvince": "NMA",
+    "pointProvince": "BKK",
+    "lookup": "inside"
+   },
+   {
+    "record": 445,
+    "name": "สถาบันเทคโนโลยียานยนต์มหาชัย",
+    "recordProvince": "SKN",
+    "pointProvince": "BKK",
+    "lookup": "inside"
+   },
+   {
+    "record": 451,
+    "name": "สถาบันเทคโนโลยีแห่งสุวรรณภูมิ",
+    "recordProvince": "PRI",
+    "pointProvince": "SPK",
+    "lookup": "inside"
+   },
+   {
+    "record": 454,
+    "name": "วิทยาลัยนานาชาติราฟเฟิลส์",
+    "recordProvince": "BKK",
+    "pointProvince": "SPK",
+    "lookup": "inside"
+   }
+  ],
+  "universitiesNotShown": 26
+ },
+ "counts": {
+  "units": 303,
+  "students": 1786753,
+  "universities": 170,
+  "universitiesWithUnits": 156,
+  "provincesWithUnits": 68,
+  "provincesWithoutUnits": [
+   "BKN",
+   "CNT",
+   "KPT",
+   "MDH",
+   "MSN",
+   "PNA",
+   "SBR",
+   "STN",
+   "TRT"
+  ],
+  "sites": 190,
+  "sitesWithPoint": 188,
+  "sitesWithExtent": 164,
+  "sitesLinked": 135,
+  "linkedStudents": 1469223,
+  "linkKinds": {
+   "pilot": 11,
+   "name": 98,
+   "name-ws": 25,
+   "qualified": 1
+  },
+  "geometry": 388,
+  "geometryRoles": {
+   "extent": 165,
+   "area": 16,
+   "building": 137,
+   "shared": 13,
+   "point": 57
+  },
+  "facultyMemberships": 210,
+  "offerings": 503,
+  "feeRows": 627,
+  "rosterPoints": 162,
+  "stations": 301,
+  "logos": 15,
+  "retailLinks": 4,
+  "topProvinces": [
+   [
+    "BKK",
+    750679
+   ],
+   [
+    "PTE",
+    147809
+   ],
+   [
+    "CMI",
+    89871
+   ],
+   [
+    "NPT",
+    75164
+   ],
+   [
+    "MKM",
+    58121
+   ]
+  ]
+ },
+ "notes": [
+  "NATIONAL-MHESI2566-R000032: district by the nearest 22 m outline (point outside the simplified outlines)",
+  "31_DEMO_UNIT_SITES FACSITE-W2REG-f07f8e8f955feb7b: no campus site in the source; not shown",
+  "31_DEMO_UNIT_SITES FACSITE-W2REG-1d69bf5e166e24f6: no campus site in the source; not shown"
+ ],
+ "builtFrom": {
+  "export": "38661fa54ef304b837b520b3b055d48c02bfc007470091dabb05e372cddcf022",
+  "tabs": {
+   "00_README": "cba8ef47b92efff1",
+   "01_UNIVERSITIES": "d065913d980c3fd0",
+   "02_ACADEMIC_UNITS": "9b01c394b0a10339",
+   "03_CAMPUS_ROSTER": "659bf7b3b9922963",
+   "08_QUALITY": "61a7c89afd295bb9",
+   "10_SOURCES": "4189ff18cd91fb45",
+   "16_ENROLMENT": "fcd5efe119beb4a3",
+   "20_INSTITUTION_CONTEXTS": "f354fd55bbef1f2a",
+   "26_FEE_COVERAGE": "c645f8cc1c18bac0",
+   "28_DEMO_READINESS": "db021d1fc539c9a9",
+   "29_DEMO_SITES": "e5a3e57735ec16e3",
+   "30_DEMO_GEOMETRY": "05ffe9efbdd02275",
+   "31_DEMO_UNIT_SITES": "074094fbffdd1253",
+   "32_DEMO_OFFERINGS": "7e2dab28167734c6",
+   "33_DEMO_FEE_LINKS": "1d373266d1f933fd",
+   "34_DEMO_ENROLMENT": "09d8e6d64962faca",
+   "36_DEMO_FEE_CALCS": "1dccd3d57069225c",
+   "37_NATIONAL_SPATIAL_STATUS": "60c9ee1535b94f52",
+   "38_CAMPUS_SPATIAL_STATUS": "7dcf69c778be941c",
+   "39_FACULTY_SPATIAL_STATUS": "1f1dc4d9510fc1a1",
+   "LOGO_LIBRARY": "9492ea776be89207",
+   "RETAIL_VENUE_LINKS": "0ffa8ba28aa9de72"
+  }
+ }
+}

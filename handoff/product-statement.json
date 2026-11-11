@@ -1,0 +1,172 @@
+{
+  "$schema": "./handoff.schema.json",
+  "schemaVersion": "1.5.0",
+  "documentType": "product-statement",
+  "productId": "citymeter-university",
+  "productVersion": "0.1.0",
+  "updatedOn": "2026-11-12",
+  "dataset_id": "research.TH.university",
+  "datasetGroup": "Living",
+  "productionDatasetCode": null,
+  "language": "th",
+  "liveUrl": "https://montri-th.github.io/university/",
+  "markdown": "PRODUCT_STATEMENT.md",
+  "positioning": {
+    "one_line_highlight": "แผนที่ 3 มิติของมหาวิทยาลัยทั่วไทย ที่บอกว่านักศึกษากระจุกจังหวัดไหน รอบแปลงมีวิทยาเขต คณะ และอาคารแบบไหน ค่าธรรมเนียมตามประกาศเป็นอย่างไร พร้อมแหล่งของทุกตัวเลข",
+    "question": "นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน",
+    "unique_advantage": "two grains never mixed (reporting units carry the students and their province; reviewed campuses carry points, extents, faculties and context), every link between them named, every number with dataset · source · date · boundary, on the same base layer as the other CityMETER datasets",
+    "unique_vs_competitors": "official counts and campus context in one map, with the open-admission effect shown beside the share and fees read line by line as announced, never summed or compared"
+  },
+  "users": {
+    "primary_users": [
+      "ทีมพัฒนาโครงการที่อยู่อาศัยและนักลงทุนที่ดินรอบมหาวิทยาลัย",
+      "ผู้ประกอบการค้าปลีกและบริการที่เลือกทำเลรอบวิทยาเขต",
+      "มหาวิทยาลัยและหน่วยงานด้านการศึกษา จังหวัด อปท.",
+      "ผู้ประเมินมูลค่าและสถาบันการเงิน"
+    ],
+    "functional_needs": [
+      "นักศึกษาต่อจังหวัดและต่อหน่วยรายงาน",
+      "วิทยาเขตใกล้แปลง กรอบพื้นที่ คณะ และอาคารของคณะ",
+      "ระดับ (ตรี/โท/เอก) และประเภทสถาบัน",
+      "ค่าธรรมเนียมตามประกาศของหลักสูตร",
+      "ระยะตรงถึงสถานีรถไฟฟ้าที่เปิดแล้ว"
+    ],
+    "emotional_needs": [
+      "มั่นใจว่าตัวเลขมีที่มาและอ่านถูกระดับ",
+      "อธิบายต่อผู้บริหารได้ด้วยหลักฐาน"
+    ],
+    "trigger_voice_in_head": [
+      "วิทยาเขตข้างแปลงมีนักศึกษาเท่าไร คณะอะไร",
+      "จังหวัดนี้มีมหาวิทยาลัยกี่แห่ง ใหญ่แค่ไหน",
+      "นักศึกษาของเราอยู่ในจังหวัดไหน"
+    ],
+    "value_proposition": "คำตอบแรกระดับจังหวัดภายในนาที แล้วเจาะลงถึงวิทยาเขต คณะ และอาคาร โดยไม่ปนยอดของหน่วยรายงานกับคนในพื้นที่",
+    "evidence": "Hypothesis — user groups from Landometer’s customer segments and the Hotel/School work; not validated with external interviews (hypotheses_to_validate)"
+  },
+  "problem": {
+    "statement": "จำนวนนักศึกษา ตำแหน่ง และรายละเอียดคณะ หลักสูตร ค่าธรรมเนียม อยู่คนละแหล่ง (แฟ้มข้อมูลเปิดของ อว. เป็นตาราง ทะเบียนตำแหน่งปี 2566 เว็บไซต์ของแต่ละมหาวิทยาลัย) ไม่มีภาพเชิงพื้นที่ที่อ่านยอดของหน่วยรายงานได้ถูกระดับ",
+    "urgency": "ที่ดินและอาคารรอบมหาวิทยาลัยเป็นการลงทุนที่ย้ายไม่ได้ (Inference)",
+    "severity": "การอ่านผิดที่พบบ่อย (Inference): นับนักศึกษามหาวิทยาลัยเปิดเป็นคนในเมือง ใช้ยอดทั้งมหาวิทยาลัยกับวิทยาเขตเดียว อ่านหลักสูตรในประกาศเป็นหลักสูตรที่เปิดรับปีนี้"
+  },
+  "competitor_landscape": {
+    "present_competitors": [
+      {
+        "name": "ข้อมูลเปิดของ อว. (แฟ้มนักศึกษา ทะเบียนสถานศึกษา)",
+        "how_users_use_it": "ดาวน์โหลดตารางแล้วรวมเอง",
+        "strength": "แหล่งทางการ ครบทุกหน่วยรายงาน",
+        "gap": "ไม่มีแผนที่ ไม่บอกว่าหน่วยรายงานคือพื้นที่ใด"
+      },
+      {
+        "name": "เว็บไซต์และประกาศค่าธรรมเนียมของมหาวิทยาลัย",
+        "how_users_use_it": "เปิดทีละมหาวิทยาลัย",
+        "strength": "ตรงจากเจ้าของข้อมูล",
+        "gap": "กระจัดกระจาย คนละรูปแบบ ไม่มีภาพรวมเชิงพื้นที่"
+      },
+      {
+        "name": "แผนที่ทั่วไป (เช่น Google Maps)",
+        "how_users_use_it": "หาที่ตั้งและภาพวิทยาเขต",
+        "strength": "ใช้ง่าย",
+        "gap": "ไม่มียอดนักศึกษา ไม่บอกที่มาของขอบเขต"
+      },
+      {
+        "name": "ระบบรับสมัครและเว็บแนะแนวการศึกษา",
+        "how_users_use_it": "ดูหลักสูตรสำหรับการสมัคร",
+        "strength": "รายละเอียดหลักสูตร",
+        "gap": "ไม่ได้ทำเพื่อการตัดสินใจเชิงทำเล"
+      },
+      {
+        "name": "รายงานที่ปรึกษาอสังหาริมทรัพย์",
+        "how_users_use_it": "อ่านภาพตลาดรายปี",
+        "strength": "มีการวิเคราะห์",
+        "gap": "ไม่ครบทุกจังหวัด ตรวจย้อนถึงต้นทางยาก (Inference)"
+      }
+    ],
+    "aspirational_competitors": [
+      "HESA (สหราชอาณาจักร) — ข้อมูลทางการรายสถาบันพร้อมนิยาม",
+      "College Navigator ของ NCES (สหรัฐอเมริกา) — หน้าสถาบันพร้อมตัวเลขทางการ"
+    ],
+    "expected_quality_bar": "คำตอบแรกภายในหนึ่งนาทีบนมือถือ ทุกตัวเลขบอกชุดข้อมูล แหล่ง วันที่ และขอบเขต ไม่ปนสองระดับ ไม่มีคำเตือนบนหน้าจอ"
+  },
+  "winning_strategy": [
+    "คำถามเดียว คำตอบแรกทันที: สัดส่วนของจังหวัดที่นักศึกษากระจุก พร้อมตัวตั้ง ตัวหาร และแท่งที่ไม่นับมหาวิทยาลัยเปิด",
+    "ความซื่อตรงของตัวเลขเป็นคุณสมบัติของผลิตภัณฑ์: สองระดับไม่ปนกัน ทุกการผูกบอกวิธี ค่าธรรมเนียมไม่รวมหรือเทียบ",
+    "ชั้นฐานเดียวกับชุดข้อมูลอื่นของ CityMETER: สถานีราง ศูนย์การค้า อาคาร ภูมิประเทศ และเมนูชุดข้อมูลที่เปิดจังหวัดเดียวกัน",
+    "พร้อมสำหรับนักพัฒนาและ agent: โค้ดเปิด ข้อมูล JSON พร้อมนิยาม handoff และ llms.txt ไทยและอังกฤษ"
+  ],
+  "firstFinding": {
+    "evidence": "Observed fact (data/universities.json, release 0.1.0; fixtures, recomputed by the page)",
+    "students": "55% ของนักศึกษาทั้งประเทศ (988,359 จาก 1,786,753 คน) อยู่ในกรุงเทพมหานคร ปทุมธานี เชียงใหม่",
+    "withoutOpenAdmission": "ไม่นับรามคำแหง · สุโขทัยธรรมาธิราช: 49% (710,594 จาก 1,460,444 คน)",
+    "bangkok": "47% ของนักศึกษากรุงเทพมหานคร (354,957 จาก 750,679 คน) อยู่กับรามคำแหง จุฬาลงกรณ์ เกษตรศาสตร์",
+    "units": "31% ของหน่วยรายงาน (93 จาก 303) อยู่ในกรุงเทพมหานคร นครปฐม เชียงใหม่",
+    "zero": "9 จังหวัดไม่มีหน่วยรายงาน: บึงกาฬ ชัยนาท กำแพงเพชร มุกดาหาร แม่ฮ่องสอน พังงา สิงห์บุรี สตูล ตราด",
+    "note": "Inference: the Bangkok share is partly how the file reports the open-admission universities; read it with the second bar"
+  },
+  "data_transparency": {
+    "unit": "students as the MHESI student file 2568/2 reports them per reporting unit, summed per province by the unit’s province; reporting units on the switch",
+    "sources": [
+      "research master “CityMETER University & Faculty Thailand — Research Master 2026-10-31” (not published)",
+      "MHESI student file 2568/2 (info.mhesi.go.th open data)",
+      "MHESI institution roster 2566 (data.mhesi.go.th)",
+      "universities’ own pages",
+      "OpenStreetMap (ODbL)",
+      "CityMETER · Transit",
+      "CityMETER · Shopping Center"
+    ],
+    "checkedOn": "2026-11-10",
+    "readOn": "2026-11-12",
+    "builtOn": "2026-11-12",
+    "method": "DATA_METHOD.md",
+    "tabs": "meta.tabs (SHA-256 of each tab of the owner’s export)"
+  },
+  "known_limitations": [
+    "students are counted in the province of the reporting unit; a campus shows its linked unit’s figure, never people on the campus",
+    "the two open-admission universities report every student in their unit’s province",
+    "190 reviewed campus areas, not a census; 2 without a point",
+    "the roster of points is B.E. 2566 (2023)",
+    "fees for 14 pilot areas only; a programme in an announcement is not proof of admission now",
+    "extents are approximate OpenStreetMap areas, not legal boundaries",
+    "no English names for universities, units, campuses or faculties in the master",
+    "reuse terms of the logos are not established in the source",
+    "research follow-ups in DATA_METHOD.md §12 (3 site/unit province conflicts, 14 roster points in another province)"
+  ],
+  "claimBoundary": {
+    "canSay": [
+      "N% of the students the file reports are in these provinces (numerator, denominator)",
+      "this campus is linked to that reporting unit, by this rule",
+      "the university announces these fee lines for this programme",
+      "this campus lies N m (straight line) from that operating station"
+    ],
+    "cannotSay": [
+      "how many students study on a campus or live in a province",
+      "unique persons, demand, seats, enrolment rates, market size",
+      "that a programme admits students this year",
+      "the cost of a degree, a price level or a fee comparison",
+      "a quality rank",
+      "a legal campus boundary or land size",
+      "walking time or catchment"
+    ]
+  },
+  "hypotheses_to_validate": [
+    {
+      "hypothesis": "H1 developers use “unit students + campus extent + rail distance” to shortlist sites round universities",
+      "test": "interviews and use on real plots with 5 teams",
+      "criterion": "at least 3 of 5 teams use the result in a shortlist"
+    },
+    {
+      "hypothesis": "H2 the “without the open universities” bar prevents misreading the Bangkok share",
+      "test": "5 readers summarise the first screen",
+      "criterion": "at least 4 of 5 mention the open-admission effect"
+    },
+    {
+      "hypothesis": "H3 readers do not read a campus figure as people on the campus",
+      "test": "ask 5 readers after a campus view",
+      "criterion": "at least 4 of 5 say it is the reporting unit’s figure"
+    },
+    {
+      "hypothesis": "H4 fee lines in words are read without summing or comparing",
+      "test": "questions on a pilot campus view",
+      "criterion": "no reader sums lines into the cost of a degree"
+    }
+  ]
+}

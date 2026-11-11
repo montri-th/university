@@ -1,0 +1,154 @@
+{
+  "family": "LDS Material Symbols Rounded Pictogram",
+  "file": "material-pictogram-300.woff2",
+  "bytes": 4892,
+  "sha256": "0c18b9ac3583748ff54cc3f5370edf47b3c0331b92629a26d3a2748cc65ea060",
+  "source": "google/material-design-icons variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf",
+  "sourceSha256": "7e74e36533ccee12c2b81e75bfcf3ccf123d3bb7e7e46d65d94445f23db0c97c",
+  "license": "Apache-2.0 (assets/icons/material-symbols-Apache-2.0.txt)",
+  "axes": {
+    "FILL": 0,
+    "wght": 300,
+    "GRAD": 0,
+    "opsz": 24
+  },
+  "glyphs": {
+    "area": {
+      "name": "map",
+      "codepoint": "U+E55B"
+    },
+    "province": {
+      "name": "location_city",
+      "codepoint": "U+E7F1"
+    },
+    "segment": {
+      "name": "category",
+      "codepoint": "U+E72C"
+    },
+    "ai": {
+      "name": "auto_awesome",
+      "codepoint": "U+E65F"
+    },
+    "streetview": {
+      "name": "streetview",
+      "codepoint": "U+E56E"
+    },
+    "maps": {
+      "name": "location_on",
+      "codepoint": "U+E0C8"
+    },
+    "building": {
+      "name": "apartment",
+      "codepoint": "U+EA40"
+    },
+    "school": {
+      "name": "school",
+      "codepoint": "U+E80C"
+    },
+    "students": {
+      "name": "groups",
+      "codepoint": "U+F233"
+    },
+    "teacher": {
+      "name": "co_present",
+      "codepoint": "U+EAF0"
+    },
+    "classroom": {
+      "name": "meeting_room",
+      "codepoint": "U+EB4F"
+    },
+    "level": {
+      "name": "stairs",
+      "codepoint": "U+F1A9"
+    },
+    "fee": {
+      "name": "payments",
+      "codepoint": "U+EF63"
+    },
+    "quality": {
+      "name": "verified",
+      "codepoint": "U+EF76"
+    },
+    "programme": {
+      "name": "menu_book",
+      "codepoint": "U+EA19"
+    },
+    "history": {
+      "name": "trending_up",
+      "codepoint": "U+E8E5"
+    },
+    "aff": {
+      "name": "account_tree",
+      "codepoint": "U+E97A"
+    },
+    "closed": {
+      "name": "event_busy",
+      "codepoint": "U+E615"
+    },
+    "rail": {
+      "name": "train",
+      "codepoint": "U+E570"
+    },
+    "compare": {
+      "name": "compare_arrows",
+      "codepoint": "U+E915"
+    },
+    "sea": {
+      "name": "waves",
+      "codepoint": "U+E176"
+    },
+    "elevation": {
+      "name": "landscape",
+      "codepoint": "U+E564"
+    },
+    "relief": {
+      "name": "height",
+      "codepoint": "U+EA16"
+    },
+    "forest": {
+      "name": "forest",
+      "codepoint": "U+EA99"
+    },
+    "rank": {
+      "name": "leaderboard",
+      "codepoint": "U+F20C"
+    },
+    "date": {
+      "name": "event",
+      "codepoint": "U+E878"
+    },
+    "distance": {
+      "name": "straighten",
+      "codepoint": "U+E41C"
+    },
+    "construction": {
+      "name": "construction",
+      "codepoint": "U+EA3C"
+    },
+    "dataset": {
+      "name": "database",
+      "codepoint": "U+F20E"
+    },
+    "learning": {
+      "name": "auto_stories",
+      "codepoint": "U+E666"
+    },
+    "tutor": {
+      "name": "edit_note",
+      "codepoint": "U+E745"
+    },
+    "language": {
+      "name": "translate",
+      "codepoint": "U+E8E2"
+    },
+    "arts": {
+      "name": "palette",
+      "codepoint": "U+E40A"
+    },
+    "child": {
+      "name": "child_care",
+      "codepoint": "U+EB41"
+    }
+  },
+  "status": "test exception to LDS nav-7 (owner 2026-10-22; actions and building added 2026-10-29; terrain glyphs 2026-11-01 for the map labels; rank, date, distance, construction and dataset 2026-11-01 for short copy; school glyphs 2026-11-05; learning glyphs 2026-11-06); nav-7 subset unchanged"
+}

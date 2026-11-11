@@ -1,0 +1,430 @@
+{
+  "$schema": "./handoff.schema.json",
+  "schemaVersion": "1.5.0",
+  "documentType": "implementation-plan",
+  "productId": "citymeter-university",
+  "productVersion": "0.1.0",
+  "updatedOn": "2026-11-12",
+  "architecture": {
+    "runtime": "static site (GitHub Pages), ES modules with an import map, no build step; Node ≥ 20 for tests, Python 3 for data builds",
+    "commands": {
+      "test": "node --test tests/*.test.js",
+      "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+      "build:tabs": "python3 -I scripts/xlsx-to-csv.py",
+      "build:data": "python3 -I scripts/build-data.py --help",
+      "build:base": "python3 -I scripts/fetch-base.py --help",
+      "build:boundaries": "python3 -I scripts/build-boundaries.py --help",
+      "build:receipts": "python3 -I scripts/build-receipts.py --help",
+      "build:units": "python3 -I scripts/adapt-building-units.py --help",
+      "check:lds": "node scripts/check-lds-parity.mjs",
+      "handoff:manifest": "node scripts/build-handoff.mjs",
+      "handoff:bundle": "node scripts/build-handoff.mjs --zip dist/CityMETER-University-Developer-Handoff.zip",
+      "verify:live": "node scripts/verify-live.mjs"
+    },
+    "libraries": {
+      "maplibre": "MapLibre GL JS 5.6.2 (unpkg, pinned with Subresource Integrity; js/shell/maplibre-guard.js)",
+      "earcut": "js/vendor/earcut.js (ISC)",
+      "tiles": "OpenFreeMap planet (OpenMapTiles schema)"
+    },
+    "modules": {
+      "js/app.js": "orchestration: scopes, Aha, panels, map layers, campus file, building camera, URL state, partial notices",
+      "js/model.js": "decode data/universities.json; measures (students | units), levels, links, pin sizes, filters, summaries, fee words, money",
+      "js/area-insight.js": "the first Aha (national provinces or a province’s universities; tie rule; open comparison; zero provinces)",
+      "js/provinces.js": "province fills and outlines (41 samples), focus and selection strokes, province bounds",
+      "js/campus.js": "decode data/campus.json; campus extents, faculty geometry layers, hit test",
+      "js/profile-model.js": "overview, site, university, unit, station and building models",
+      "js/panel.js": "reading panel views as HTML strings (provenance line, no caveat), fee lines, logos",
+      "js/charts.js": "province, type and university bars",
+      "js/pins.js": "site pins (HTML at detail, symbols otherwise), context dots",
+      "js/labels.js": "campus names near the middle of the view, hover cards",
+      "js/stations.js": "CityMETER · Transit stations as quiet rings, 1 km radius",
+      "js/massing.js": "focus massing, x-ray inputs, building hit test",
+      "js/scales.js": "li.supply and count families, 41-sample rank ramp, legend",
+      "js/cues.js": "type → series and shape cue",
+      "js/ask.js": "Google AI / Maps / Street View actions per view",
+      "js/breadcrumb.js": "ประเทศไทย › จังหวัด › campus (DATASET = \"\")",
+      "js/lang.js + js/lang-en.js": "English reading of the page",
+      "js/navigation.js": "control titles and the pictogram subset",
+      "js/areas.js, js/map-layers.js": "area index helpers, map constants (GEOJSON_MAXZOOM)",
+      "js/shell/": "citymeter-shell 0.6.1 (shared bytes; js/shell/manifest.json)"
+    },
+    "data": {
+      "data/universities.json": "first paint",
+      "data/campus.json": "after the first paint or on a campus",
+      "data/area-index.json": "provinces and districts",
+      "data/provinces.geojson": "province frames",
+      "data/building-units/": "building source per area"
+    }
+  },
+  "selection": {
+    "filterFields": [
+      "search",
+      "type",
+      "province"
+    ],
+    "queryFields": [
+      "at",
+      "e (site | uni | unit | station)",
+      "m",
+      "f.search",
+      "f.type",
+      "focus",
+      "view",
+      "v3d",
+      "lang"
+    ],
+    "rowScopes": {
+      "scopeRows": "reporting units after search · type, before the province selection: the base of the national Aha, the province fill, the province chart",
+      "baseRows": "scopeRows narrowed by the selected province: the province Aha, ranks, type and level bars, the university chart, the table",
+      "rows": "sites and roster points under the same search · type · province: pins, labels, lists"
+    },
+    "panelActions": [
+      "select-province",
+      "select-site",
+      "select-uni",
+      "select-unit",
+      "select-station",
+      "filter-type",
+      "clear-filter",
+      "clear-focus",
+      "explore-top",
+      "leave-province",
+      "open-charts",
+      "open-table",
+      "back"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Read the owner’s .xlsx export of the research master; one CSV per tab with its SHA-256",
+      "dependsOn": [],
+      "acceptanceCriteria": [
+        "A1"
+      ],
+      "files": [
+        "scripts/xlsx-to-csv.py"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T2",
+      "title": "Build units, universities, sites, roster points, stations; campus file; logos",
+      "dependsOn": [
+        "T1"
+      ],
+      "acceptanceCriteria": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "files": [
+        "scripts/build-data.py",
+        "data/universities.json",
+        "data/campus.json",
+        "data/build-report.json",
+        "assets/logos/"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T3",
+      "title": "Decode and model: measures, links, filters, Aha",
+      "dependsOn": [
+        "T2"
+      ],
+      "acceptanceCriteria": [
+        "A6",
+        "A7"
+      ],
+      "files": [
+        "js/model.js",
+        "js/area-insight.js",
+        "js/profile-model.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T4",
+      "title": "Map: province fills, pins, labels, campus extents and faculty buildings, stations, massing",
+      "dependsOn": [
+        "T3"
+      ],
+      "acceptanceCriteria": [
+        "A8",
+        "A9"
+      ],
+      "files": [
+        "js/provinces.js",
+        "js/pins.js",
+        "js/labels.js",
+        "js/campus.js",
+        "js/stations.js",
+        "js/massing.js",
+        "js/app.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T5",
+      "title": "Panel views, charts, table, provenance",
+      "dependsOn": [
+        "T3"
+      ],
+      "acceptanceCriteria": [
+        "A10",
+        "A11",
+        "A12"
+      ],
+      "files": [
+        "js/panel.js",
+        "js/charts.js",
+        "index.html",
+        "styles.css"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T6",
+      "title": "Fee lines in words and currencies",
+      "dependsOn": [
+        "T5"
+      ],
+      "acceptanceCriteria": [
+        "A13"
+      ],
+      "files": [
+        "js/model.js",
+        "js/panel.js",
+        "tests/views.test.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T7",
+      "title": "English reading",
+      "dependsOn": [
+        "T5"
+      ],
+      "acceptanceCriteria": [
+        "A14"
+      ],
+      "files": [
+        "js/lang.js",
+        "js/lang-en.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T8",
+      "title": "Shell 0.6.1: University in the dataset picker",
+      "dependsOn": [],
+      "acceptanceCriteria": [
+        "A15"
+      ],
+      "files": [
+        "js/shell/datasets.js",
+        "js/shell/manifest.json",
+        "tests/shell.test.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T9",
+      "title": "Docs, handoff, release tag, publication hygiene",
+      "dependsOn": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8"
+      ],
+      "acceptanceCriteria": [
+        "A16",
+        "A17"
+      ],
+      "files": [
+        "README.md",
+        "DATA_METHOD.md",
+        "PRODUCT_STATEMENT.md",
+        "AGENTS.md",
+        "llms.txt",
+        "handoff/",
+        "tests/release.test.js"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "T10",
+      "title": "Publish on GitHub Pages; live attestation; registry row research.TH.university",
+      "dependsOn": [
+        "T9"
+      ],
+      "acceptanceCriteria": [
+        "A18"
+      ],
+      "files": [
+        "handoff/VERIFICATION.md"
+      ],
+      "status": "in progress"
+    }
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "A1",
+      "scenario": "decode universities.json",
+      "expected": "303 units; students add up per level, faculty and sex; ids unique; the period is 2568/2",
+      "verificationType": "unit (tests/data.test.js)"
+    },
+    {
+      "id": "A2",
+      "scenario": "province totals",
+      "expected": "every unit names a production province; totals add to 1,786,753; 9 provinces measured zero",
+      "verificationType": "unit (tests/data.test.js)"
+    },
+    {
+      "id": "A3",
+      "scenario": "sites",
+      "expected": "unique keys; points in a district of their province; a known point role; no point is null, never 0",
+      "verificationType": "unit (tests/data.test.js)"
+    },
+    {
+      "id": "A4",
+      "scenario": "site ↔ unit links",
+      "expected": "one unit per site and one site per unit; every link names its rule",
+      "verificationType": "unit (tests/data.test.js)"
+    },
+    {
+      "id": "A5",
+      "scenario": "campus file and logos",
+      "expected": "extents are the sites’ own; faculty geometry on its site; fee lines with amount, currency and public source; logos equal to their SHA-256",
+      "verificationType": "unit (tests/data.test.js)"
+    },
+    {
+      "id": "A6",
+      "scenario": "first Aha",
+      "expected": "Bangkok, Pathum Thani, Chiang Mai: 55% (988,359 / 1,786,753); without the open type 49% (710,594 / 1,460,444)",
+      "verificationType": "unit fixture (tests/insight.test.js)"
+    },
+    {
+      "id": "A7",
+      "scenario": "tie rule and filters",
+      "expected": "never cuts a tie, never every item; follows type and search",
+      "verificationType": "unit (tests/insight.test.js)"
+    },
+    {
+      "id": "A8",
+      "scenario": "province frames",
+      "expected": "measured zero is an outline; every frame takes one of the 41 samples",
+      "verificationType": "unit (tests/insight.test.js, tests/scales.test.js)"
+    },
+    {
+      "id": "A9",
+      "scenario": "pins and labels",
+      "expected": "one symbol per site with a point, never aggregated; labels in the central ellipse, ≤ 9 / 5",
+      "verificationType": "unit (tests/pins.test.js, tests/labels.test.js)"
+    },
+    {
+      "id": "A10",
+      "scenario": "provenance",
+      "expected": "every view ends with one provenance line and no caveat",
+      "verificationType": "unit (tests/views.test.js)"
+    },
+    {
+      "id": "A11",
+      "scenario": "campus view",
+      "expected": "the unit’s students named; faculties; fees as published; no 0 for a campus without a unit; loading said",
+      "verificationType": "unit (tests/views.test.js)"
+    },
+    {
+      "id": "A12",
+      "scenario": "charts",
+      "expected": "provinces in the map colour, types with their cue, universities ranked; a click emits its selection",
+      "verificationType": "unit (tests/views.test.js)"
+    },
+    {
+      "id": "A13",
+      "scenario": "fee lines",
+      "expected": "every code of the data reads in words; each amount in its own currency",
+      "verificationType": "unit (tests/views.test.js)"
+    },
+    {
+      "id": "A14",
+      "scenario": "English",
+      "expected": "no Thai left untranslated in any view, pilot campus or province (window.__citymeterI18n.missing empty)",
+      "verificationType": "rendered harvest (handoff/VERIFICATION.md)"
+    },
+    {
+      "id": "A15",
+      "scenario": "shell",
+      "expected": "every shell file matches js/shell/manifest.json (0.6.1)",
+      "verificationType": "unit (tests/shell.test.js)"
+    },
+    {
+      "id": "A16",
+      "scenario": "release",
+      "expected": "one cache tag; one product version; schema-valid handoff JSON; no spreadsheet, private link, sheet address or credential in the tree",
+      "verificationType": "unit (tests/release.test.js)"
+    },
+    {
+      "id": "A17",
+      "scenario": "LDS parity",
+      "expected": "every shipped colour value equals the LDS base file and the Location Intelligence Profile",
+      "verificationType": "npm run check:lds"
+    },
+    {
+      "id": "A18",
+      "scenario": "live",
+      "expected": "every published file on GitHub Pages equals the manifest; the live site walks in Chrome",
+      "verificationType": "npm run verify:live + manual walk"
+    }
+  ],
+  "developerWorkflow": [
+    "edit the research sheet only (never data/)",
+    "export the workbook as .xlsx (owner), then python3 -I scripts/xlsx-to-csv.py <export.xlsx> <tabs-dir>",
+    "python3 -I scripts/build-data.py … (DATA_METHOD.md §13)",
+    "npm test",
+    "npm run check:lds -- --lds <LDS 0.9.7 .md> --li <LI profile .md>",
+    "English harvest on ?lang=en (every view, pilot campus and province)",
+    "bump ?v= in index.html with package.json version, design-intent.json and the handoff JSON",
+    "push to main; npm run handoff:manifest; npm run verify:live",
+    "walk the live site at desktop and 390 px, light and dark, Thai and English"
+  ],
+  "backlog": [
+    {
+      "id": "B1",
+      "item": "English names of universities, units, campuses and faculties in the research master",
+      "evidence": "research follow-up"
+    },
+    {
+      "id": "B2",
+      "item": "Resolve the 3 site/unit province conflicts and the 14 roster points in another province",
+      "evidence": "meta.checks"
+    },
+    {
+      "id": "B3",
+      "item": "More pilot areas for faculties, programmes and fees",
+      "evidence": "owner decision"
+    },
+    {
+      "id": "B4",
+      "item": "Other demos adopt citymeter-shell 0.6.1 so their pickers and the demo hub list University",
+      "evidence": "js/shell/manifest.json"
+    },
+    {
+      "id": "B5",
+      "item": "Reuse terms of the university logos",
+      "evidence": "LOGO_LIBRARY.rights_notice"
+    },
+    {
+      "id": "B6",
+      "item": "A production dataset code for University in the registry, then `d` and production links",
+      "evidence": "registry R01_DATASETS"
+    }
+  ]
+}

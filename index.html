@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Languages this page carries (citymeter-shell, js/shell/i18n.js): Thai is the source; ?lang=en reads it in English. -->
+  <meta name="citymeter:languages" content="th en">
+  <link rel="alternate" hreflang="th" href="https://montri-th.github.io/university/">
+  <link rel="alternate" hreflang="en" href="https://montri-th.github.io/university/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://montri-th.github.io/university/">
+  <title>University · CityMETER</title>
+  <meta name="description" content="นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน — แผนที่ 3 มิติของมหาวิทยาลัยทั่วประเทศ นักศึกษาตามแฟ้ม อว. รายจังหวัด วิทยาเขต คณะ หลักสูตร และค่าธรรมเนียม">
+  <meta name="theme-color" content="#F6F7F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11191D" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="University · CityMETER">
+  <meta property="og:description" content="นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน — แผนที่ 3 มิติของมหาวิทยาลัยทั่วประเทศ">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://montri-th.github.io/university/">
+  <style id="launch-critical-styles">
+    html{background:#F6F7F3}html[data-theme="dark"]{background:#11191D}
+    #launch-status{position:fixed;inset:48px 0 0;z-index:30;display:grid;place-items:center;padding:20px;background:var(--surface-canvas,#F6F7F3);color:var(--text-primary,#182327);overflow:auto;font:400 14px/1.65 "Bai Jamjuree",sans-serif}
+    #launch-status[hidden]{display:none!important}
+    .launch-card{width:min(560px,100%);padding:24px;background:var(--surface-card,#FCFCFA);border:1px solid var(--border-default,#C9D0CB);border-radius:16px}
+    .launch-card h2{font-size:24px;line-height:1.4;margin:0 0 12px}.launch-card p{margin:12px 0}
+    .launch-card a{color:inherit;overflow-wrap:anywhere;text-underline-offset:3px}
+    .launch-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.launch-card button{min-height:44px;padding:8px 16px;font:inherit}
+    .launch-card details{margin-top:16px;font-size:12px}.launch-card summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+    .launch-card pre{white-space:pre-wrap;overflow-wrap:anywhere;font:400 12px/1.6 "JetBrains Mono",monospace}
+    .launch-card :focus-visible{outline:3px solid var(--interaction-focus-ring,#176B82);outline-offset:3px}
+    @media(max-width:420px){#launch-status{padding:16px}.launch-card{padding:20px}.launch-card h2{font-size:21px}}
+  </style>
+  <script src="js/shell/launch.js?v=20261112-r1" data-public="https://montri-th.github.io/university/" data-name="University" data-theme-key="citymeter-university-theme" data-reading="มหาวิทยาลัย" data-reading-en="university data" data-boundary="ขอบเขตจังหวัด" data-boundary-en="province boundaries"></script>
+  <link rel="icon" href="assets/icons/icon-portfolio-32.png" sizes="32x32">
+  <link rel="icon" href="assets/icons/icon-portfolio-16.png" sizes="16x16">
+  <link rel="icon" href="assets/icons/icon-portfolio-48.png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/icons/icon-portfolio-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/lds/build-kit/fonts.css?v=20261112-r1">
+  <link rel="stylesheet" href="assets/theme.css?v=20261112-r1">
+  <link rel="stylesheet" href="styles.css?v=20261112-r1">
+  <link rel="stylesheet" href="navigation.css?v=20261112-r1">
+  <!-- Every ES module carries the release cache tag (not only the entry files): a browser can never pair a new
+       entry with a module cached from the previous release. Keep in step with the ?v= tags above (tests/release.test.js). -->
+  <script type="importmap">
+  {
+    "imports": {
+      "./js/app.js": "./js/app.js?v=20261112-r1",
+      "./js/area-insight.js": "./js/area-insight.js?v=20261112-r1",
+      "./js/ask.js": "./js/ask.js?v=20261112-r1",
+      "./js/areas.js": "./js/areas.js?v=20261112-r1",
+      "./js/breadcrumb.js": "./js/breadcrumb.js?v=20261112-r1",
+      "./js/campus.js": "./js/campus.js?v=20261112-r1",
+      "./js/charts.js": "./js/charts.js?v=20261112-r1",
+      "./js/cues.js": "./js/cues.js?v=20261112-r1",
+      "./js/labels.js": "./js/labels.js?v=20261112-r1",
+      "./js/lang.js": "./js/lang.js?v=20261112-r1",
+      "./js/lang-en.js": "./js/lang-en.js?v=20261112-r1",
+      "./js/map-layers.js": "./js/map-layers.js?v=20261112-r1",
+      "./js/massing.js": "./js/massing.js?v=20261112-r1",
+      "./js/model.js": "./js/model.js?v=20261112-r1",
+      "./js/navigation.js": "./js/navigation.js?v=20261112-r1",
+      "./js/panel.js": "./js/panel.js?v=20261112-r1",
+      "./js/pins.js": "./js/pins.js?v=20261112-r1",
+      "./js/profile-model.js": "./js/profile-model.js?v=20261112-r1",
+      "./js/provinces.js": "./js/provinces.js?v=20261112-r1",
+      "./js/scales.js": "./js/scales.js?v=20261112-r1",
+      "./js/stations.js": "./js/stations.js?v=20261112-r1",
+      "./js/vendor/earcut.js": "./js/vendor/earcut.js?v=20261112-r1",
+      "./js/shell/area-path.js": "./js/shell/area-path.js?v=20261112-r1",
+      "./js/shell/breadcrumb.js": "./js/shell/breadcrumb.js?v=20261112-r1",
+      "./js/shell/building-join.js": "./js/shell/building-join.js?v=20261112-r1",
+      "./js/shell/building-units.js": "./js/shell/building-units.js?v=20261112-r1",
+      "./js/shell/camera.js": "./js/shell/camera.js?v=20261112-r1",
+      "./js/shell/datasets.js": "./js/shell/datasets.js?v=20261112-r1",
+      "./js/shell/geometry.js": "./js/shell/geometry.js?v=20261112-r1",
+      "./js/shell/header.js": "./js/shell/header.js?v=20261112-r1",
+      "./js/shell/i18n.js": "./js/shell/i18n.js?v=20261112-r1",
+      "./js/shell/map-style.js": "./js/shell/map-style.js?v=20261112-r1",
+      "./js/shell/maplibre-guard.js": "./js/shell/maplibre-guard.js?v=20261112-r1",
+      "./js/shell/mvt.js": "./js/shell/mvt.js?v=20261112-r1",
+      "./js/shell/navigation.js": "./js/shell/navigation.js?v=20261112-r1",
+      "./js/shell/terrain.js": "./js/shell/terrain.js?v=20261112-r1",
+      "./js/shell/title.js": "./js/shell/title.js?v=20261112-r1",
+      "./js/shell/url.js": "./js/shell/url.js?v=20261112-r1",
+      "./js/shell/vendors.js": "./js/shell/vendors.js?v=20261112-r1",
+      "./js/shell/venue-xray.js": "./js/shell/venue-xray.js?v=20261112-r1"
+    }
+  }
+  </script>
+  <script type="module" src="js/app.js?v=20261112-r1"></script>
+  <script type="module" src="js/navigation.js?v=20261112-r1"></script>
+</head>
+<body>
+<a class="skip" href="#panel">ข้ามไปแผงข้อมูล</a>
+
+<header class="topbar">
+  <a class="brand" href="https://landometer.com/v3/citymeter" aria-label="CityMETER production">
+    <img src="assets/icons/icon-portfolio-32.png" alt="" width="24" height="24"><span>CityMETER</span>
+  </a>
+  <span class="brand-divider" aria-hidden="true">/</span>
+  <span class="product-name">University</span>
+  <div class="top-actions">
+    <a class="text-link" href="PRODUCT_STATEMENT.md" target="_blank" rel="noopener">Product statement</a>
+    <label class="theme-control"><span class="theme-visible-label">ธีม</span>
+      <select id="theme" aria-label="รูปแบบหน้าจอและแผนที่">
+        <option value="auto">Auto</option><option value="light">Light</option><option value="dark">Dark</option>
+      </select>
+    </label>
+    <a class="lang-link" href="?lang=en" hreflang="en" lang="en" translate="no" title="Read in English (draft translation)">EN</a>
+  </div>
+</header>
+
+<section id="launch-status" role="status" aria-live="polite" aria-busy="true" aria-labelledby="launch-title">
+  <div class="launch-card">
+    <p class="eyebrow">CITYMETER UNIVERSITY</p>
+    <h2 id="launch-title">กำลังโหลดข้อมูล</h2>
+    <p id="launch-message">กำลังอ่านข้อมูลมหาวิทยาลัยและขอบเขตจังหวัด</p>
+    <p><a id="launch-public" href="https://montri-th.github.io/university/">https://montri-th.github.io/university/</a></p>
+    <div class="launch-actions"><button id="launch-retry" type="button" hidden>ลองโหลดใหม่</button><a href="https://github.com/montri-th/university" target="_blank" rel="noopener">ดูที่มาใน GitHub</a></div>
+    <details id="launch-debug" hidden><summary>รายละเอียดเพื่อแจ้งปัญหา</summary><pre id="launch-diagnostics"></pre></details>
+    <noscript><p>หน้านี้ต้องใช้ JavaScript เพื่ออ่านข้อมูลและแสดงแผนที่ กรุณาเปิด JavaScript แล้วลองใหม่ หรือเปิดลิงก์เว็บสาธารณะด้านบน</p></noscript>
+  </div>
+</section>
+
+<main class="workspace">
+  <div class="map-column">
+    <section class="map-panel" aria-label="แผนที่มหาวิทยาลัย นักศึกษาต่อจังหวัด วิทยาเขต สถานีรถไฟฟ้า และอาคาร">
+      <div id="map"></div>
+      <div id="map-failure" class="map-failure" hidden></div>
+      <div class="map-toolbar" role="group" aria-label="เครื่องมือแผนที่">
+        <button id="fit-map" type="button">ดูทั้งหมด</button>
+        <button id="country-map" type="button">ทั้งประเทศ</button>
+        <button id="toggle-neighborhoods" type="button" aria-pressed="true">จังหวัด</button>
+        <button id="toggle-3d" type="button" aria-pressed="true">3D</button>
+        <button id="open-help" type="button" aria-haspopup="dialog" aria-controls="usage-help">วิธีใช้</button>
+        <button id="mobile-panel" type="button" aria-expanded="false" aria-controls="panel">ข้อมูล</button>
+      </div>
+      <!-- Phone dock (0.3.5): the Aha line and the legend as one compact card; on wider screens it adds no box. -->
+      <div class="map-dock" id="map-dock">
+      <section id="map-aha" class="map-aha" aria-label="ข้อค้นพบแรก" hidden></section>
+      <div class="map-legend" id="map-legend" aria-label="คำอธิบายแผนที่">
+        <div class="legend-block" id="legend-areas">
+          <div class="metric-switch" role="radiogroup" aria-label="วัดพื้นที่ด้วย">
+            <button type="button" role="radio" data-metric="students" aria-checked="true">นักศึกษา</button><button type="button" role="radio" data-metric="units" aria-checked="false" tabindex="-1">หน่วยรายงาน</button>
+          </div>
+          <span class="legend-title" id="legend-title">จังหวัด · นักศึกษา</span>
+          <span class="legend-steps" id="legend-steps"></span>
+        </div>
+        <div class="legend-block legend-marks">
+          <span id="legend-pin" class="legend-size" title="1 สัญลักษณ์ = 1 พื้นที่มหาวิทยาลัยที่ทีมวิจัยตรวจ · สีและรูปทรง = ประเภทสถาบัน"><span id="legend-pin-label" class="size-key"></span></span>
+          <span class="legend-station-item" title="สถานีรถไฟฟ้าที่เปิดแล้ว · กดเพื่อดูวิทยาเขตรอบ 1 กม."><i class="legend-station" aria-hidden="true"></i>สถานี</span>
+          <span class="legend-context-item" title="จุดในทะเบียนสถานศึกษา อว. ปี 2566 ที่ยังไม่มีพื้นที่ที่ตรวจแล้ว และวิทยาเขตนอกโฟกัส"><i class="legend-context" aria-hidden="true"></i>ทะเบียน 2566</span>
+          <span class="legend-campus-item" title="กรอบพื้นที่โดยประมาณจาก OpenStreetMap ไม่ใช่แนวเขตตามกฎหมาย"><i class="legend-campus" aria-hidden="true"></i>กรอบวิทยาเขต</span>
+          <span class="legend-massing-item" title="อาคาร 3 มิติ: เข้ม = ในโฟกัส · จาง = ทั่วเมือง"><i class="legend-massing is-focus" aria-hidden="true"></i><i class="legend-massing is-quiet" aria-hidden="true"></i>อาคาร</span>
+          <span class="legend-building-item" title="อาคารของคณะในวิทยาเขตที่เปิด"><i class="legend-building" aria-hidden="true"></i><span id="legend-building-label">อาคารของคณะ</span></span>
+          <span id="legend-terrain" class="legend-terrain-item" hidden title="ภูมิประเทศ 3 มิติ ขยายความสูง 1.5 เท่า · SRTM 30 ม. · แสดงเองในพื้นที่ที่มีเนินเขา"><i class="pictogram pic-elevation" aria-hidden="true"></i>ภูมิประเทศ ×1.5</span>
+          <details id="category-key"><summary title="ประเภทสถาบัน: สีและรูปทรงของสัญลักษณ์"><span id="category-cues" class="category-cues" aria-hidden="true"></span>ประเภท</summary><div id="category-items"></div></details>
+        </div>
+      </div>
+      </div>
+      <p class="map-status" id="map-status" aria-live="off"></p>
+    </section>
+
+    <section id="insights" class="insights is-collapsed" aria-labelledby="insight-title">
+      <div class="insight-heading">
+        <h2 id="insight-title">เปรียบเทียบ</h2>
+        <span id="chart-scope" class="hint"></span>
+        <button id="toggle-insights" type="button" aria-expanded="false" aria-controls="insight-content">เปิดกราฟ</button>
+        <button id="open-table" type="button">รายชื่อ <span id="result-count" class="data-number"></span></button>
+      </div>
+      <div id="insight-content" hidden>
+        <div class="tabs" role="tablist" aria-label="มุมมองกราฟ">
+          <button role="tab" type="button" id="tab-provinces" aria-selected="true" data-view="provinces" aria-controls="chart">จังหวัด</button>
+          <button role="tab" type="button" id="tab-types" aria-selected="false" data-view="types" aria-controls="chart">ประเภทสถาบัน</button>
+          <button role="tab" type="button" id="tab-unis" aria-selected="false" data-view="unis" aria-controls="chart">มหาวิทยาลัย</button>
+        </div>
+        <div id="chart" class="chart" role="tabpanel" aria-labelledby="tab-provinces"></div>
+      </div>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="results-title" hidden>
+      <div class="results-heading">
+        <h2 id="results-title">หน่วยรายงานตามตัวกรอง</h2>
+        <button id="toggle-table" type="button" aria-expanded="true" aria-controls="table-wrap">ปิดตาราง</button>
+      </div>
+      <div id="table-wrap">
+        <p class="hint" id="table-hint">เรียงตามจำนวนนักศึกษา · กดชื่อเพื่อดูรายละเอียด</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">หน่วยรายงาน / ประเภท</th><th scope="col" class="num">นักศึกษา</th><th scope="col" class="num">ป.ตรี</th><th scope="col" class="num">ป.โท</th><th scope="col" class="num">ป.เอก</th><th scope="col">จังหวัด</th><th scope="col">พื้นที่บนแผนที่</th></tr></thead>
+            <tbody id="result-rows"></tbody>
+          </table>
+        </div>
+        <div class="pagination"><button id="prev-page" type="button">ก่อนหน้า</button><span id="page-label" class="data-number"></span><button id="next-page" type="button">ถัดไป</button></div>
+      </div>
+    </section>
+  </div>
+
+  <aside id="panel" class="panel" aria-labelledby="dataset-title">
+    <!-- Phone sheet bar (0.7.0): back, the grip that makes the sheet taller or shorter, close. Hidden on wider screens. -->
+    <div class="sheet-bar" id="sheet-bar">
+      <button id="sheet-back" type="button" class="btn quiet back sheet-back" hidden>กลับ</button>
+      <button id="sheet-grip" type="button" class="sheet-grip" aria-expanded="false" aria-controls="panel-view" title="ขยายแผ่นข้อมูล"><span class="sr-only">ขยายแผ่นข้อมูล</span></button>
+      <button id="close-mobile-panel" type="button" class="mobile-close"><span class="sr-only">กลับไปแผนที่</span></button>
+    </div>
+    <div class="panel-top">
+      <nav id="crumbs" class="crumbs-nav" aria-label="เส้นทางพื้นที่: ประเทศไทย › จังหวัด › วิทยาเขต"></nav>
+      <p class="sheet-links"><button id="open-help-sheet" type="button" class="link-button" aria-haspopup="dialog" aria-controls="usage-help">วิธีใช้</button><a class="text-link" href="PRODUCT_STATEMENT.md" target="_blank" rel="noopener">Product statement</a></p>
+      <div class="dataset-heading">
+        <p class="eyebrow">CITYMETER · LIVING</p>
+        <h1 id="dataset-title" tabindex="-1">University</h1>
+        <p class="intro">นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน</p>
+      </div>
+      <form id="filters" class="filters" autocomplete="off">
+        <label class="search-field">
+          <span class="sr-only">ค้นหามหาวิทยาลัย วิทยาเขต หรือจังหวัด</span>
+          <input type="search" id="search" placeholder="ค้นหามหาวิทยาลัย วิทยาเขต หรือจังหวัด" autocomplete="off">
+        </label>
+        <details id="filter-details" class="filter-details">
+          <summary><span>ตัวกรอง</span><span id="filter-count" class="filter-count" aria-live="polite"></span></summary>
+          <div class="filter-grid">
+            <label>ประเภทสถาบัน<select id="type"><option value="">ทุกประเภท</option></select></label>
+            <label>จังหวัด<select id="province"><option value="">ทุกจังหวัด</option></select></label>
+          </div>
+          <div class="filter-actions"><button type="reset" class="btn quiet">ล้างตัวกรอง</button></div>
+        </details>
+      </form>
+      <div id="filter-chips"></div>
+    </div>
+    <div id="panel-view" class="panel-view"></div>
+  </aside>
+</main>
+
+<dialog id="usage-help" class="usage-dialog" aria-labelledby="usage-help-title" aria-describedby="usage-help-intro">
+  <div class="help-heading">
+    <div><p class="eyebrow">CITYMETER UNIVERSITY</p><h2 id="usage-help-title">วิธีใช้</h2></div>
+    <button id="close-help" type="button">ปิดวิธีใช้</button>
+  </div>
+  <p id="usage-help-intro" class="help-intro">แผนที่นักศึกษาตามจังหวัด แล้วลงไปดูวิทยาเขต คณะ และอาคารแบบ 3 มิติ — กดจังหวัด มหาวิทยาลัย วิทยาเขต หรือสถานี</p>
+  <ol class="help-steps">
+    <li><strong>ข้อค้นพบ</strong><p>นักศึกษาทั้งประเทศอยู่ในจังหวัดอันดับต้น (ไม่เกิน 3) กี่เปอร์เซ็นต์ · เทียบเมื่อไม่นับมหาวิทยาลัยเปิด · จังหวัดที่ไม่มีหน่วยรายงาน · ในจังหวัด: มหาวิทยาลัยอันดับต้น</p></li>
+    <li><strong>นักศึกษา | หน่วยรายงาน</strong><p>นักศึกษา = จำนวนตามแฟ้มนักศึกษา อว. ปีการศึกษา 2568 ภาค 2 · หน่วยรายงาน = มหาวิทยาลัย วิทยาเขต หรือสถาบันที่แฟ้มรายงานแยกไว้ · นับตามจังหวัดที่แฟ้มระบุให้หน่วยนั้น</p></li>
+    <li><strong>สีจังหวัด</strong><p>สีเข้ม = มาก (41 ระดับ) · กรอบไม่มีสี = 0 ในแฟ้มนี้ · ซูมเข้าแล้วสีจะหายให้เห็นวิทยาเขตและอาคาร</p></li>
+    <li><strong>วิทยาเขต</strong><p>สัญลักษณ์สี = พื้นที่มหาวิทยาลัยที่ทีมวิจัยตรวจ · สีและรูปทรง = ประเภทสถาบัน · เส้นประ = กรอบพื้นที่โดยประมาณจาก OpenStreetMap · จุดสีเทา = ทะเบียน อว. ปี 2566 ที่ยังไม่ได้ตรวจ</p></li>
+    <li><strong>ในวิทยาเขต</strong><p>นักศึกษาตามหน่วยรายงานที่ผูกกับพื้นที่นี้ · คณะที่มีหลักฐานว่าอยู่ที่นี่ · หลักสูตรและค่าธรรมเนียมตามประกาศ · สถานีใกล้สุด · อาคารของคณะเป็นสีฟ้า กดเพื่อดูคณะในอาคาร</p></li>
+    <li><strong>สถานีรถไฟฟ้า</strong><p>วงกลมเล็ก = สถานีที่เปิดแล้ว · กดเพื่อดูวิทยาเขตรอบ 1 กม. (ระยะตรง)</p></li>
+    <li><strong>มหาวิทยาลัยและหน่วยรายงาน</strong><p>นักศึกษาตามระดับและคณะ · วิทยาเขตทั้งหมดบนแผนที่ · การรับรองคุณภาพ</p></li>
+    <li><strong>เส้นทาง กราฟ ตาราง</strong><p>ประเทศไทย › จังหวัด › วิทยาเขต · “เปิดกราฟ” เทียบจังหวัด ประเภท และมหาวิทยาลัย · “รายชื่อ” เปิดตารางหน่วยรายงาน</p></li>
+  </ol>
+  <p class="help-keyboard"><strong>คีย์บอร์ด:</strong> Tab ไปยังปุ่ม · ลูกศรเลื่อนระหว่างหมุดบนแผนที่ (เมื่อซูมใกล้) และสลับนักศึกษา/หน่วยรายงาน · Enter เลือก · Escape ปิด</p>
+  <p class="help-links"><a href="https://montri-th.github.io/university/" id="help-public-site">เว็บ University</a> · <a href="https://github.com/montri-th/university" target="_blank" rel="noopener">ที่มาใน GitHub</a> · <a href="DATA_METHOD.md" target="_blank" rel="noopener">วิธีจัดทำข้อมูล</a></p>
+</dialog>
+
+<div id="announcement" role="status" class="sr-only"></div>
+</body>
+</html>

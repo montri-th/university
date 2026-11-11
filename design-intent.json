@@ -1,0 +1,32 @@
+{
+  "artifact": "CityMETER University — 3D map of the students the MHESI student file reports per province, with the universities’ reviewed campuses (points, extents, faculties and faculty buildings), fee lines as announced for pilot areas, quality observations, logos and rail context from the same registry",
+  "productVersion": "0.1.0",
+  "updatedOn": "2026-11-12",
+  "ldsVersion": "0.9.7",
+  "release": "v0.9.7-owner.1",
+  "revision": "standalone-0.9.7-r1",
+  "colorSetId": "color-srgb-10",
+  "baseDocumentSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+  "locationIntelligenceProfile": "applied for students: li.supply (location-intelligence-profile-lds-0.9.7-r1, sha256 5d4856041709735d3a04d4a510a88b551df86c211fdcab8a0707e8fe7c9efc3b; baseDocument d3085cbc…96) — students reported are a served quantity (กำลังให้บริการที่มีอยู่) as the file reports them; reporting units use the base count family",
+  "layoutReference": "https://landometer.com/v3/citymeter",
+  "fontRoles": {
+    "body": "Bai Jamjuree 400/600",
+    "thaiHeadings": "IBM Plex Sans Thai Looped 700",
+    "latinHeadings": "Arvo 700",
+    "dataAndMetrics": "JetBrains Mono 400; tabular numerals",
+    "navigation": "Material Symbols Rounded approved nav-7 subset; FILL 0 / wght 300 / GRAD 0 / opsz 24",
+    "pictograms": "Material Symbols Rounded pictogram subset (the same file as CityMETER · School, sha256 0c18b9ac…): meanings in js/navigation.js#PICTOGRAM_CONTRACT; no star glyph"
+  },
+  "colors": {
+    "applied": "assets/theme.css — foundation pairs, semantic states, map roles, dataState (noData, zero), categorical series 1–10 (landometer-series-10-v8 soft fill + ink), count classes, basemap-only tokens",
+    "analytical": "js/scales.js — li.supply for students (scaleVersion 671112f34b878219faf90fb3fd07cc05a919c134d798ff40fbc8ab278273c497) and count for reporting units (4ff5c1fb4be71ecd13c48685b38371b528bcd4ce369ce964a75354c2eb4d0980); exact 41-sample LUTs; identical HEX on both themes; all 41 samples by rank among the measured nonzero provinces (owner standing rule “Color scale ขอให้ใช้ 41 scales ตาม LDS เสมอ”)",
+    "categorical": "js/cues.js — type id → series (autonomous 1 circle, rajabhat 2 square, private 3 triangle, open 4 diamond, rmut 5 cross, public 7 hexagon, outside 9 dash, private_other 10 plus); no star",
+    "campus": "extents: dashed border-emphasis; the open campus: map.selectedStroke; faculty buildings and areas: map.activeLayer; faculty points: map.activeLayer with the marker halo",
+    "logos": "on a plate of the surface the package names (--logo-plate-light #FFFFFF, --logo-plate-dark #182327)",
+    "parity": "scripts/check-lds-parity.mjs against the LDS base file and the Location Intelligence Profile (handoff/VERIFICATION.md)",
+    "notDistributed": "full LDS library, the Location Intelligence Profile, other analytical families"
+  },
+  "firstAha": "share of the national total of the measure held by the provinces with the most of it (at most three; never cutting a tie, never every province holding it), with numerator and denominator, the same share without the open-admission universities as a second bar with both bases, and the provinces with no reporting unit by name; in a province, the universities with the most of the measure; computed per selection",
+  "countingUnit": "measure switch: students reported (คน, default) or reporting units (หน่วย); a campus shows its linked unit’s figure only",
+  "noCaveats": "exactness through names, numerator and denominator, and one provenance line per view"
+}

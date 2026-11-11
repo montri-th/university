@@ -1,0 +1,554 @@
+{
+ "base": {
+  "base-0332f2ce-d76b-48de-8e61-3c7358965fbb.meta.json": {
+   "bytes": 41180,
+   "retrievedAt": "2026-11-05T16:18:50+00:00",
+   "sha256": "036d2b0d5d63d161677f1bab195374bb75057daa3fa48db4c124e6da97479bbd",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/0332f2ce-d76b-48de-8e61-3c7358965fbb"
+  },
+  "base-0482a941-1334-46e6-9b1a-b0cf99325775.meta.json": {
+   "bytes": 34093,
+   "retrievedAt": "2026-11-05T16:18:52+00:00",
+   "sha256": "428150da5c33cabdd1fc2cddda1b0911f79acbbd34136b9d228c14578a5fde2e",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/0482a941-1334-46e6-9b1a-b0cf99325775"
+  },
+  "base-07fdec79-2398-48e6-a76e-057270a484b3.meta.json": {
+   "bytes": 35709,
+   "retrievedAt": "2026-11-05T16:19:07+00:00",
+   "sha256": "20f63b8cca7d6a7647fc540bec36ab61fdf0057aa90fce17fb88be16f2cbf708",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/07fdec79-2398-48e6-a76e-057270a484b3"
+  },
+  "base-09ac5850-c073-4787-9e1d-e68712b9cd95.meta.json": {
+   "bytes": 46936,
+   "retrievedAt": "2026-11-05T16:19:12+00:00",
+   "sha256": "822dbded0f620b35e22b8c481db648229c078ae397af038d77ec7b855c3bd773",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/09ac5850-c073-4787-9e1d-e68712b9cd95"
+  },
+  "base-0aa57629-b171-4abf-8547-9d0e795bd8c5.meta.json": {
+   "bytes": 54030,
+   "retrievedAt": "2026-11-05T16:18:51+00:00",
+   "sha256": "3552656624a031e8473eee30103183c31a23e0639470cba12c4c99abf4d378ff",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/0aa57629-b171-4abf-8547-9d0e795bd8c5"
+  },
+  "base-0bbb00f3-e81f-4a1c-8543-e34587e19299.meta.json": {
+   "bytes": 105210,
+   "retrievedAt": "2026-11-05T16:18:53+00:00",
+   "sha256": "431fa2e3d03d7b992ca9b9281fcff64efa652b8d035c4d77bb03430390b9e9b2",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/0bbb00f3-e81f-4a1c-8543-e34587e19299"
+  },
+  "base-0c8db10b-1e08-498b-8f9a-a017f2cea5c5.meta.json": {
+   "bytes": 44321,
+   "retrievedAt": "2026-11-05T16:19:19+00:00",
+   "sha256": "ad4bbb5237b71dfb389dd1706bec2c765408211e99c5c01f6205a94491a11cb3",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/0c8db10b-1e08-498b-8f9a-a017f2cea5c5"
+  },
+  "base-1299fa9a-ae2c-48a2-9a89-2b8988e3ea0e.meta.json": {
+   "bytes": 111741,
+   "retrievedAt": "2026-11-05T16:18:57+00:00",
+   "sha256": "9baa0e8e4f7d915fe45af286aa689b1d703a79806c4a47230f88ee9ee96758ea",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/1299fa9a-ae2c-48a2-9a89-2b8988e3ea0e"
+  },
+  "base-16ec39ad-b60e-4643-9adb-9833807d25c9.meta.json": {
+   "bytes": 36403,
+   "retrievedAt": "2026-11-05T16:19:05+00:00",
+   "sha256": "68e121ac2ab5b5c23279085e5aa0e8e23d67f81defce3f45c9371a9a7612f2f6",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/16ec39ad-b60e-4643-9adb-9833807d25c9"
+  },
+  "base-1b4ab8db-f87c-4b3b-aaa7-9ba3bd61207f.meta.json": {
+   "bytes": 22782,
+   "retrievedAt": "2026-11-05T16:18:48+00:00",
+   "sha256": "8cf7483d10f90874842731eee7da48601b7d2d18843edb9ac7aecc4834c6f171",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/1b4ab8db-f87c-4b3b-aaa7-9ba3bd61207f"
+  },
+  "base-1bc3f6b9-eded-40cc-a788-0991039c4a87.meta.json": {
+   "bytes": 53401,
+   "retrievedAt": "2026-11-05T16:19:03+00:00",
+   "sha256": "7975140c1225ddafd9fdb489e27857c817288c26422b561d51257c3e16cd466f",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/1bc3f6b9-eded-40cc-a788-0991039c4a87"
+  },
+  "base-1fecf5e9-cd32-4b73-beaa-bb3da6687dfa.meta.json": {
+   "bytes": 25840,
+   "retrievedAt": "2026-11-05T16:19:06+00:00",
+   "sha256": "065158d01ba6e61e14dcad8518bb7e9d4775754ae6df2939366bfbd21b78b6b4",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/1fecf5e9-cd32-4b73-beaa-bb3da6687dfa"
+  },
+  "base-31e56e07-b7a7-434c-ad7e-5ac193145368.meta.json": {
+   "bytes": 20167,
+   "retrievedAt": "2026-11-05T16:19:12+00:00",
+   "sha256": "ed412a33c02232793842d53c6c405a7cf1e85455bd32071f793d83d4ba1901ab",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/31e56e07-b7a7-434c-ad7e-5ac193145368"
+  },
+  "base-32b40b49-a04e-45c3-81a6-ab44b8d7f1f5.meta.json": {
+   "bytes": 59342,
+   "retrievedAt": "2026-11-05T16:19:18+00:00",
+   "sha256": "965d4d93e2ad7a7154961b4fd374ee125b99caeb04674141b631f8917678a9a6",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/32b40b49-a04e-45c3-81a6-ab44b8d7f1f5"
+  },
+  "base-3db48f9c-7bac-4783-aa51-fe27fb9eb726.meta.json": {
+   "bytes": 72744,
+   "retrievedAt": "2026-11-05T16:18:59+00:00",
+   "sha256": "0c3b0a7dc3d5c260846ab17dae820e296b5f53a675ab1bbc64aa109f61bb88d4",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/3db48f9c-7bac-4783-aa51-fe27fb9eb726"
+  },
+  "base-3eefda09-ef27-43a9-86b1-c9ae6507b6f0.meta.json": {
+   "bytes": 86717,
+   "retrievedAt": "2026-11-05T16:18:54+00:00",
+   "sha256": "f39e00582596b5588d7cce869763f3d37db2f76dcf8aae7a87de11feac88ad43",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/3eefda09-ef27-43a9-86b1-c9ae6507b6f0"
+  },
+  "base-45adc495-a252-4c35-bb92-dcffb2ff08fd.meta.json": {
+   "bytes": 64293,
+   "retrievedAt": "2026-11-05T16:19:09+00:00",
+   "sha256": "14f9565460a4adc5b285245bda484c6ee7456d13d2f98ab3004ad6b43b4e57c0",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/45adc495-a252-4c35-bb92-dcffb2ff08fd"
+  },
+  "base-47545867-d3f1-4e13-a5d9-70021b6f8e99.meta.json": {
+   "bytes": 107471,
+   "retrievedAt": "2026-11-05T16:19:02+00:00",
+   "sha256": "9743e861c6530588ea48a07b910dc4c7fcfc50c29fa2def5e1aeb3227aaa8592",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/47545867-d3f1-4e13-a5d9-70021b6f8e99"
+  },
+  "base-4995f60b-1e8b-4b27-811c-58f7328c480f.meta.json": {
+   "bytes": 35916,
+   "retrievedAt": "2026-11-05T16:18:52+00:00",
+   "sha256": "730554e046d7472e90020d6f775a6f2f0228dc40dab8a5e8e9ca2d8a3885eacc",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/4995f60b-1e8b-4b27-811c-58f7328c480f"
+  },
+  "base-49b703a9-30ad-4996-ba08-ddc5cf09331e.meta.json": {
+   "bytes": 71358,
+   "retrievedAt": "2026-11-05T16:18:56+00:00",
+   "sha256": "3110e83728ae0a314926bcf695252ef955d424a236aec334c454158fb1e3b906",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/49b703a9-30ad-4996-ba08-ddc5cf09331e"
+  },
+  "base-4cc601b2-e1b1-46d4-8670-62800c323301.meta.json": {
+   "bytes": 36161,
+   "retrievedAt": "2026-11-05T16:19:17+00:00",
+   "sha256": "1df59fbddbcb7e8060ceb1d3d38ebb5aae1dc05aecc0baf986c1e6466242f1c4",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/4cc601b2-e1b1-46d4-8670-62800c323301"
+  },
+  "base-4ce9f1d3-f2c8-4bf9-aeb8-d0d2af986185.meta.json": {
+   "bytes": 164760,
+   "retrievedAt": "2026-11-05T16:18:53+00:00",
+   "sha256": "ca3f704c26a86d609d85e113106c5cdccb302039c60e382f1aa085d310a31431",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/4ce9f1d3-f2c8-4bf9-aeb8-d0d2af986185"
+  },
+  "base-4d44a739-9684-41eb-8cd2-5db095589ee6.meta.json": {
+   "bytes": 45327,
+   "retrievedAt": "2026-11-05T16:19:07+00:00",
+   "sha256": "4d4a2a1cf1f49785bbe7b60f6696dfcbcd5d76316ea127a43b8357d3772f3cc2",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/4d44a739-9684-41eb-8cd2-5db095589ee6"
+  },
+  "base-4e3e7ed3-2d6d-4a2e-954c-0c3df600c170.meta.json": {
+   "bytes": 29769,
+   "retrievedAt": "2026-11-05T16:19:13+00:00",
+   "sha256": "1e5536b66b115e892f92dbe9de20e9e42d4f696db028cf57c086aa83d1f85966",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/4e3e7ed3-2d6d-4a2e-954c-0c3df600c170"
+  },
+  "base-515fca3f-a101-47c9-bf16-1c726455a13a.meta.json": {
+   "bytes": 103236,
+   "retrievedAt": "2026-11-05T16:19:00+00:00",
+   "sha256": "b234d3d5336d7bb97d570cd96401bbfad0fb911063c05266131daa783ebd8eee",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/515fca3f-a101-47c9-bf16-1c726455a13a"
+  },
+  "base-55d5edbe-592c-49d0-aca8-15d4c1b2a890.meta.json": {
+   "bytes": 21166,
+   "retrievedAt": "2026-11-05T16:19:17+00:00",
+   "sha256": "7ff20605fd10a6dcb5de05fd0c2eb3c0217b030ebba42df102f21714f5ab5f89",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/55d5edbe-592c-49d0-aca8-15d4c1b2a890"
+  },
+  "base-56c25394-198a-4440-b6d7-5401247f0379.meta.json": {
+   "bytes": 38906,
+   "retrievedAt": "2026-11-05T16:19:04+00:00",
+   "sha256": "3dcf07050b768890dcc7f3fd32aeb65c26984d0300ebc1e322147200dea45056",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/56c25394-198a-4440-b6d7-5401247f0379"
+  },
+  "base-5c388e35-f85d-424c-9143-87d5c44fe9df.meta.json": {
+   "bytes": 69569,
+   "retrievedAt": "2026-11-05T16:19:16+00:00",
+   "sha256": "d1287e2daab0cba94a2a1e224b3c8c4608ecb515490c5c53d08323dc21bfe440",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/5c388e35-f85d-424c-9143-87d5c44fe9df"
+  },
+  "base-5c80ccc6-5f95-4fbd-83c3-226ba07cfb83.meta.json": {
+   "bytes": 50928,
+   "retrievedAt": "2026-11-05T16:18:58+00:00",
+   "sha256": "8b20425ec0a4e46f559e54c8a75710ed7844df87e18c94a0d848ab9064353b99",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/5c80ccc6-5f95-4fbd-83c3-226ba07cfb83"
+  },
+  "base-615e556d-70bd-4d68-b6fd-860c07d9b6a5.meta.json": {
+   "bytes": 88485,
+   "retrievedAt": "2026-11-05T16:18:58+00:00",
+   "sha256": "99a75d847be8442af867877bc50f8b3c6d69ebcf52c131af62398c3fadbe11b0",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/615e556d-70bd-4d68-b6fd-860c07d9b6a5"
+  },
+  "base-62ed900c-11ca-4206-98c4-0aadfd619518.meta.json": {
+   "bytes": 58550,
+   "retrievedAt": "2026-11-05T16:19:10+00:00",
+   "sha256": "c965a2a6dcc80acc60d3efb9694c7ab701a6a784e594d9973452c9622c2dcaf6",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/62ed900c-11ca-4206-98c4-0aadfd619518"
+  },
+  "base-69c8b013-9f78-43d0-ac80-e98dad522ee0.meta.json": {
+   "bytes": 58281,
+   "retrievedAt": "2026-11-05T16:19:11+00:00",
+   "sha256": "10ebb612eb6ceac2c27705db26f87ef170b40cb2269c2799cdb36a585d9aca5c",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/69c8b013-9f78-43d0-ac80-e98dad522ee0"
+  },
+  "base-69eecfa0-45c3-4c14-af23-f4d5fb38e1fb.meta.json": {
+   "bytes": 49078,
+   "retrievedAt": "2026-11-05T16:19:17+00:00",
+   "sha256": "961b08d3b00a68e191bdfbab13e2d92ccd9fc05d4df2ddb08b0c929c8145a2ba",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/69eecfa0-45c3-4c14-af23-f4d5fb38e1fb"
+  },
+  "base-6bb69e3c-70ae-4f26-8e65-d876766de0ca.meta.json": {
+   "bytes": 120566,
+   "retrievedAt": "2026-11-05T16:18:55+00:00",
+   "sha256": "5ead09182e22cb5df478fd4f6d1e4625c14e6abc6e3653fab7577cce11348b64",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/6bb69e3c-70ae-4f26-8e65-d876766de0ca"
+  },
+  "base-747bdbc3-03f1-4156-b38a-dc664b43ae31.meta.json": {
+   "bytes": 50279,
+   "retrievedAt": "2026-11-05T16:18:50+00:00",
+   "sha256": "26ece57a74edf855ef38bdd5b09f428d5eecc1b3c0a75ff91d06fb6cd1bdc96a",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/747bdbc3-03f1-4156-b38a-dc664b43ae31"
+  },
+  "base-7519a30a-dd2b-4dfb-81a3-a81a25174fbb.meta.json": {
+   "bytes": 53539,
+   "retrievedAt": "2026-11-05T16:19:01+00:00",
+   "sha256": "a41b63d264f8c4332136c888abed88bd30ea309f84d0be01983eb7d12e8f9758",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/7519a30a-dd2b-4dfb-81a3-a81a25174fbb"
+  },
+  "base-76598456-e007-4fa4-b486-37c1053af6d9.meta.json": {
+   "bytes": 28511,
+   "retrievedAt": "2026-11-05T16:19:03+00:00",
+   "sha256": "c96f97b086e8e3fd308248ecf8b5d45cff3bf491424fc5eb2f83396152fd286c",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/76598456-e007-4fa4-b486-37c1053af6d9"
+  },
+  "base-7e987560-fefc-4f19-b719-393d7a52f626.meta.json": {
+   "bytes": 34689,
+   "retrievedAt": "2026-11-05T16:18:59+00:00",
+   "sha256": "62d4bcaab081b136105e5d18d49fb0e1a9de7f931743879ae6a96069d1930a11",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/7e987560-fefc-4f19-b719-393d7a52f626"
+  },
+  "base-80a8aaec-55c3-422a-9ef2-a529b2e673b5.meta.json": {
+   "bytes": 110825,
+   "retrievedAt": "2026-11-05T16:18:54+00:00",
+   "sha256": "fbb19af1c13eec9e0c2cf178f32078d68afe50bcf05a6b813463c617b6e2c287",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/80a8aaec-55c3-422a-9ef2-a529b2e673b5"
+  },
+  "base-84c3797e-85af-4b0d-9b62-dc94f335a264.meta.json": {
+   "bytes": 31502,
+   "retrievedAt": "2026-11-05T16:18:56+00:00",
+   "sha256": "664afa2202d8046ecb80a50fcf7a6590e32f88362c2c2492717fe08848da21e8",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/84c3797e-85af-4b0d-9b62-dc94f335a264"
+  },
+  "base-87516089-3ba7-4587-8c45-e467c27c6e52.meta.json": {
+   "bytes": 33331,
+   "retrievedAt": "2026-11-05T16:18:57+00:00",
+   "sha256": "839d0298cdb6e51f3d64452790965e64d46cb9bbcc1c77fe68fcf3b308bcb133",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/87516089-3ba7-4587-8c45-e467c27c6e52"
+  },
+  "base-8ba66431-92e2-4f9f-adf0-d58c406d30a4.meta.json": {
+   "bytes": 23054,
+   "retrievedAt": "2026-11-05T16:18:52+00:00",
+   "sha256": "9f356e1226198b555c6bc56648dbc1aeae2030662016e7c5506e2e002ffddf65",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/8ba66431-92e2-4f9f-adf0-d58c406d30a4"
+  },
+  "base-8d8a3dae-4a90-4429-9f43-ceabda85e127.meta.json": {
+   "bytes": 74590,
+   "retrievedAt": "2026-11-05T16:19:00+00:00",
+   "sha256": "a92d7ed9d2f77499799f40e5828e756ff9611752e81244b49a94190f61162434",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/8d8a3dae-4a90-4429-9f43-ceabda85e127"
+  },
+  "base-8d9a6a2c-7885-449f-8734-9121bda74564.meta.json": {
+   "bytes": 16329,
+   "retrievedAt": "2026-11-05T16:19:15+00:00",
+   "sha256": "aab86c0b7b5b1cacbc526082a4f244fb49373a248f4de27c03ed6c72a41fd1f9",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/8d9a6a2c-7885-449f-8734-9121bda74564"
+  },
+  "base-8ea664b9-9ec4-44b5-b309-4ef863a00c80.meta.json": {
+   "bytes": 94137,
+   "retrievedAt": "2026-11-05T16:18:47+00:00",
+   "sha256": "48ee7af669627a7117f1a0f447537afe95f3bd189920d9ddff4b0cfc3a5d6692",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/8ea664b9-9ec4-44b5-b309-4ef863a00c80"
+  },
+  "base-91908d4e-efcb-4cc5-b01d-c98e97e71a4c.meta.json": {
+   "bytes": 56490,
+   "retrievedAt": "2026-11-05T16:19:10+00:00",
+   "sha256": "20c71555b6d9fc400cd7ea0156acbb859a2a1726e5a5bee71a9f3d6f77b8fab2",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/91908d4e-efcb-4cc5-b01d-c98e97e71a4c"
+  },
+  "base-92cd4502-dcb8-48e5-983c-915ac3e4f0b2.meta.json": {
+   "bytes": 93224,
+   "retrievedAt": "2026-11-05T16:19:13+00:00",
+   "sha256": "06311ba60c0aa28912cb1c1e1d3af33bef80e324d8f1a316e74f4903f81aed5c",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/92cd4502-dcb8-48e5-983c-915ac3e4f0b2"
+  },
+  "base-9a8069c4-af4a-4aae-abcf-964d188b45f6.meta.json": {
+   "bytes": 38929,
+   "retrievedAt": "2026-11-05T16:19:16+00:00",
+   "sha256": "fd2665e65bf64e103f7c15eb8e35236bfdffcfe311c8033ecf57758cdaeb3dfb",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/9a8069c4-af4a-4aae-abcf-964d188b45f6"
+  },
+  "base-9f5f73a6-a495-4306-b486-3eead6b83ab5.meta.json": {
+   "bytes": 47069,
+   "retrievedAt": "2026-11-05T16:19:08+00:00",
+   "sha256": "cca8ba74991cc6ad276d04beff9f1b9afa38995ff06041620ea0ea119469d44b",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/9f5f73a6-a495-4306-b486-3eead6b83ab5"
+  },
+  "base-a29ec31e-3a36-4ab7-9670-7cef38873c80.meta.json": {
+   "bytes": 279493,
+   "retrievedAt": "2026-11-05T16:18:45+00:00",
+   "sha256": "72f8890c81a23d71cf0ff9adf316e3ad558b5325aa79558eae5a44347d411956",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/a29ec31e-3a36-4ab7-9670-7cef38873c80"
+  },
+  "base-ac5bb10a-c904-4be7-8488-9d82968cfac3.meta.json": {
+   "bytes": 9372,
+   "retrievedAt": "2026-11-05T16:19:15+00:00",
+   "sha256": "248a57d3b618cc1a01c4e9783fc1dd05a7612aac3b9c5e0c38d9d876790b8103",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/ac5bb10a-c904-4be7-8488-9d82968cfac3"
+  },
+  "base-b2d392da-0b0e-4036-9369-db4a2a53ce13.meta.json": {
+   "bytes": 70032,
+   "retrievedAt": "2026-11-05T16:19:01+00:00",
+   "sha256": "2c4687fa6605a19cfedb2ea0fe8d7d00a5b3e7c0e9f0225740a937ced6bb1ef6",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/b2d392da-0b0e-4036-9369-db4a2a53ce13"
+  },
+  "base-b3d31cad-6b6b-421e-9a38-e04a90605747.meta.json": {
+   "bytes": 72873,
+   "retrievedAt": "2026-11-05T16:19:06+00:00",
+   "sha256": "fc0ed78da23a8c470d9f2ee21026e0eb21d9c422dd8a6af24671645098039a78",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/b3d31cad-6b6b-421e-9a38-e04a90605747"
+  },
+  "base-b844468b-d98e-4850-9de4-e7a62b49aaba.meta.json": {
+   "bytes": 26218,
+   "retrievedAt": "2026-11-05T16:18:46+00:00",
+   "sha256": "ef7dd5f0773c8585ed315cdc46fb8b896eb68ec3b61c40dbebd9e6dd63b9ea41",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/b844468b-d98e-4850-9de4-e7a62b49aaba"
+  },
+  "base-b9873eac-8a60-4bd8-8a7d-78d9b698a917.meta.json": {
+   "bytes": 35940,
+   "retrievedAt": "2026-11-05T16:18:47+00:00",
+   "sha256": "9fb9b3c1c3b5adb7fd2ec76df8e1fa1c8d37b9b9b65b087eeb3ec6829fc55ca6",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/b9873eac-8a60-4bd8-8a7d-78d9b698a917"
+  },
+  "base-bbf00b46-5db7-4935-bc5d-477900abbb2d.meta.json": {
+   "bytes": 29772,
+   "retrievedAt": "2026-11-05T16:18:49+00:00",
+   "sha256": "808768276d4ee2dfe63093b7a8bb08382ddaf24b789ad6203d85a831b0a7fc7d",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/bbf00b46-5db7-4935-bc5d-477900abbb2d"
+  },
+  "base-c2a69dbc-5939-4c61-bccb-5723e192ab9e.meta.json": {
+   "bytes": 32893,
+   "retrievedAt": "2026-11-05T16:18:46+00:00",
+   "sha256": "6bcc3d246ba0ac3086e8de5c74a60b531765e20ba750e19843bfcdbb64d9025e",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/c2a69dbc-5939-4c61-bccb-5723e192ab9e"
+  },
+  "base-c7bc471d-47d8-4645-aef6-44645c986c90.meta.json": {
+   "bytes": 42324,
+   "retrievedAt": "2026-11-05T16:19:04+00:00",
+   "sha256": "a4c8bfbf4e6d71fc06014e678edc25f181053decd2529eac8607a3ddcb74f7ae",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/c7bc471d-47d8-4645-aef6-44645c986c90"
+  },
+  "base-cc440fcd-c885-4e36-b781-bc57c6415b16.meta.json": {
+   "bytes": 22221,
+   "retrievedAt": "2026-11-05T16:18:51+00:00",
+   "sha256": "1f7e55fc4a129bb26d0af3cb45b35e5195b0101229bed16e9d67d2f68f25322b",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/cc440fcd-c885-4e36-b781-bc57c6415b16"
+  },
+  "base-cd320c1e-10b5-4ca8-9e50-801156fa486d.meta.json": {
+   "bytes": 35265,
+   "retrievedAt": "2026-11-05T16:19:08+00:00",
+   "sha256": "21a3790e68baf076839f52f7b453b44bfd5c3e0c0a01f67bd7cb7a485ea80931",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/cd320c1e-10b5-4ca8-9e50-801156fa486d"
+  },
+  "base-cfff75fe-bcd8-4cb5-abc3-b7ccfada7863.meta.json": {
+   "bytes": 26639,
+   "retrievedAt": "2026-11-05T16:19:14+00:00",
+   "sha256": "577489489c65b5eff70993e6c8425c3be9e97a832be7a40f405d44659bf8a693",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/cfff75fe-bcd8-4cb5-abc3-b7ccfada7863"
+  },
+  "base-d0f5e997-bae2-49d8-a310-41d4ea353df1.meta.json": {
+   "bytes": 43702,
+   "retrievedAt": "2026-11-05T16:18:55+00:00",
+   "sha256": "efda04eca219c8517123e0e5d8ad4d7cea07022bcc0642839d9bcba9a5056ff0",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/d0f5e997-bae2-49d8-a310-41d4ea353df1"
+  },
+  "base-d17b3dd9-ef12-4698-b27f-a4c33d4fee00.meta.json": {
+   "bytes": 29196,
+   "retrievedAt": "2026-11-05T16:18:56+00:00",
+   "sha256": "1e4e05606f2f2207bb6c9e6d60d5be7317c6df7cbdde8e1923ae84c476f4eea4",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/d17b3dd9-ef12-4698-b27f-a4c33d4fee00"
+  },
+  "base-d6560e2d-f5c9-4209-851c-ef1a6fd98206.meta.json": {
+   "bytes": 66009,
+   "retrievedAt": "2026-11-05T16:18:48+00:00",
+   "sha256": "a43f71b547c5ff0c07d21072b8b2bc5041dba3b4f39176f9ea87c4f9d35ff8b7",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/d6560e2d-f5c9-4209-851c-ef1a6fd98206"
+  },
+  "base-daedc981-1ec9-4b51-8bf4-888aea45530b.meta.json": {
+   "bytes": 18943,
+   "retrievedAt": "2026-11-05T16:19:12+00:00",
+   "sha256": "acbab8ff74c0300886438965c84404218dfa65dec0ecb9a1cb1092e682181f70",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/daedc981-1ec9-4b51-8bf4-888aea45530b"
+  },
+  "base-db443797-dbc4-4e17-9519-4d98d6b4fe8b.meta.json": {
+   "bytes": 28375,
+   "retrievedAt": "2026-11-05T16:19:01+00:00",
+   "sha256": "9be1d02b0ab5f9ada4313a31e6d0108b9ccd74fa9b0458abb4fb171a244a77a8",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/db443797-dbc4-4e17-9519-4d98d6b4fe8b"
+  },
+  "base-dec6ef83-5e18-411a-b23c-87ef78e47e19.meta.json": {
+   "bytes": 51646,
+   "retrievedAt": "2026-11-05T16:19:09+00:00",
+   "sha256": "280dd8ed7da64918918e399506c276ac96136f2a2d912f9ab54a1d7cd0d0fe48",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/dec6ef83-5e18-411a-b23c-87ef78e47e19"
+  },
+  "base-e0ad2ad5-5da5-46ef-8351-c7b90f0558ed.meta.json": {
+   "bytes": 31915,
+   "retrievedAt": "2026-11-05T16:19:18+00:00",
+   "sha256": "6b3b039590cda7a633b0f747275e6e39151a8f0aac2aab70c6c45071b6c42387",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/e0ad2ad5-5da5-46ef-8351-c7b90f0558ed"
+  },
+  "base-e1f3b227-b31d-4e31-8500-f7a38586f1bb.meta.json": {
+   "bytes": 62061,
+   "retrievedAt": "2026-11-05T16:19:11+00:00",
+   "sha256": "36f44eaf34b72387c9ef582b1b78ea841a62bf089a52f2277c1c99a4d3d30101",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/e1f3b227-b31d-4e31-8500-f7a38586f1bb"
+  },
+  "base-e29b727c-76ef-473b-9ce1-a1e5abd95e4c.meta.json": {
+   "bytes": 71341,
+   "retrievedAt": "2026-11-05T16:19:15+00:00",
+   "sha256": "82982a05deb865a8742b374461f8aff9259baa8fad7595cbfe14be7fe4a9332a",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/e29b727c-76ef-473b-9ce1-a1e5abd95e4c"
+  },
+  "base-ea7d538e-cea8-4cc9-892e-f859f609a1f4.meta.json": {
+   "bytes": 70296,
+   "retrievedAt": "2026-11-05T16:19:06+00:00",
+   "sha256": "43695304e1a0ac4a9d4f5d02042b1b0e3b8b2a812d850a7fbefb9cd2ef768f31",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/ea7d538e-cea8-4cc9-892e-f859f609a1f4"
+  },
+  "base-eb4cf0c3-c4ca-4ffc-b8d0-cd28c2fb4c25.meta.json": {
+   "bytes": 50892,
+   "retrievedAt": "2026-11-05T16:19:09+00:00",
+   "sha256": "986bd0a7f24aca826be1fc9586c34debd9c8e21ece00189441b46a7f15c10b6a",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/eb4cf0c3-c4ca-4ffc-b8d0-cd28c2fb4c25"
+  },
+  "base-f456f047-61ab-4f54-bdc4-99606817109c.meta.json": {
+   "bytes": 25661,
+   "retrievedAt": "2026-11-05T16:18:46+00:00",
+   "sha256": "9b0117dbdc05cf3120d28528daafb1afd94fb36c43dab6cfe4079eb981d322bd",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/f456f047-61ab-4f54-bdc4-99606817109c"
+  },
+  "base-fc140349-8846-46d7-89bf-1035a92ab0b1.meta.json": {
+   "bytes": 33174,
+   "retrievedAt": "2026-11-05T16:18:50+00:00",
+   "sha256": "f40affeab9b6fbdef5a44787d4b6da7c2db8e89b365e0f22054da64ff9fd31a9",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/fc140349-8846-46d7-89bf-1035a92ab0b1"
+  },
+  "base-fd7a538c-451b-4415-ad93-44caa9e44c7d.meta.json": {
+   "bytes": 30978,
+   "retrievedAt": "2026-11-05T16:19:14+00:00",
+   "sha256": "e395b9aad5e93d03d3c5a1e5f46b9e05a7b59fd877d2287476de71ba2f026d15",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/fd7a538c-451b-4415-ad93-44caa9e44c7d"
+  },
+  "base-fdc11dc4-fdc5-44a3-9ec0-dfa455a032f6.meta.json": {
+   "bytes": 52849,
+   "retrievedAt": "2026-11-05T16:19:05+00:00",
+   "sha256": "f4f0a26cb46e8f28bd823e38716e9c72ffcebce6d48096d62062302b074da1e4",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/fdc11dc4-fdc5-44a3-9ec0-dfa455a032f6"
+  },
+  "base-feab952a-f61b-4236-a19d-bd0bc64da5d7.meta.json": {
+   "bytes": 57828,
+   "retrievedAt": "2026-11-05T16:18:49+00:00",
+   "sha256": "cfd86caee21e97cc7aa898dab1d20dc1841e75f3841a9858549279bc60250cc1",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv1/feab952a-f61b-4236-a19d-bd0bc64da5d7"
+  },
+  "base-lv0.meta.json": {
+   "bytes": 18655,
+   "retrievedAt": "2026-11-05T16:18:44+00:00",
+   "sha256": "104fe62715ab6f173b463ab36d0da97fee35c0e056712e737121d139a3bc8902",
+   "status": 200,
+   "url": "https://landometer.com/api/v2/citymeter-v3/base/info/lv0"
+  }
+ },
+ "baseSha256": "033cf6007db6f0c448a3f9bbe13faa46b14abc134043923778675bfaf64c0074",
+ "geometry": {},
+ "geometrySha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+ "source": "CityMETER production base info (public read-only API)"
+}

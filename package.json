@@ -1,0 +1,24 @@
+{
+  "name": "citymeter-university",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CityMETER · University — 3D map of the students the MHESI student file reports per province, with the universities’ campuses, extents, faculties, published fees and rail context from the same registry",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "build:tabs": "python3 -I scripts/xlsx-to-csv.py",
+    "build:data": "python3 -I scripts/build-data.py --help",
+    "build:base": "python3 -I scripts/fetch-base.py --help",
+    "build:boundaries": "python3 -I scripts/build-boundaries.py --help",
+    "build:receipts": "python3 -I scripts/build-receipts.py --help",
+    "build:units": "python3 -I scripts/adapt-building-units.py --help",
+    "check:lds": "node scripts/check-lds-parity.mjs",
+    "handoff:manifest": "node scripts/build-handoff.mjs",
+    "handoff:bundle": "node scripts/build-handoff.mjs --zip dist/CityMETER-University-Developer-Handoff.zip",
+    "verify:live": "node scripts/verify-live.mjs"
+  }
+}

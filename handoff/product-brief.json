@@ -1,0 +1,385 @@
+{
+  "$schema": "./handoff.schema.json",
+  "schemaVersion": "1.5.0",
+  "documentType": "product-brief",
+  "productId": "citymeter-university",
+  "productVersion": "0.1.0",
+  "updatedOn": "2026-11-12",
+  "datasetCheckedOn": "2026-11-10",
+  "language": "th",
+  "productName": "CityMETER · University",
+  "repository": "https://github.com/montri-th/university",
+  "liveUrl": "https://montri-th.github.io/university/",
+  "productStatement": "PRODUCT_STATEMENT.md",
+  "job": "นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน — แล้วเจาะลงถึงวิทยาเขต คณะ อาคาร ค่าธรรมเนียมตามประกาศ และสถานี",
+  "audiences": [
+    "ทีมพัฒนาโครงการที่อยู่อาศัยและนักลงทุนที่ดินรอบมหาวิทยาลัย",
+    "ผู้ประกอบการค้าปลีกและบริการที่เลือกทำเลรอบวิทยาเขต",
+    "มหาวิทยาลัยและหน่วยงานด้านการศึกษา จังหวัด อปท.",
+    "ผู้ประเมินมูลค่าและสถาบันการเงิน"
+  ],
+  "journey": [
+    "first Aha (whole country, students)",
+    "province (universities with the most, campuses on the map)",
+    "campus (unit figure, extent, faculties, fees, quality, station, terrain)",
+    "faculty building (two-point camera, faculties in the building)",
+    "university",
+    "reporting unit (faculties, levels)",
+    "station (campuses within 1 km)",
+    "measure switch (students | reporting units)",
+    "English reading (?lang=en)"
+  ],
+  "basedOn": "CityMETER · School 0.6.0 after Phase 0 (montri-th/school @793da70, citymeter-shell 0.6.0), itself from CityMETER · Hotel: every engine contract (camera, basemap, massing, x-ray, building units, terrain, MapLibre guards, launch card, partial-result notice, phone sheet, English layer) carried unchanged; the dataset layer (units, sites, provinces, campus file, fees) is new",
+  "rowScopes": {
+    "scopeRows": "reporting units after search · type, before the province selection: the base of the national Aha, the province fill, the province chart",
+    "baseRows": "scopeRows narrowed by the selected province: the province Aha, ranks, type and level bars, the university chart, the table",
+    "rows": "sites and roster points under the same search · type · province: pins, labels, lists"
+  },
+  "firstAha": {
+    "scope": "whole country (no province selected); a selected province switches to its universities",
+    "measure": "students (default) or reporting units",
+    "ranking": "provinces by the measure; at most three, never cutting through a tie, never every province holding the measure (js/area-insight.js#topWithoutTie)",
+    "headlineTemplate": "<pct> ของนักศึกษาทั้งประเทศ อยู่ใน <N จังหวัดนี้> · province: <pct> ของนักศึกษาใน<จังหวัด> อยู่กับ <N มหาวิทยาลัยนี้>",
+    "numerator": "Σ measure of the focused provinces (or universities)",
+    "denominator": "Σ measure of scopeRows (or of the province)",
+    "secondaryFinding": "the same share without the open type, as a second bar with both bases; the provinces with no reporting unit by name",
+    "action": "ดูทุกจังหวัดเท่ากัน · เปรียบเทียบจังหวัด (charts) · select a province",
+    "model": "summarizeInsight(units, {metric, province, provinces, nameOf})",
+    "filter": "the Aha follows search and type (tests/insight.test.js)",
+    "defaultSnapshot": {
+      "ids": [
+        "BKK",
+        "PTE",
+        "CMI"
+      ],
+      "value": 988359,
+      "total": 1786753,
+      "withoutOpen": {
+        "value": 710594,
+        "total": 1460444
+      },
+      "zeroProvinces": 9,
+      "note": "fixtures (tests/insight.test.js), never UI constants"
+    },
+    "fallbacks": [
+      "one item alone is its own finding",
+      "all equal → spread",
+      "no unit under the filters → “ไม่มีหน่วยรายงานในจังหวัดนี้ตามตัวกรอง”"
+    ]
+  },
+  "countingUnitContract": {
+    "default": "students (คน, li.supply)",
+    "alternatives": [
+      "units (หน่วย, count)"
+    ],
+    "words": {
+      "students": "นักศึกษา · คน",
+      "units": "หน่วยรายงาน · หน่วย"
+    },
+    "rule": "the map, legend, labels, Aha, ranks and charts read the same measure; a campus never carries a figure of its own",
+    "switch": "legend control, ?m=units"
+  },
+  "metricContract": {
+    "areas": "none (province is the finest area)",
+    "provinces": "Σ measure per province of the units the file places there",
+    "eligibility": "none (totals; tie rule of the Aha)",
+    "combined": "never adds units to sites; the open comparison removes the open type from both numerator and denominator",
+    "ramp": "all 41 LUT samples by rank among the measured nonzero provinces"
+  },
+  "coverageContract": {
+    "covered": "303 units in 68 provinces; 190 sites (188 with a point, 164 with an extent, 135 linked); 162 roster points; 14 pilot areas with fees",
+    "states": {
+      "measuredZero": "9 provinces without a unit: outline, no fill, listed",
+      "noLink": "a site without a unit shows no student figure",
+      "noPoint": "2 sites: counted, no pin, chip “ไม่มีจุดบนแผนที่”",
+      "campusFileMissing": "partial notice; extents, faculties, programmes and fees not shown"
+    }
+  },
+  "categoricalCueContract": {
+    "registry": "landometer-series-10-v8 (LDS DATAVIZ-05)",
+    "bindBy": "meta.types[].id → js/cues.js#GROUP_SERIES",
+    "groups": {
+      "autonomous": 1,
+      "rajabhat": 2,
+      "private": 3,
+      "open": 4,
+      "rmut": 5,
+      "public": 7,
+      "outside": 9,
+      "private_other": 10
+    },
+    "noStar": "series 6 unused (it would read as a rating)"
+  },
+  "framesContract": {
+    "index": "data/area-index.json (77 provinces, districts with production codes and English names)",
+    "frames": "data/provinces.geojson only; district outlines are read at build time (a site’s เขต/อำเภอ), never shipped",
+    "loading": "with the first paint, beside data/universities.json",
+    "failure": "partial notice (“กรอบจังหวัด”); the panel figures stay complete"
+  },
+  "mapFocusContract": {
+    "principle": "focus + quiet context: detail for the focus only, everything else visible but quiet",
+    "states": {
+      "country": "province fills, Aha provinces outlined, pins by type",
+      "province": "the selected province filled, the others outline-only; its campuses as pins",
+      "campus": "model preset on the extent and faculty geometry; faculty buildings outlined; extents of the other campuses dashed",
+      "building": "two-point camera; x-ray of the building looked at",
+      "station": "1 km radius, campuses within it"
+    },
+    "choropleth": "province fill to zoom 10.5 (li.supply | count, 41 samples); measured zero = outline"
+  },
+  "contextContract": {
+    "rail": "CityMETER · Transit stations (operating: quiet clickable rings; under construction: words only); nearest within 2 km per site at build time",
+    "retail": "CityMETER Shopping Center venues linked by the research team (RETAIL_VENUE_LINKS)",
+    "distances": "straight lines between reference points"
+  },
+  "feeContract": {
+    "field": "data/campus.json offerings[site][].fees[]",
+    "shown": "per programme: track · component · period, then category · intake · estimate label, amount in its own currency (js/model.js#money), the announcement linked",
+    "never": "summed, averaged, compared, converted, called a price level or the cost of a degree; a programme in an announcement is not a programme admitting now"
+  },
+  "qualityContract": {
+    "field": "data/campus.json quality[uni][]",
+    "shown": "framework · programme or faculty · status · dates · authority · link, verbatim",
+    "never": "a rank or a score"
+  },
+  "logoContract": {
+    "field": "universities[].logo {file, sha256, surface, page}",
+    "shown": "under the university’s name on a plate of the surface the package names",
+    "never": "decoration; files not in LOGO_LIBRARY"
+  },
+  "contextActionsContract": {
+    "module": "js/ask.js#contextActions",
+    "views": [
+      "site",
+      "uni",
+      "unit",
+      "building",
+      "station",
+      "overview"
+    ],
+    "ai": "Google Search with a question written for the view (/search?q=)",
+    "maps": "Google Maps search by public names",
+    "streetView": "only with a point",
+    "dataBoundary": "Google’s answers are Google’s: never copied into the data"
+  },
+  "buildingJoinContract": {
+    "buildings": "the focus massing (CityMETER Building V4 or OpenStreetMap per building unit)",
+    "points": "the interior point (pt) of each faculty geometry of the open campus",
+    "rule": "js/shell/building-join.js#joinBuildings: a drawn building holding a faculty point is that faculty’s building on the map",
+    "click": "a faculty building opens “คณะในอาคารนี้” with “สูงราว N ม.” and the two-point camera",
+    "neverChanges": "students, links or memberships"
+  },
+  "interactionContract": {
+    "mapClicks": "pin → the building being looked at (x-ray) → faculty building → station → campus extent → province",
+    "reframe": "every way into a campus or a building frames it again",
+    "quietDots": "roster points are never focusable or clickable",
+    "keyboard": "roving tabindex over HTML pins, arrow keys on the measure switch and the chart tabs, visible focus everywhere"
+  },
+  "basemapContract": {
+    "generator": "js/shell/map-style.js (no hosted style URL)",
+    "tiles": "https://tiles.openfreemap.org/planet (OpenMapTiles schema)",
+    "palette": "--basemap-* tokens of assets/theme.css; data colours never set there"
+  },
+  "massingContract": {
+    "cityTier": "basemap building extrusions, quiet, faded with distance from the focus",
+    "focusTier": "rounded footprints from z14 tiles in the focus regions (building, station square, campus extent, province extents), bounded per device budget",
+    "hostTier": "unused",
+    "rounding": "roundingRadiusM(zoom) 3–12 m",
+    "enclosure": "encloseOffsetM keeps the rounded shape around the original outline",
+    "buildingSource": "data/building-units/ (copied from montri-th/school @793da70, there from the CityMETER · Hotel build)"
+  },
+  "cameraContract": {
+    "presets": {
+      "plan": "pitch 0 (3D off; country and province fits)",
+      "model": "pitch 60 · fov 14 (campus framed on its extent and faculty geometry)",
+      "eye": "pitch 75 · fov 24 (faculty building, two-point)"
+    },
+    "fitting": "fitPitched: flat fit, then zoom out until every vertex is inside the padded viewport; country maxZoom 7; a campus maxZoom 17 / minZoom 11",
+    "phone": "plan under the open sheet; tiltWhenNear after the reader’s own move"
+  },
+  "venueXrayContract": {
+    "module": "js/shell/venue-xray.js",
+    "layer": "venue-xray before place-quarter",
+    "visibility": "3D only, zoom ≥ 13, the building being looked at"
+  },
+  "breadcrumbContract": {
+    "levels": [
+      "ประเทศไทย",
+      "จังหวัด",
+      "วิทยาเขต"
+    ],
+    "productionPath": "/v3/citymeter/{province} (no d: no production dataset code)",
+    "demoQuery": "?at=BKK&e=site:<id>",
+    "provinceCodes": "production route codes (base info lv0 abbrEn)",
+    "datasetCode": null
+  },
+  "provinceContract": {
+    "frames": "data/provinces.geojson",
+    "fill": "the measure to zoom 10.5; the selected province filled, the others outline-only",
+    "labels": "chips with the measure to zoom 10",
+    "unknown": "none"
+  },
+  "pictogramContract": {
+    "file": "assets/icons/material-pictogram-300.woff2",
+    "sha256": "0c18b9ac3583748ff54cc3f5370edf47b3c0331b92629a26d3a2748cc65ea060",
+    "meanings": "school = มหาวิทยาลัย · students · aff = หน่วยรายงาน · classroom = คณะ · level · programme · fee · quality · area · province · segment · maps · rail · compare · building · terrain · rank · date · distance · construction · dataset",
+    "rule": "decorative (aria-hidden); the text carries the meaning; no star"
+  },
+  "panel": {
+    "modes": [
+      "overview",
+      "province",
+      "site",
+      "uni",
+      "unit",
+      "station",
+      "building"
+    ],
+    "actions": [
+      "select-province",
+      "select-site",
+      "select-uni",
+      "select-unit",
+      "select-station",
+      "filter-type",
+      "clear-filter",
+      "clear-focus",
+      "explore-top",
+      "leave-province",
+      "open-charts",
+      "open-table",
+      "back"
+    ],
+    "models": "js/profile-model.js (buildOverview, buildSiteDetail, buildUniversityProfile, buildUnitProfile, buildStationProfile, buildBuildingProfile)",
+    "provenance": "one line per view: dataset · source · date · boundary, then วิธีนับ (DATA_METHOD.md)",
+    "phoneSheet": "peek · half · full below 761 px in portrait"
+  },
+  "data": {
+    "file": "data/universities.json + data/campus.json",
+    "counts": {
+      "units": 303,
+      "students": 1786753,
+      "universities": 170,
+      "sites": 190,
+      "rosterPoints": 162,
+      "stations": 301,
+      "geometry": 388,
+      "facultyMemberships": 210,
+      "offerings": 503,
+      "feeLines": 627,
+      "quality": 228,
+      "logos": 15
+    },
+    "checks": "meta.checks (data/build-report.json)",
+    "registryId": "research.TH.university",
+    "tabs": "meta.tabs",
+    "checkedOn": "2026-11-10",
+    "readOn": "2026-11-12",
+    "builtOn": "2026-11-12",
+    "method": "DATA_METHOD.md",
+    "build": "scripts/xlsx-to-csv.py → scripts/build-data.py"
+  },
+  "englishContract": {
+    "module": "js/lang.js + js/lang-en.js (citymeter-shell i18n)",
+    "names": "provinces and districts from the area index, stations from nameEn, types from meta.types[].en; universities, units, campuses, faculties, programmes and quality texts stay Thai",
+    "years": "ค.ศ. in English (semester 2/2025)",
+    "check": "a harvest of every view, every pilot campus and every province before a release"
+  },
+  "visualSystem": {
+    "lds": "Landometer-Design-System-v0.9.7.md (standalone-0.9.7-r1, v0.9.7-owner.1, color-srgb-10, sha256 d3085cbc…96)",
+    "locationIntelligence": "Location-Intelligence-Profile-for-LDS-v0.9.7.md (location-intelligence-profile-lds-0.9.7-r1, sha256 5d485604…3c): li.supply",
+    "parity": "scripts/check-lds-parity.mjs",
+    "themes": "light and dark; analytical HEX identical on both",
+    "fonts": "Bai Jamjuree · IBM Plex Sans Thai Looped · Arvo · JetBrains Mono (assets/lds/build-kit)"
+  },
+  "invariants": [
+    {
+      "id": "U1",
+      "rule": "students are per reporting unit, summed per province by the unit’s province; never allocated to a campus, polygon, building or district"
+    },
+    {
+      "id": "U2",
+      "rule": "a site shows at most one unit’s figure, named as the unit’s, with how the link was made; a unit has at most one site"
+    },
+    {
+      "id": "U3",
+      "rule": "a site without a link shows no student figure — never 0"
+    },
+    {
+      "id": "U4",
+      "rule": "a province without a unit is a measured zero (outline, no fill) and is listed by name"
+    },
+    {
+      "id": "U5",
+      "rule": "the Aha never cuts through a tie and never focuses every item holding the measure"
+    },
+    {
+      "id": "U6",
+      "rule": "every share shows numerator and denominator; the open comparison shows both bases in each bar"
+    },
+    {
+      "id": "U7",
+      "rule": "fee lines are never summed, averaged, compared or converted; codes read in words; a programme in an announcement is not a programme admitting now"
+    },
+    {
+      "id": "U8",
+      "rule": "quality is verbatim with dates, never a rank"
+    },
+    {
+      "id": "U9",
+      "rule": "types bind to LDS series by id with their shape cue; no star"
+    },
+    {
+      "id": "U10",
+      "rule": "colour scales use all 41 LDS samples by rank, identical HEX on both themes"
+    },
+    {
+      "id": "U11",
+      "rule": "every panel view ends with exactly one provenance line and carries no caveat"
+    },
+    {
+      "id": "U12",
+      "rule": "no official roster codes, private links, sheet addresses or credentials in the tree"
+    },
+    {
+      "id": "U13",
+      "rule": "distances are straight lines between reference points"
+    },
+    {
+      "id": "U14",
+      "rule": "roster points are context only: never counted, never clickable"
+    }
+  ],
+  "chartContracts": [
+    {
+      "viewKey": "provinces",
+      "title": "จังหวัด",
+      "question": "จังหวัดไหนมีนักศึกษา (หรือหน่วยรายงาน) มากที่สุด",
+      "encoding": "horizontal bars in the map’s colour (same 41-sample ramp), value outside the bar, the other measure under the name",
+      "metric": "students | units",
+      "scope": "scopeRows (not narrowed by the selected province), top 30"
+    },
+    {
+      "viewKey": "types",
+      "title": "ประเภทสถาบัน",
+      "question": "นักศึกษาในตัวกรองนี้อยู่กับสถาบันประเภทใด",
+      "encoding": "horizontal bars in the type’s series colour with its shape cue",
+      "metric": "students | units",
+      "scope": "baseRows"
+    },
+    {
+      "viewKey": "unis",
+      "title": "มหาวิทยาลัย",
+      "question": "มหาวิทยาลัยใดมีนักศึกษามากที่สุดในตัวกรองนี้",
+      "encoding": "horizontal bars in the type’s colour, type and the other measure under the name",
+      "metric": "students | units",
+      "scope": "baseRows, top 30"
+    }
+  ],
+  "delivery": {
+    "site": "GitHub Pages from main /root",
+    "handoff": "dist/CityMETER-University-Developer-Handoff.zip (START_HERE.md, RELEASE_RECEIPT.json, evidence/, source/)",
+    "liveCheck": "npm run verify:live",
+    "cacheTag": "?v=20261112-r1 on every entry file and, through the import map in index.html, on every ES module; the campus file takes the same tag from import.meta.url; bump it with package.json version (tests/release.test.js); icon fonts inside the stylesheets carry ?v=<first 8 hex of their SHA-256> (tests/icons.test.js)"
+  }
+}
