@@ -1665,11 +1665,15 @@ function openFound(entry) {
   const offered = (field, id) => [...$(field).options].some(o => o.value === id);
   const way = (field, id) => state.finder.makeWay(field, id);
   const words = () => state.finder.filter(entry.name);
+  // A university or a reporting unit chosen by name always opens: the filters it does not pass — its province too —
+  // are lifted first, so its campuses are on the map and the breadcrumb is its own (a campus does that itself:
+  // selectSite).
+  const clear = passes => { if (state.finder.makeWayFor(passes).length) update(); };
   if (entry.kind === 'province') selectProvince(entry.id);
   else if (entry.kind === 'type') { if (offered('type', entry.id)) { way('type', entry.id); filterType(entry.id); } else words(); }
-  else if (entry.kind === 'uni') selectUni(entry.id);
+  else if (entry.kind === 'uni') { const u = uniById(entry.id); if (u) clear(v => filterUnits(u.units || [], v).length + filterSites(u.sites || [], v).length); selectUni(entry.id); }
   else if (entry.kind === 'site') selectSite(entry.id);
-  else if (entry.kind === 'unit') selectUnit(entry.id);
+  else if (entry.kind === 'unit') { const u = unitById(entry.id); if (u) clear(v => filterUnits([u], v).length); selectUnit(entry.id); }
   else if (entry.kind === 'station') selectStation(entry.id);
 }
 function installFinder() {
