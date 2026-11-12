@@ -997,7 +997,13 @@ function fitSite(s, {instant = false} = {}) {
   const preset = phone && state.view3d ? 'model' : sheetOpen() ? 'plan' : cameraPreset();
   const pitched = preset !== 'plan';
   const minZoom = phone && pitched ? Math.max(11, state.budget?.focusZoom || 0) : 11;
-  fitPitched(state.map, boundsOf([box]), {preset, padding: pitched && !phone ? pitchedPadding() : cameraPadding(), maxZoom: 17, minZoom, animate: animate() && !instant});
+  const options = {preset, padding: pitched && !phone ? pitchedPadding() : cameraPadding(), maxZoom: 17, minZoom, animate: animate() && !instant};
+  if (!(phone && pitched)) { fitPitched(state.map, boundsOf([box]), options); return; }
+  // The fit may still land below that zoom (it only stops zooming out there): take its camera and hold the zoom.
+  const target = fitPitched(state.map, boundsOf([box]), {...options, apply: false});
+  if (!target) return;
+  const camera = {...target, zoom: Math.max(target.zoom, minZoom)};
+  if (options.animate) state.map.easeTo({...camera, duration: 650}); else state.map.jumpTo(camera);
 }
 
 /** The middle of the map the reader sees ([lon, lat]): the free box above the phone's sheet (js/massing.js viewCenter). */
