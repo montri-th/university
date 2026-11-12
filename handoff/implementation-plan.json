@@ -3,7 +3,7 @@
   "schemaVersion": "1.5.0",
   "documentType": "implementation-plan",
   "productId": "citymeter-university",
-  "productVersion": "0.1.4",
+  "productVersion": "0.2.0",
   "updatedOn": "2026-11-12",
   "architecture": {
     "runtime": "static site (GitHub Pages), ES modules with an import map, no build step; Node ≥ 20 for tests, Python 3 for data builds",

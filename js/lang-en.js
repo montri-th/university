@@ -147,6 +147,7 @@ export default {
     '0 หน่วย': '0 units',
     // Filters
     'ค้นหามหาวิทยาลัย วิทยาเขต หรือจังหวัด': 'Search universities, campuses or provinces',
+    'ลองชื่อมหาวิทยาลัย วิทยาเขต ประเภทสถาบัน สถานี หรือจังหวัด': 'Try the name of a university, a campus, an institution type, a station or a province',
     'ค้นหาชื่อมหาวิทยาลัย วิทยาเขต หน่วยรายงาน อำเภอ หรือจังหวัด': 'Search university, campus, reporting-unit, district or province names',
     'ตัวกรอง': 'Filters',
     'ตัวกรองที่ใช้อยู่': 'Active filters',
@@ -381,6 +382,8 @@ export default {
     'มาบกะเบา–จิระ': 'Map Kabao–Chira',
   },
   contexts: [
+    // The line under a name in the search list (js/find.js#searchNote): one entry, so the singular.
+    ['.find-where', {'สถาบัน': 'Institution', 'วิทยาเขต': 'Campus', 'หน่วยรายงาน': 'Reporting unit', 'ประเภทสถาบัน': 'Institution type', 'สถานีรถไฟฟ้า': 'Rail station', 'จังหวัด': 'Province'}],
     // A unit after a bold number (js/panel.js valueText, nw(…)): "1 student", "12,345 students".
     ['.nowrap', {'คน': bold('student', 'students'), 'หน่วย': bold('unit', 'units'), 'รายการ': bold('line', 'lines')}],
     // A tile's label under its number (js/panel.js#metricTile): "77 provinces", "1 campus".
