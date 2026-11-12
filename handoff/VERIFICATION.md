@@ -6,6 +6,7 @@ From the owner's phone (12:26, citymeter.pages.dev): “1) info panel บัง�
 
 - Cause of 3, measured on the live 0.1.3 in a 393 × 760 frame with the phone budget (pitch 62, zoom 16.4): the top of the map above the sheet lay 1,156 m from the map's centre, the middle of that strip 504 m — beyond the 900 m ring round the centre, so the far campus buildings stayed in the basemap's tier and could not be lit.
 - Fixes: sheet heights (34 % / 42 %), a campus opens pitched at the phone's building zoom, the lean ring follows the middle of the visible map. 168 tests pass.
+- Live, GitHub Pages at 9d5d004 (cache tag r6), the owner's Chrome, a 393 × 740 frame with the phone budget (`?lean=phone`), 12:50 ICT: the province overview's sheet 311 px of 740 (42 %); Chula opened from it by `selectSite` — pitch 60 at zoom 14.00 at once, the sheet 252 px (34 %), 291 lit pieces of the campus in the visible map against 30 in its extent still in the basemap's tier (the far edge of the 900 m ring), 3 faculty labels. Not verified: a real phone.
 
 ## Release 0.1.3 — 12 พ.ย. 2569
 
