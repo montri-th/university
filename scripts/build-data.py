@@ -374,10 +374,12 @@ def main():
             sys.exit('02_ACADEMIC_UNITS: a latest academic unit with no or several institution contexts')
         st = whole(r['reported_student_sum']) or 0
         unit_ctx_students[r['academic_unit_context_id']] = st
+        # The academic unit's context id rides along (7th) only to place the site faculties below; never written.
         faculties_by_ctx[ids[0]].append([clean(r['academic_unit_name']), st, whole(r['reported_male_sum']) or 0,
                                          whole(r['reported_female_sum']) or 0, whole(r['programme_level_context_count']) or 0,
-                                         UNIT_KINDS.get(r['unit_kind_hint'], 'other')])
+                                         UNIT_KINDS.get(r['unit_kind_hint'], 'other'), r['academic_unit_context_id']])
     units = []
+    faculty_place = {}  # academic unit context id → (unit key, index in that unit's faculty list as written)
     for r in ctx_rows:
         cid = r['institution_context_id']
         st, m, f = whole(r['reported_student_sum']), whole(r['reported_male_sum']), whole(r['reported_female_sum'])
@@ -389,6 +391,9 @@ def main():
         fac = sorted(faculties_by_ctx[cid], key=lambda x: (-x[1], x[0]))
         if sum(x[1] for x in fac) != st:
             sys.exit(f'{cid}: faculty sums ≠ unit total')
+        for i, x in enumerate(fac):
+            faculty_place[x[6]] = (cid, i)
+        fac = [x[:6] for x in fac]
         units.append({
             'key': cid, 'name': clean(r['institution_name_raw']), 'master': clean(r['institution_master_name_raw']),
             'uni': r['university_reference_id'], 'province': province_of(r['institution_province_raw']),
@@ -697,13 +702,20 @@ def main():
             sys.exit(f'31_DEMO_UNIT_SITES: unknown site {r["campus_site_id"]}')
         gids = [geom_idx[g] for g in jlist(r['selected_geometry_ids']) if g in geom_idx]
         ctx = r['academic_unit_context_id']
+        # `uf`: the faculty's index in the site's linked unit's faculty list (02), so the page can name the unit's
+        # other academic units without a location; -1 when it is not one of them.
+        place = faculty_place.get(ctx)
+        su = sites[si]['unit']
+        uf = place[1] if place and su >= 0 and units[su]['key'] == place[0] else -1
         site_faculties[si].append({'name': clean(r['faculty_name_th']), 'kind': clean(r['unit_kind']),
-                                   'students': unit_ctx_students.get(ctx),
+                                   'students': unit_ctx_students.get(ctx), 'uf': uf,
                                    'info': public_url(r['faculty_information_url']), 'source': public_url(r['membership_source_url']),
                                    'geoms': gids, 'coverage': clean(r['geometry_coverage']), 'checked': iso(r['checked_on'])})
     for si, lst in site_faculties.items():
         lst.sort(key=lambda f: (-(f['students'] or 0), f['name']))
         sites[si]['faculties'] = len(lst)
+    # Located faculties that are not an academic unit of their site's linked unit (shown, never subtracted).
+    checks['siteFacultiesOutsideLinkedUnit'] = sum(1 for lst in site_faculties.values() for f in lst if f['uf'] < 0)
     for s in sites:
         s.setdefault('faculties', 0)
 

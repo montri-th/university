@@ -68,6 +68,23 @@ export function facultiesOf(site, siteIndex, campus) {
   return list.map(f => ({...f, geometry: f.geoms.map(i => campus.geometry[i]).filter(Boolean)}));
 }
 
+/**
+ * The linked unit's academic units (02_ACADEMIC_UNITS, the student file) that none of the site's located faculties
+ * (31_DEMO_UNIT_SITES) is — they have no location in the research data, so the page names them with the unit's
+ * figures and never places them (owner 2026-11-12 07:31: “ทำไมจุฬามีคณะเดียว”). A located faculty is one of them by
+ * its index in the unit's list (`uf`); a located faculty the research data gives no academic unit (uf -1) only keeps
+ * a row of exactly its name out of the list, so no faculty is shown both placed and unplaced — no figure moves. Rows
+ * of the file that are not faculties (kind `none`: a placeholder, `campus`: a campus label) are left out. null while
+ * the campus file loads, [] without a linked unit.
+ */
+export function unlocatedOf(site, located) {
+  if (located === null) return null;
+  if (!site.unit) return [];
+  const taken = new Set(located.map(f => f.uf).filter(i => Number.isInteger(i) && i >= 0));
+  const named = new Set(located.filter(f => !(Number.isInteger(f.uf) && f.uf >= 0)).map(f => f.name));
+  return site.unit.faculties.filter((f, i) => !taken.has(i) && !named.has(f.name) && f.kind !== 'none' && f.kind !== 'campus');
+}
+
 /** Programmes and fees of a site (32 → 33/36), grouped by the source's faculty label, in the source's order. */
 export function offeringsOf(siteIndex, campus) {
   if (!campus) return null;
@@ -91,9 +108,10 @@ export function sitesNear(site, sites, {radius = 3000, limit = 8} = {}) {
 
 export function buildSiteDetail(site, {data, campus = null, siteIndex = -1, building = null} = {}) {
   const uni = site.uni;
+  const faculties = facultiesOf(site, siteIndex, campus);
   return {
     site, uni, unit: site.unit, link: site.link,
-    faculties: facultiesOf(site, siteIndex, campus),
+    faculties, unlocated: unlocatedOf(site, faculties),
     offerings: offeringsOf(siteIndex, campus),
     quality: campus ? campus.quality.get(uni.index) || [] : null,
     siblings: uni.sites.filter(s => s !== site),

@@ -1,6 +1,6 @@
 {
   "name": "citymeter-university",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "CityMETER · University — 3D map of the students the MHESI student file reports per province, with the universities’ campuses, extents, faculties, published fees and rail context from the same registry",

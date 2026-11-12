@@ -6,7 +6,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {load} from './helpers.js';
 import {renderOverview, renderSite, renderUniversity, renderUnit, renderStation, renderBuilding, renderFilterChips, pct} from '../js/panel.js';
-import {buildOverview, buildSiteDetail, buildUniversityProfile, buildUnitProfile, buildStationProfile, buildBuildingProfile, STATION_RADIUS_M} from '../js/profile-model.js';
+import {buildOverview, buildSiteDetail, buildUniversityProfile, buildUnitProfile, buildStationProfile, buildBuildingProfile, STATION_RADIUS_M, unlocatedOf, facultiesOf} from '../js/profile-model.js';
 import {summarizeInsight} from '../js/area-insight.js';
 import {buildBreadcrumb, renderBreadcrumb, DATASET} from '../js/breadcrumb.js';
 import {contextActions} from '../js/ask.js';
@@ -91,6 +91,32 @@ test('a campus: the students are its unit’s, named; faculties with their unit 
   const p = text(out.siteNoUnit);
   assert.ok(!/นักศึกษาตาม/.test(p), `${plain.id}: no unit, no student figure`);
   assert.ok(!/ 0 คน/.test(p));
+});
+
+test('a campus names its unit’s other faculties without a location, never placed and never twice (owner 2026-11-12: “ทำไมจุฬามีคณะเดียว”)', () => {
+  const {data, index, campus} = load();
+  const ctx = {meta: data.meta, unit: unitWords('students'), index, osmDate: '2026-11-10'};
+  const chula = data.sites.find(s => s.name.startsWith('จุฬาลงกรณ์มหาวิทยาลัย') && s.unit);
+  const i = data.sites.indexOf(chula);
+  const located = facultiesOf(chula, i, campus);
+  const rest = unlocatedOf(chula, located);
+  // The Chula pilot (owner 2026-11-12 07:56): 20 faculties placed from the university's own campus map and OSM.
+  assert.ok(located.length >= 20, `${located.length} located`);
+  const placed = new Set(located.map(f => f.uf).filter(i => i >= 0));
+  assert.equal(rest.length, chula.unit.faculties.filter((f, k) => !placed.has(k) && f.kind !== 'none' && f.kind !== 'campus').length, 'the unit’s other academic units, by index');
+  assert.ok(rest.length > 0 && rest.length < chula.unit.faculties.length);
+  assert.ok(!rest.some(f => located.some(l => l.name === f.name)), 'a located faculty is not listed again');
+  const t = text(renderSite(buildSiteDetail(chula, {data, campus, siteIndex: i}), ctx));
+  assert.match(t, new RegExp(`คณะอื่นตามหน่วยรายงาน ${rest.length} คณะ · ยังไม่มีตำแหน่งบนแผนที่`));
+  assert.match(t, new RegExp(`${rest[0].name} ${rest[0].students.toLocaleString('en-US')} คน`));
+  // A located faculty the research data gives no academic unit keeps a row of exactly its name out of the list.
+  for (const [k, s] of data.sites.entries()) {
+    if (!s.unit) { assert.deepEqual(unlocatedOf(s, facultiesOf(s, k, campus)), [], `${s.id}: no unit, no list`); continue; }
+    const loc = facultiesOf(s, k, campus), left = unlocatedOf(s, loc);
+    for (const f of left) assert.ok(!loc.some(l => l.name === f.name), `${s.id}: ${f.name} placed and unplaced`);
+    assert.ok(left.every(f => f.kind !== 'none' && f.kind !== 'campus'), `${s.id}: placeholders and campus labels are not faculties`);
+  }
+  assert.equal(unlocatedOf(chula, null), null, 'while the campus file loads');
 });
 
 test('university, unit, station and building panels', () => {

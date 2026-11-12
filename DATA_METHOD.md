@@ -31,7 +31,7 @@ at run time, so these are fixtures, not constants.
 
 | Input | What it is | Published here? |
 |---|---|---|
-| Research master “CityMETER University & Faculty Thailand — Research Master 2026-10-31” | The research team's Google Sheet (registry `research.TH.university`), modified 2026-11-11 17:17 UTC; the owner's .xlsx export of the whole workbook was read on 2026-11-12 (SHA-256 `38661fa5…cf22`), every tab converted to CSV with exact cell values (`scripts/xlsx-to-csv.py`; 43 tabs, each tab's SHA-256 in `meta.tabs`). 22 tabs are read (`scripts/build-data.py#TABS`). | No: neither the sheet, its address, its export nor its cells. Only the fields below, per record. |
+| Research master “CityMETER University & Faculty Thailand — Research Master 2026-10-31” | The research team's Google Sheet (registry `research.TH.university`). Release 0.1.2 reads the owner's .xlsx export of 2026-11-12 08:18 (UTC+7) taken after the Chula pilot was written into the sheet (§6a; SHA-256 `2ab7cda4…f017`, 34,547,297 bytes); every tab converted to CSV with exact cell values (`scripts/xlsx-to-csv.py`; 43 tabs, each tab's SHA-256 in `meta.tabs`). Against the export of 0.1.0–0.1.1 (`38661fa5…cf22`) only 10_SOURCES, 30, 31 and 39 differ, and only by the pilot's cells. 22 tabs are read (`scripts/build-data.py#TABS`). | No: neither the sheet, its address, its export nor its cells. Only the fields below, per record. |
 | MHESI student file 2568/2 | `https://info.mhesi.go.th/open_data/univ_std_11_01_2568_2.csv` (SHA-256 `2decc2b3…2922`, checked 2026-10-31), summed by the research team per reporting unit in `20_INSTITUTION_CONTEXTS` and per unit · faculty · level in `16_ENROLMENT`. | Students per unit, level, faculty and sex, as the file reports them. |
 | MHESI institution roster 2566 | `https://data.mhesi.go.th/…/univ_uni_11_01_2566.xlsx` (SHA-256 `5d18193c…4582`, checked 2026-10-31), in `03_CAMPUS_ROSTER`. | Names, campus labels and candidate points. Not the official institution codes (UNIV_ID). |
 | Universities' own pages | Official URLs, faculties, programme and fee announcements (`32_DEMO_OFFERINGS`, `33_DEMO_FEE_LINKS`), quality pages (`08_QUALITY`), published areas, as the research team recorded them with their public links. | Yes, with the link of each page. |
@@ -39,7 +39,7 @@ at run time, so these are fixtures, not constants.
 | Logo package | `university-web-logos-2026-11-09.zip` (SHA-256 `4a7cdb90…70fa`), `LOGO_LIBRARY`; every file is checked against `logo_sha256` before it is copied. | 15 files, content-addressed (`assets/logos/<sha16>.<ext>`). |
 | CityMETER · Transit | `montri-th/transit` `data/transit.json` (release transit-data-2026-10-31-r1, commit and SHA-256 in `meta.context.rail`). | Stations near the sites (id, names, lines, status, reference point). |
 | CityMETER · Shopping Center | `montri-th/shoppingcenter` `data/venues.json` (commit and SHA-256 in `meta.context.retail`), linked by `RETAIL_VENUE_LINKS`. | 4 venue links (name and venue id). |
-| Area index, provinces, buildings | `data/area-index.json`, `data/provinces.geojson`, `data/boundary-receipts.json`, `data/building-units/` copied byte for byte from `montri-th/school` @793da70 (there from CityMETER production base info with receipts, and from the CityMETER · Hotel building build); district outlines of that commit's `data/frames/` are read at build time only. | Yes (copies). |
+| Area index, provinces, buildings | `data/area-index.json`, `data/provinces.geojson`, `data/boundary-receipts.json` copied byte for byte from `montri-th/school` @793da70 (there from CityMETER production base info with receipts); `data/building-units/` = those of the CityMETER · Hotel build (via School) plus the 44 อปท. round the campuses this demo evaluated by the same rule (§10a); district outlines of that commit's `data/frames/` are read at build time only. | Yes. |
 
 ## 2. Two grains, never added to each other
 
@@ -70,15 +70,25 @@ The source details of a site say which rule made its link (`js/model.js#LINKS`).
 ## 5. Points, extents and faculty geometry
 
 - **Point** of a site (`29_DEMO_SITES.coordinate_status`), shown in the source details: a reference point the university publishes · a 2566 roster point the research team checked against the OpenStreetMap extent · a point inside the extent · a building that carries the university's name · a point a university page links to. Two sites have no point (they count everywhere except as a pin).
-- **Extents and faculty geometry** (`30_DEMO_GEOMETRY`, 388 features): `extent` 165, faculty `building` 137, `shared` building 13, faculty `area` 16, faculty `point` 57. Each feature carries an interior point (`pt`) computed at build time for the building join. Geometry stays on its own site (`tests/data.test.js`).
+- **Extents and faculty geometry** (`30_DEMO_GEOMETRY`, 407 features): `extent` 165, faculty `building` 138, `shared` building 13, faculty `area` 16, faculty `point` 75. Each feature carries an interior point (`pt`) computed at build time for the building join. Geometry stays on its own site (`tests/data.test.js`).
 - **Roster points** (162): records of the 2566 roster with a candidate point inside Thailand that no reviewed site represents. 14 records whose point lies in another province than the record's own are not drawn (`meta.checks.rosterPointsNotDrawn`).
 
 ## 6. Faculties, programmes, fees, quality
 
-- Faculty memberships (210) from `31_DEMO_UNIT_SITES`, with the faculty's kind as the source labels it, its geometry when the research team found one, and the students its academic unit reports in the latest period (`02_ACADEMIC_UNITS.reported_student_sum`), shown on the campus as “N คนตามหน่วยรายงาน” and never on a building.
+- Faculty memberships (229) from `31_DEMO_UNIT_SITES`, with the faculty's kind as the source labels it, its geometry when the research team found one, and the students its academic unit reports in the latest period (`02_ACADEMIC_UNITS.reported_student_sum`), shown on the campus as “N คนตามหน่วยรายงาน” and never on a building. Each membership carries `uf`, its index in its site's linked unit's faculty list (−1 when its academic unit is not one of that unit's; 48, mostly sites without a linked unit; `meta.checks.siteFacultiesOutsideLinkedUnit`).
+- **The linked unit's other faculties** (0.1.2; owner 2026-11-12 07:31, “ทำไมจุฬามีคณะเดียว”): a campus panel names, folded under “คณะอื่นตามหน่วยรายงาน · ยังไม่มีตำแหน่งบนแผนที่”, the academic units of its linked unit (`02_ACADEMIC_UNITS`, latest period) that none of its located faculties is, with the student file's figure — never on the map, never “in this area”. A located faculty without an academic unit in the research data (uf −1) keeps only a row of exactly its name out of that list, so no faculty is shown both placed and unplaced; no figure moves. Placeholder rows of the file (`none`) and campus labels (`campus`) are not faculties and are left out (`js/profile-model.js#unlocatedOf`, `tests/views.test.js`).
 - Programmes (503) in the universities' fee announcements (`32_DEMO_OFFERINGS`) and their fee lines (627, `33_DEMO_FEE_LINKS`), for the 14 pilot areas of Kasetsart, Chulalongkorn, Khon Kaen and Prince of Songkla universities. Each line keeps its amount, currency (THB 624, CNY 3), period, track, component, student category, cohort, academic year, estimate label and public source; the page reads the codes in words (`js/model.js#FEE_WORDS`, `cohortWords`) and never sums, averages or compares lines. A line the source marks as a component already included in a total says so (“รวมอยู่ในยอดรวมแล้ว”).
 - Quality observations (228, `08_QUALITY`): framework, programme or faculty, status, dates, authority, source link — verbatim.
 - Fee coverage of a university (`26_FEE_COVERAGE`): how many fee lines the research team holds and from how many sources.
+
+## 6a. The Chula pilot in the research master (2026-11-12)
+
+The owner approved it at 07:56 (“ทำ pilot ที่จุฬาฯ”) after asking whether the faculties' own web pages could place them. Written into the research master itself, in place (tabs 10, 30, 31, 39; header map and row ids checked first, every block read back, then confirmed cell by cell in the next export: only the intended cells differ) — the demo reads it from that export, as always; nothing is patched in `data/`.
+
+- **Evidence**: the university's own campus map, Chula Maps (`https://www.chula.ac.th/about/contact/maps/`, read in the owner's browser 2026-11-12, 461,615 bytes, SHA-256 `77d75f85…63f1`; `10_SOURCES` `SOURCE-0a07f494-8250-5ad4-b850-22ecf798e076`): its layer “คณะ/ วิทยาลัย/ สถาบัน” places 20 faculties and colleges with a coordinate of their own (`markersData`, `department_post`). Its base map is OpenFreeMap; nothing here comes from Google (the faculties' contact pages embed Google Maps, whose coordinates are not taken).
+- **Rule** (the research team's own next action for these rows: “ตรวจ directory และ contact คณะปัจจุบัน จับคู่ campus/อาคาร/ชั้นกับแผนผังอ้างพิกัด”): a held national candidate — an OSM feature with the faculty's exact name (`30_DEMO_GEOMETRY`, `faculty_location_candidate_unconfirmed`) — is confirmed when the official map's marker for the same faculty stands within 100 m of it or inside it; the nearest is selected, the others stay held. A faculty with no candidate takes the official marker itself as a reference point (as the research master already does for KKU Medicine).
+- **Result**: 13 faculties confirmed on OSM (12 points 10–73 m from the marker; Architecture's marker inside OSM way 200671039, a 1,055 m² building) and 6 placed by the official marker (Medicine, Psychology, Nursing, Sports Science, Allied Health Sciences, the Petroleum and Petrochemical College) — 19 new rows in `30_DEMO_GEOMETRY` (`CHULA-OSM-…`, `CHULA-MAPS-…`) and `31_DEMO_UNIT_SITES` (`CHULA-FACULTY-SITE-…`), 19 rows of `39_FACULTY_SPATIAL_STATUS` updated. Chulalongkorn (Pathumwan) shows 20 located faculties instead of 1; the 6 the official map does not place (บัณฑิตวิทยาลัย, วิทยาลัยประชากรศาสตร์, วิทยาลัยวิทยาศาสตร์สาธารณสุข, สถาบันนวัตกรรมบูรณาการ, ศศินทร์, สำนักวิชาทรัพยากรการเกษตร) are named without a location.
+- **Limits**: reference points, not territories, entrances or floors; the reuse licence of the university's map data is not established (`source_license` `not_specified`); a faculty may use several buildings.
 
 ## 7. Context from the same registry (straight lines, build time)
 
@@ -99,7 +109,17 @@ The source details of a site say which rule made its link (`js/model.js#LINKS`).
 
 ## 10. Map: symbols, names, terrain, buildings
 
-One pin per site with a point, coloured by type; extents dashed; faculty buildings outlined in the open campus; roster points quiet grey, never clickable; stations quiet rings. Campus names in the middle of the view (≤ 9, phone ≤ 5). Buildings per area from the CityMETER · Hotel building units (CityMETER Building V4 or OpenStreetMap). Terrain from SRTM 30 m and OSM.
+One pin per site with a point, coloured by type; extents dashed; faculty buildings outlined in the open campus; roster points quiet grey, never clickable; stations quiet rings. Campus names in the middle of the view (≤ 9, phone ≤ 5). Terrain from SRTM 30 m and OSM.
+
+**Where buildings are drawn in detail** (0.1.2; owner 2026-11-12 07:31, VERBATIM: “อาคาร 3 มิติ นอกเขตมหาวิทยาลัยไม่แสดงเลย มันไม่เหมือนกับ demo ของ hotel เลย”; `js/regions.js`): a campus is drawn with its surroundings — its extent and a square reaching 800 m past it, at least 1,000 m from its centre (a campus with only a point: 1,000 m); a faculty building adds a square round itself; a station a square 1.2 km round it. Wherever the reader moves the camera away from the subject, from zoom 12 in, a square 3 km round the camera joins (its centre snapped to 1.5 km, re-read after a move), so the detail follows the reader as the Hotel's district focus does; below zoom 12 nothing is read. The massing keeps the z14 tiles nearest the camera (16 on a desktop; a phone shapes the buildings within 900 m of the camera from zoom 14).
+
+## 10a. Buildings per area round the campuses
+
+Owner 2026-11-12 07:31, VERBATIM: “ในต่างจังหวัดที่อาคาร 3d ของ OSM มีน้อยหรือไม่มี ไม่ได้เอา CityMETER มาเสริมให้”. The Hotel build decided the building source only for อปท. holding a hotel (Bangkok: every เขต); an อปท. round a campus without a hotel drew OpenStreetMap however few buildings OSM maps there.
+
+- **Selection** (`scripts/build-campus-units.py`): every อปท. of the production base info (`municipalityInfos`, Bangkok excluded) whose production outline meets a campus's surroundings square (the same 1,000 m / 800 m as the page) and that the Hotel build did not evaluate: 68 by box, 44 by outline, in 22 provinces.
+- **Rule**: the Hotel build's, unchanged — CityMETER Building V4 where its count in the unit (production `building/info/lv1/{province}?version=V4`) is at least 1.15 × the OpenStreetMap count, else OSM; the OSM box count is an upper bound that decides when it is 0 or 1.15 × it is still ≤ the CityMETER count, else the polygon count (outer rings minus holes, ≤ 200 vertices). OSM counts: Overpass API `out count` of ways tagged `building=*`, OSM of 2026-11-12, run in the owner's browser (the build container cannot reach Overpass): 39 by the box upper bound, 3 with no OSM building in the box, 2 by polygon.
+- **Result**: 43 units drawn from CityMETER Building V4, 1 from OSM (อบต.สำเภาล่ม, Ayutthaya: CityMETER 2,688, OSM 2,641). Outlines and counts with receipts (`<file>.meta.json`: URL, status, bytes, SHA-256, time) stay in the build directory; `data/building-units/index.json` `meta.campusUnits` records the selection, the rule, the Overpass bases and the SHA-256 of the plan and the counts. New tile units take slots after the last one, so every earlier building id is unchanged. Totals: 3,943 units on CityMETER Building V4, 48 on OSM. Every campus point now falls inside a unit (`meta.checks.sitesOutsideBuildingUnits` is empty); within a 1.5 km square round each campus, 155 of 188 campuses lie wholly in CityMETER units (124 before), 33 partly (62), none outside (2); the units still on OSM are towns OSM maps closely (Ayutthaya's old city among them).
 
 ## 11. Not published
 
@@ -110,7 +130,6 @@ One pin per site with a point, coloured by type; extents dashed; faculty buildin
 - 3 linked sites whose point lies in another province than their unit's (§4).
 - 14 roster points in another province than their record's (§5).
 - 2 sites without a point (`PILOT-KU-AFFILIATE-IRRIGATION-COLLEGE`, `PILOT-CMU-SAMUT-SAKHON`).
-- 3 sites outside the building units (`meta.checks.sitesOutsideBuildingUnits`): their buildings come from the basemap.
 - 2 rows of `31_DEMO_UNIT_SITES` without a campus site in the source; not shown.
 - Universities, units, sites and faculties have no English names in the master: they stay Thai on English pages.
 
@@ -128,3 +147,14 @@ python3 -I scripts/build-data.py --tabs <tabs-dir> --xlsx <export.xlsx> \
 ```
 
 Rebuilt on 2026-11-12 from the same inputs, the three data files equalled the earlier build of that day apart from the sheet's address, which the build no longer writes, and the 15 logos were byte-identical; the shipped files are that rebuild. `scripts/xlsx-to-csv.py` reproduced the SHA-256 of all 43 tabs.
+
+Release 0.1.2 was built from the export taken after the Chula pilot (§6a): against 0.1.1 the data differ only in `meta.tabs`, `meta.exportSha256`, Chulalongkorn's faculty count (1 → 20), the 19 new geometries and memberships, each membership's `uf`, and `meta.checks`; the logos are byte-identical.
+
+Building units round the campuses (§10a), when the campuses or the rule change:
+
+```sh
+python3 -I scripts/fetch-base.py --out $BUILD/api        # from montri-th/hotel: production base info with receipts
+python3 -I scripts/build-campus-units.py fetch --api $BUILD/api --data data --units data/building-units --out $BUILD/campus-units
+# Overpass counts of $BUILD/campus-units/overpass-plan.json in a browser → osm-counts.json (rows: id, osm, osmUpper, osmMethod, osmBaseDay)
+python3 -I scripts/build-campus-units.py apply --plan $BUILD/campus-units/plan.json --counts osm-counts.json --units data/building-units
+```

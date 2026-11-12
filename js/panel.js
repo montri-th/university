@@ -298,6 +298,19 @@ function facultySection(d) {
     <ul class="outlet-list faculty-list">${rows}</ul></section>`;
 }
 
+/**
+ * The linked unit's other academic units, which have no location in the research data (profile-model.js#unlocatedOf):
+ * named with the student file's figures, folded, never placed on the map or counted as being in this area.
+ */
+function unlocatedSection(d) {
+  const list = d.unlocated;
+  if (!list?.length) return '';
+  const title = d.faculties?.length ? 'คณะอื่นตามหน่วยรายงาน' : 'คณะตามหน่วยรายงาน';
+  const rows = list.map(f => `<li><span class="faculty-row"><span class="row-text"><strong>${esc(f.name)}</strong><span class="row-meta">${esc(`${num(f.students)} คน`)}</span></span></span></li>`).join('');
+  return `<section class="panel-section unlocated-section"><details class="unlocated"><summary><span class="section-heading">${heading('classroom', title)}<span class="hint">${num(list.length)} คณะ · ยังไม่มีตำแหน่งบนแผนที่</span></span></summary>
+    <ul class="outlet-list faculty-list">${rows}</ul></details></section>`;
+}
+
 /** One fee line as the university wrote it: amount · component · period · who · cohort. */
 function feeLine(f) {
   const scope = [feeWord('type', f.type), feeWord('component', f.component), feeWord('period', f.period)].filter(Boolean).join(' · ');
@@ -384,6 +397,7 @@ export function renderSite(d, ctx = {}) {
       </details>
     </section>
     ${facultySection(d)}
+    ${unlocatedSection(d)}
     ${offeringSection(d)}
     ${qualitySection(d.quality)}
     ${hasPoint(s) ? `<section class="panel-section terrain-section"><div class="section-heading">${heading('elevation', 'ภูมิประเทศ')}</div>

@@ -256,6 +256,9 @@ export default {
     'จุดอาคารที่มีชื่อของมหาวิทยาลัย': "A point on a building bearing the university's name",
     'จุดอ้างอิงที่หน้าเว็บของมหาวิทยาลัยเชื่อมไป': "A reference point the university's web page links to",
     'คณะในพื้นที่นี้': 'Faculties here',
+    // The linked unit's academic units with no location in the research data (0.1.2; profile-model.js#unlocatedOf)
+    'คณะอื่นตามหน่วยรายงาน': 'Other faculties of the reporting unit',
+    'คณะตามหน่วยรายงาน': 'Faculties of the reporting unit',
     'นักศึกษาของคณะตามแฟ้ม อว. ของหน่วยรายงาน': "The faculty's students in the MHESI file, of its reporting unit",
     'กำลังโหลดรายชื่อคณะ': 'Loading the faculties',
     'เว็บคณะ': 'Faculty site',
@@ -437,6 +440,7 @@ export default {
     // Lists
     [re(`${N} คณะ`), (m, t) => plural(t, m[1], 'faculty', 'faculties')],
     [re(`อีก ${N} คณะ`), (m, t) => plural(t, m[1], 'more faculty', 'more faculties')],
+    [re(`${N} คณะ · ยังไม่มีตำแหน่งบนแผนที่`), (m, t) => `${plural(t, m[1], 'faculty', 'faculties')} · not yet placed on the map`],
     [re(`${N} คนตามหน่วยรายงาน`), (m, t) => `${students(t, m[1])} by reporting unit`],
     [re(`${N} คน`), (m, t) => students(t, m[1])],
     [re(`${N} หน่วย`), (m, t) => plural(t, m[1], 'unit', 'units')],

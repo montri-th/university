@@ -40,7 +40,8 @@ import {renderOverview, renderSite, renderUniversity, renderUnit, renderStation,
 import {installStationLayer} from './stations.js';
 import {joinBuildings} from './shell/building-join.js';
 import {buildMapStyle, basemapPalette, TILEJSON_URL, MASSING_BEFORE, VENUE_XRAY_BEFORE} from './shell/map-style.js';
-import {installMassing, outerRings} from './massing.js';
+import {installMassing, outerRings, FOCUS_MIN_ZOOM} from './massing.js';
+import {squareAround, ringsBox, siteContextRegions, cameraSquare} from './regions.js';
 import {createBuildingUnitStore, cmTileUrl, CM_ATTRIBUTION} from './shell/building-units.js';
 import {presetFor, applyPreset, fitPitched, fitBuilding, twoPointBearing, screenBounds, groundAt, BUILDING_MAX_ZOOM} from './shell/camera.js';
 import {installVenueXray} from './shell/venue-xray.js';
@@ -201,6 +202,9 @@ function update({fit = false} = {}) {
   syncMetricSwitch();
   if (state.loaded) {
     updatePins();
+    // A fit is about to move the camera to the subject: no square round where the camera was (followCamera reads
+    // the camera again when the move ends).
+    if (fit) state.cameraHeld = true;
     updateSpatialLayers();
     if (fit) fitMap();
     else if (state.lastPreset && cameraPreset() !== state.lastPreset && !twoPoint()) applyPreset(state.map, cameraPreset(), {animate: animate()});
@@ -1002,40 +1006,37 @@ function scheduleLabelView() {
   scheduleLabelView.timer = setTimeout(() => { if (state.loaded) { state.provinceLabels?.layout(); renderLegend(); syncCampusExtents(); } }, 60);
 }
 
-/** Provinces whose building units the massing regions need: the open subject's, plus the province under each region. */
+/**
+ * Provinces whose building units the massing regions need: the open subject's, plus the provinces under each region's
+ * centre and corners (a campus or the camera near a provincial border reads both sides' CityMETER units).
+ */
 function massingProvinces(regions) {
   const codes = new Set([$('province').value, openSite()?.province].filter(Boolean));
   if (state.provincesGeo?.features?.length) {
     state.locateProvince ||= provinceLocator(state.provincesGeo);
     for (const ring of regions) {
+      if (!ring.length) continue;
+      const [w, s, e, n] = ringsBox([ring]);
       let x = 0, y = 0;
       for (const [lon, lat] of ring) { x += lon; y += lat; }
-      const code = ring.length ? state.locateProvince([x / ring.length, y / ring.length]) : '';
-      if (code) codes.add(code);
+      for (const p of [[x / ring.length, y / ring.length], [w, s], [e, s], [e, n], [w, n]]) {
+        const code = state.locateProvince(p);
+        if (code) codes.add(code);
+      }
     }
   }
   return [...codes].filter(Boolean);
 }
 
-/** A small square (lon/lat ring) around a point: the massing region of a campus without an extent, or a station. */
-function squareAround(lon, lat, metres = 250) {
-  const dy = metres / 110574, dx = metres / (111320 * Math.cos((lat * Math.PI) / 180));
-  return [[lon - dx, lat - dy], [lon + dx, lat - dy], [lon + dx, lat + dy], [lon - dx, lat + dy], [lon - dx, lat - dy]];
-}
-
-/** The extent rings of a site (the campus file's geometry), or a square round its point. */
+/** The extent rings of a site (the campus file's geometry) and the square of its surroundings (js/regions.js). */
 function siteRegions(s) {
   if (!s) return [];
   const g = state.campus && s.extent >= 0 ? state.campus.geometry[s.extent] : null;
-  if (g) return outerRings({geometry: g.g});
-  return hasPoint(s) ? [squareAround(s.longitude, s.latitude, 450)] : [];
+  return siteContextRegions(g ? outerRings({geometry: g.g}) : [], hasPoint(s) ? [s.longitude, s.latitude] : null);
 }
 
-/**
- * Massing focus regions: round the open building, the open campus (its extent), the open station; in a province, the
- * extents of its campuses (the massing keeps the tiles nearest the camera).
- */
-function massingRegions() {
+/** The subject's own focus: round the open building, the open campus (extent and surroundings), the open station. */
+function subjectRegions() {
   if (state.panel.mode === 'building' && state.buildingSel?.footprint?.bbox) {
     const [w, s, e, n] = state.buildingSel.footprint.bbox, lat = (s + n) / 2;
     const half = Math.max((e - w) * 111320 * Math.cos((lat * Math.PI) / 180), (n - s) * 110574) / 2;
@@ -1045,10 +1046,29 @@ function massingRegions() {
     const st = stationById(state.panel.id);
     if (st) return [squareAround(st.lon, st.lat, STATION_RADIUS_M + 200)];
   }
-  const site = openSite();
-  if (site) return siteRegions(site);
-  if ($('province').value && state.campus) return state.siteScope.filter(s => s.extent >= 0).flatMap(siteRegions);
-  return [];
+  return siteRegions(openSite());
+}
+
+/** The camera's square while it looks outside the subject's own focus, from FOCUS_MIN_ZOOM in (js/regions.js). */
+function cameraContext(base = subjectRegions()) {
+  const map = state.map;
+  if (state.cameraHeld || !map || typeof map.getZoom !== 'function') return null;
+  return cameraSquare(map.getCenter().toArray(), map.getZoom(), {base, minZoom: FOCUS_MIN_ZOOM});
+}
+
+/** Massing focus regions: the subject's own focus, plus the camera's square when the camera looks elsewhere. */
+function massingRegions() {
+  const base = subjectRegions();
+  const camera = cameraContext(base);
+  state.cameraKey = camera?.key || '';
+  return camera ? [...base, camera.ring] : base;
+}
+
+/** After a move: read again round the camera when it has left its cell or crossed FOCUS_MIN_ZOOM (else nothing). */
+function followCamera() {
+  state.cameraHeld = false;
+  if (!state.loaded || !state.massing) return;
+  if ((cameraContext()?.key || '') !== state.cameraKey) updateSpatialLayers();
 }
 
 /** Campus extents on the map: the sites of the focus (the province's, the station's) and the open one. */
@@ -1315,6 +1335,7 @@ function initMap() {
     state.provinceLabels = installAreaLabels(state.map, $('map'), {className: 'province-label', hostId: 'province-labels', hostLabel: 'จังหวัดบนแผนที่', minZoom: PROVINCE_VIEW_MIN_ZOOM, maxZoom: PROVINCE_LABEL_MAX_ZOOM, verb: 'กดเพื่อดูจังหวัด', onSelect: code => selectProvince(code), reservedBottom: labelBottomSpace, maxLabels: 77});
     state.map.on('zoomend', () => { if (state.loaded) renderLegend(); });
     state.map.on('moveend', scheduleLabelView);
+    state.map.on('moveend', followCamera);
     state.map.on('idle', () => { if (state.loaded && state.panel.mode === 'site') fillTerrain(siteById(state.panel.id)); });
     state.map.on('style.load', installSpatialLayers);
     state.map.on('click', onMapClick);

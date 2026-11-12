@@ -38,7 +38,7 @@ npm test    # unit tests บนข้อมูลจริง (node --test)
 ## ข้อมูล
 
 - `data/universities.json` — หน่วยรายงาน 303 หน่วย (นักศึกษา 1,786,753 คน) มหาวิทยาลัย 170 แห่ง วิทยาเขต 190 แห่ง จุดทะเบียน 162 จุด สถานี 301 แห่ง — `scripts/build-data.py` จากแท็บ CSV ที่แปลงด้วย `scripts/xlsx-to-csv.py`
-- `data/campus.json` — กรอบพื้นที่และรูปคณะ 388 รูป คณะ 210 รายการ หลักสูตรในประกาศ 503 รายการ ค่าธรรมเนียม 627 บรรทัด การรับรองคุณภาพ 228 รายการ (โหลดหลังภาพแรก)
+- `data/campus.json` — กรอบพื้นที่และรูปคณะ 407 รูป คณะ 229 รายการ หลักสูตรในประกาศ 503 รายการ ค่าธรรมเนียม 627 บรรทัด การรับรองคุณภาพ 228 รายการ (โหลดหลังภาพแรก)
 - `assets/logos/` — โลโก้ 15 ไฟล์จากชุดของทีมวิจัย ตั้งชื่อตาม SHA-256
 - `data/area-index.json`, `data/provinces.geojson`, `data/boundary-receipts.json`, `data/building-units/` — คัดลอกจาก montri-th/school @793da70 โดยไม่แก้ไบต์
 - วิธีทั้งหมด ข้อจำกัด และงานวิจัยที่ต้องตามต่อ: `DATA_METHOD.md` · กลยุทธ์ผลิตภัณฑ์: `PRODUCT_STATEMENT.md` · สำหรับนักพัฒนา: `handoff/START_HERE.md` · สำหรับ agent: `AGENTS.md`, `llms.txt`

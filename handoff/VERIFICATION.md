@@ -1,5 +1,17 @@
 # CityMETER University — verification
 
+## Release 0.1.2 — 12 พ.ย. 2569
+
+From the owner's walk of 0.1.1 (07:31): “ทำไมจุฬามีคณะเดียว”, “อาคาร 3 มิติ นอกเขตมหาวิทยาลัยไม่แสดงเลย มันไม่เหมือนกับ demo ของ hotel เลย”, “ในต่างจังหวัดที่อาคาร 3d ของ OSM มีน้อยหรือไม่มี ไม่ได้เอา CityMETER มาเสริมให้”, and the same standard as citymeter.pages.dev; the Chula pilot approved at 07:56.
+
+- Data: rebuilt from the export taken after the Chula pilot (`DATA_METHOD.md` §6a; SHA-256 `2ab7cda4…f017`). The new export differs from the old only in 10_SOURCES, 30, 31 and 39, and there only in the 76 status cells and the 39 appended rows written (checked cell by cell). Chulalongkorn (Pathumwan): 20 located faculties (1 before); geometry 407, memberships 229; logos byte-identical.
+- Building units round the campuses (`DATA_METHOD.md` §10a): 44 อปท. added (43 CityMETER Building V4, 1 OSM), every unit file valid (`validUnitFile`), earlier slots unchanged; `meta.checks.sitesOutsideBuildingUnits` empty.
+- Map focus (`js/regions.js`): campus surroundings and the camera square; `tests/regions.test.js` (3 tests).
+- Campus panel: the linked unit's other faculties without a location (`tests/views.test.js`, all 190 sites: never placed and unplaced at once).
+- Shell: citymeter-shell 0.6.1 over the family's released 0.6.0 (School @d644108); School's shell tests taken whole, with University in the English and Living lists.
+- Local: 160 tests pass. Chromium (Playwright, no basemap in the container): the Chula campus in Thai and English at 1440 × 900 light and 390 × 844 dark — 20 faculties, 6 named without a location, smallest panel text 12 px, no missing English, no page error.
+- Live results for 0.1.2 follow below once published.
+
 ## Release 0.1.1 — 12 พ.ย. 2569
 
 Fixes from the first walk of the live site (0.1.0 on GitHub Pages, owner's Chrome, desktop, dark theme):
