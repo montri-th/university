@@ -1,5 +1,12 @@
 # CityMETER University — verification
 
+## Release 0.1.4 — 12 พ.ย. 2569
+
+From the owner's phone (12:26, citymeter.pages.dev): “1) info panel บังแผนที่อีกแล้ว 2) คลิกมหาลัยแล้วไม่แสดง 3d ทันที 3) 3d highlight ไม่ครบ”.
+
+- Cause of 3, measured on the live 0.1.3 in a 393 × 760 frame with the phone budget (pitch 62, zoom 16.4): the top of the map above the sheet lay 1,156 m from the map's centre, the middle of that strip 504 m — beyond the 900 m ring round the centre, so the far campus buildings stayed in the basemap's tier and could not be lit.
+- Fixes: sheet heights (34 % / 42 %), a campus opens pitched at the phone's building zoom, the lean ring follows the middle of the visible map. 168 tests pass.
+
 ## Release 0.1.3 — 12 พ.ย. 2569
 
 From the owner's walk of 0.1.2 (11:12, KMITL Ladkrabang and Chula): “กรอบมหาลัยโอเคนะ แต่ทำไมไม่แสดงอาคารทั้งหมดในกรอบเวลา highlight”, “และถ้ามีตำแหน่งคณะในแผนที่แล้วน่าจะโชว์ป้ายด้วย”, “apply ทุกมหาลัยได้มั้ย”.

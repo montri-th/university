@@ -544,6 +544,12 @@ td small { display: block; color: var(--text-metadata); font-size: 12px; margin-
   .panel { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 56dvh; border-left: 0; border-top: 1px solid var(--border-default); border-radius: var(--radius-md) var(--radius-md) 0 0; transform: translateY(100%); visibility: hidden; transition: transform .2s ease, visibility 0s linear .2s, max-height .2s ease; z-index: 12; padding-bottom: env(safe-area-inset-bottom); }
   .panel.is-open { transform: none; visibility: visible; transition: transform .2s ease, max-height .2s ease; }
   .panel[data-sheet="peek"] { max-height: 56dvh; }
+  /* University 0.1.4 (owner 2026-11-12 12:26 on a phone: “info panel บังแผนที่อีกแล้ว”): the sheet rests lower — a campus,
+     building or station at a third of the screen (its name, the students and the first facts; the logo and the rest
+     wait in the open sheet), the overview at 42 %. */
+  .panel[data-sheet="peek"] { max-height: 34dvh; }
+  .panel[data-sheet="half"] { max-height: 42dvh; }
+  .panel[data-sheet="peek"] .identity .logo-plate { display: none; }
   /* Open, the sheet stops under the map's toolbar (top bar 48 + toolbar 48 + 8): at 88 % of a short screen it cut the
      toolbar's buttons in half. */
   .panel[data-sheet="full"] { max-height: min(88dvh, calc(100dvh - 104px)); }

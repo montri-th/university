@@ -456,7 +456,7 @@ const breathe = () => new Promise(resolve => setTimeout(resolve, 0));
  * (OpenMapTiles schema). `tileUrl(tile)` returns the URL of one tile; the app
  * reads it from the same TileJSON MapLibre uses.
  */
-export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors, tileUrl, cmTileUrl = null, cmAttribution = '', fetchImpl = (...a) => fetch(...a), onResult = null, budget = null} = {}) {
+export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors, tileUrl, cmTileUrl = null, cmAttribution = '', fetchImpl = (...a) => fetch(...a), onResult = null, budget = null, viewCenter = null} = {}) {
   // A lean budget (a phone, or a page that was stopped): {tiles, cmRequests, radiusM, focusZoom}; null = everything, as before.
   const lean = budget && budget.radiusM > 0 ? budget : null;
   const maxTiles = budget?.tiles > 0 ? Math.min(MAX_TILES, budget.tiles) : MAX_TILES;
@@ -625,7 +625,10 @@ export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors
     for (const id of [CITY_LAYER, CONTEXT_LAYER]) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', enabled && city ? 'visible' : 'none');
     for (const id of [FOCUS_LAYER, OCCLUDER_LAYER]) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', enabled ? 'visible' : 'none');
     const bucket = Math.floor(zoom);
-    const camera = center || (typeof map.getCenter === 'function' ? map.getCenter().toArray() : null);
+    // `viewCenter` (0.1.4): the middle of the map the reader sees. Under a phone's sheet and a pitched camera it lies
+    // hundreds of metres ahead of the map's centre, and a lean ring round the centre left the far buildings unshaped.
+    const viewed = center ? null : viewCenter?.();
+    const camera = center || (Array.isArray(viewed) && viewed.every(Number.isFinite) ? viewed : typeof map.getCenter === 'function' ? map.getCenter().toArray() : null);
     // A lean budget shapes a wide focus round the camera only, and not below its zoom (the city tier draws there).
     const near = lean ? nearRing(regions, camera, lean.radiusM) : null;
     const waiting = Boolean(near) && bucket < (lean.focusZoom || 0);

@@ -3,7 +3,7 @@
   "schemaVersion": "1.5.0",
   "documentType": "product-brief",
   "productId": "citymeter-university",
-  "productVersion": "0.1.3",
+  "productVersion": "0.1.4",
   "updatedOn": "2026-11-12",
   "datasetCheckedOn": "2026-11-10",
   "language": "th",
@@ -380,6 +380,6 @@
     "site": "GitHub Pages from main /root",
     "handoff": "dist/CityMETER-University-Developer-Handoff.zip (START_HERE.md, RELEASE_RECEIPT.json, evidence/, source/)",
     "liveCheck": "npm run verify:live",
-    "cacheTag": "?v=20261112-r4 on every entry file and, through the import map in index.html, on every ES module; the campus file takes the same tag from import.meta.url; bump it with package.json version (tests/release.test.js); icon fonts inside the stylesheets carry ?v=<first 8 hex of their SHA-256> (tests/icons.test.js)"
+    "cacheTag": "?v=20261112-r5 on every entry file and, through the import map in index.html, on every ES module; the campus file takes the same tag from import.meta.url; bump it with package.json version (tests/release.test.js); icon fonts inside the stylesheets carry ?v=<first 8 hex of their SHA-256> (tests/icons.test.js)"
   }
 }

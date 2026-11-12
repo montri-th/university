@@ -991,9 +991,21 @@ function fitSite(s, {instant = false} = {}) {
   if (!s || !state.map) return;
   const box = siteBounds(s);
   if (!box) { const p = provinceRecord(s.province); if (p) fitRecord(p, {instant}); return; }
-  const preset = sheetOpen() ? 'plan' : cameraPreset();
-  const pitched = preset !== 'plan' && !mobilePortrait();
-  fitPitched(state.map, boundsOf([box]), {preset, padding: pitched ? pitchedPadding() : cameraPadding(), maxZoom: 17, minZoom: 11, animate: animate() && !instant});
+  // A phone (0.1.4; owner 2026-11-12 12:26: “คลิกมหาลัยแล้วไม่แสดง 3d ทันที”): the campus opens in 3D above the sheet, and
+  // not below the zoom the phone's buildings are drawn from — a campus wider than that view is entered at its middle.
+  const phone = mobilePortrait();
+  const preset = phone && state.view3d ? 'model' : sheetOpen() ? 'plan' : cameraPreset();
+  const pitched = preset !== 'plan';
+  const minZoom = phone && pitched ? Math.max(11, state.budget?.focusZoom || 0) : 11;
+  fitPitched(state.map, boundsOf([box]), {preset, padding: pitched && !phone ? pitchedPadding() : cameraPadding(), maxZoom: 17, minZoom, animate: animate() && !instant});
+}
+
+/** The middle of the map the reader sees ([lon, lat]): the free box above the phone's sheet (js/massing.js viewCenter). */
+function seenCenter() {
+  const map = state.map;
+  if (!map || !mobilePortrait()) return null;
+  const b = visibleBox();
+  return map.unproject([(b.left + b.right) / 2, (b.top + b.bottom) / 2]).toArray();
 }
 
 function fitMap({instant = false} = {}) {
@@ -1229,6 +1241,7 @@ function installSpatialLayers() {
     tileUrl: t => (state.tileTemplate ? state.tileTemplate.replace('{z}', t.z).replace('{x}', t.x).replace('{y}', t.y) : ''),
     cmTileUrl, cmAttribution: CM_ATTRIBUTION,
     budget: state.budget.level === 'full' ? null : state.budget,
+    viewCenter: seenCenter,
     onResult: result => {
       const status = $('map-status');
       status.dataset.massing = `${result.features || 0}`;
