@@ -7,6 +7,15 @@ From the owner's walk of 0.1.2 (11:12, KMITL Ladkrabang and Chula): “กรอ
 - Buildings in the extent (`js/campus-buildings.js`, `DATA_METHOD.md` §10b): every campus with an extent (164 of 190 sites); `tests/campus-buildings.test.js` (inside, hole, outside, a building straddling the edge by its interior point, a tile-cut building lit whole). `js/massing.js` membership by `match` (`tests/massing.test.js` updated).
 - Faculty labels (`js/faculty-labels.js`): every campus with a located faculty (24 sites, 178 faculties, 168 labels); `tests/faculty-labels.test.js` (place order, shared places, ranking, every placed faculty of every site on a label, Chula 20).
 - Local: 168 tests pass; LDS parity 124 ok, 0 failed (base `d3085cbc…`, profile `5d485604…`). Chromium (Playwright; no basemap or building tiles in the container, so no lit buildings): Chula 1440 × 900 dark Thai 14 labels, light English 14, 390 × 844 dark 4; KMITL (`NATIONAL-MHESI2566-R000089`) 1440 light 4, 390 light English 3; no label over another or over a campus label, no missing English, no horizontal scroll.
+- Live, GitHub Pages: deployment of 39b6836 succeeded; `npm run verify:live` 197 ok, 0 failed (the two new modules included — the first run, on a manifest generated before they were staged, had checked 195 and left them out; the manifest is generated after staging from now on).
+- Live, citymeter.pages.dev: run 43154925103 (dispatched 2026-11-12 04:27 UTC) assembled the 16 demos, 102 / 102 live checks passed; `/release.json` names University at 39b6836; the page starts from `/university/r/77c6c21c79f10c4b/js/app.js?v=20261112-r4`.
+- Live walk, the owner's Chrome (macOS, page 1710 × 871, real basemap), 2026-11-12 11:28–11:45 ICT:
+  - KMITL Ladkrabang (`?site=NATIONAL-MHESI2566-R000089`, citymeter.pages.dev, dark): 273 buildings in the extent lit with the 5 faculty buildings (305 lit pieces drawn), the rest of the 5,619 grey; legend “อาคารในกรอบวิทยาเขต”; 4 faculty labels.
+  - Chula (dark): 292 buildings in the extent and 7 faculty buildings lit (333 pieces) among 10,361; 15 of the 20 faculty labels at zoom 15.2, none over another or over a campus label. Faculty building COM1: the building view lights that building alone, no faculty label; back on the campus: 15 labels and 292 buildings again. No console error.
+  - Ubon Ratchathani (`?site=NATIONAL-MHESI2566-R000092`): 1,011 CityMETER buildings in the extent lit among 13,501; no faculty located, no label.
+  - GitHub Pages in English (KMITL): “Buildings in the campus extent”, the legend's title in English, 4 labels with Thai names marked `lang="th"`, `__citymeterI18n.missing` empty.
+  - Phone budget (`?lean=phone`) in a 390 × 844 frame of the same origin: Chula dark Thai at zoom 14.8 — 2,637 buildings drawn, 76 of them in the extent lit, 4 labels, the longest cut with an ellipsis, no horizontal scroll; KMITL light English — the campus lit in the light theme's active-layer blue.
+  - The test reset the demo's theme setting to `auto` in that browser; the `?lean` choice lived only in the closed test tab.
 
 ## Release 0.1.2 — 12 พ.ย. 2569
 
