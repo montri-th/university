@@ -1,7 +1,7 @@
 # CityMETER · University — data and method
 
 How `data/universities.json` and `data/campus.json` are built, what one row and one figure mean, and what the demo
-never claims. Every number below is a snapshot of release 0.1.0 (built 2026-11-12 from the research master as the
+never claims. Every number below is a snapshot of release 0.1.1 (built 2026-11-12 from the research master as the
 owner exported it that day; the research team's checks run to 2026-11-10). The page computes everything from the data
 at run time, so these are fixtures, not constants.
 
@@ -19,7 +19,7 @@ at run time, so these are fixtures, not constants.
 - **วิทยาเขต** (“แห่ง” บนแผนที่) = พื้นที่ของมหาวิทยาลัยที่ทีมวิจัยตรวจสำหรับเดโม (`29_DEMO_SITES`, 190 แห่ง) ไม่ใช่สำมะโนวิทยาเขตที่เปิดสอน และชื่อพื้นที่บางแห่งมาจาก OpenStreetMap
 - **นักศึกษาตามหน่วยรายงาน** (บนหน้าวิทยาเขต) = นักศึกษาของหน่วยรายงานที่ผูกกับวิทยาเขตนั้น บอกชื่อหน่วยและวิธีผูก (ตรงกับรายชื่อนำร่อง · ชื่อตรงกับทะเบียน อว. 2566 ทุกตัวอักษร · ตรงเมื่อไม่นับช่องว่าง · ชื่อที่ระบุวิทยาเขต) ไม่ใช่จำนวนคนในพื้นที่นั้น วิทยาเขตที่ไม่มีหน่วยผูกไม่แสดงตัวเลขนักศึกษา (ไม่ใช่ 0)
 - **กรอบราว N ไร่** = พื้นที่ของกรอบจาก OpenStreetMap ที่ทีมวิจัยจับคู่ (ตร.ม. ÷ 1,600) เป็นค่าประมาณ ไม่ใช่โฉนด แนวเขตตามกฎหมาย หรือเนื้อที่ทางการ · **เนื้อที่** = ตามที่มหาวิทยาลัยเผยแพร่ แสดงตามที่เขียนไว้
-- **คณะในพื้นที่นี้** = คณะที่ทีมวิจัยระบุว่าอยู่ในพื้นที่นี้ (`39_FACULTY_SPATIAL_STATUS`) พร้อมรูปอาคาร พื้นที่ หรือจุดของคณะเมื่อมี · **อาคารของคณะ** = อาคารบนแผนที่ที่จุดภายในของรูปคณะตกอยู่ · **คณะในอาคารนี้** = คณะที่รูปของคณะตกในขอบอาคารนั้น ความสูง “สูงราว” เป็นค่าประมาณของชุดข้อมูลอาคาร
+- **คณะในพื้นที่นี้** = คณะที่ทีมวิจัยระบุว่าอยู่ในพื้นที่นี้ (`31_DEMO_UNIT_SITES`) พร้อมรูปอาคาร พื้นที่ หรือจุดของคณะเมื่อมี · “N คนตามหน่วยรายงาน” ข้างชื่อคณะ = นักศึกษาของคณะนั้นในแฟ้ม อว. ของหน่วยรายงานที่ทีมวิจัยผูกไว้ ไม่ใช่คนในพื้นที่หรือในอาคาร (หน้าอาคารจึงแสดงชื่อคณะอย่างเดียว) · **อาคารของคณะ** = อาคารบนแผนที่ที่จุดภายในของรูปคณะตกอยู่ · **คณะในอาคารนี้** = คณะที่รูปของคณะตกในขอบอาคารนั้น ความสูง “สูงราว” เป็นค่าประมาณของชุดข้อมูลอาคาร
 - **ค่าธรรมเนียมตามประกาศ** = บรรทัดค่าธรรมเนียมในประกาศของมหาวิทยาลัย (14 พื้นที่นำร่อง) ตามหลักสูตรและแผนที่ประกาศระบุ แต่ละบรรทัดมีภาค (ปกติ/พิเศษ/นานาชาติ ฯลฯ) ส่วนประกอบ ช่วงที่จ่าย (ต่อภาค ต่อปี ตลอดหลักสูตร) กลุ่มนักศึกษา และรุ่นที่รับเข้า ในสกุลเงินของประกาศ (บาท หรือ CNY ไม่แปลงค่า) ไม่ใช่ค่าใช้จ่ายทั้งปริญญา ระดับราคา หรือการเทียบระหว่างมหาวิทยาลัย และ “หลักสูตรในประกาศ” ไม่ได้ยืนยันว่าหลักสูตรนั้นเปิดรับในปีนี้
 - **การรับรองคุณภาพ** = ตามที่หน่วยงานเผยแพร่ (กรอบ สถานะ ช่วงปี ผู้รับรอง ลิงก์) ไม่ใช่คะแนนหรืออันดับ
 - **ทะเบียน 2566** (จุดสีเทา) = จุดในทะเบียนสถานศึกษาของ อว. ปีการศึกษา 2566 ที่ยังไม่มีพื้นที่ที่ทีมวิจัยตรวจ ไม่นับรวมและไม่มีนักศึกษา จุดที่อยู่นอกจังหวัดของระเบียนตัวเองไม่วาด
@@ -75,7 +75,7 @@ The source details of a site say which rule made its link (`js/model.js#LINKS`).
 
 ## 6. Faculties, programmes, fees, quality
 
-- Faculty memberships (210) from `39_FACULTY_SPATIAL_STATUS`, with the faculty's kind as the source labels it and its geometry when the research team found one.
+- Faculty memberships (210) from `31_DEMO_UNIT_SITES`, with the faculty's kind as the source labels it, its geometry when the research team found one, and the students its academic unit reports in the latest period (`02_ACADEMIC_UNITS.reported_student_sum`), shown on the campus as “N คนตามหน่วยรายงาน” and never on a building.
 - Programmes (503) in the universities' fee announcements (`32_DEMO_OFFERINGS`) and their fee lines (627, `33_DEMO_FEE_LINKS`), for the 14 pilot areas of Kasetsart, Chulalongkorn, Khon Kaen and Prince of Songkla universities. Each line keeps its amount, currency (THB 624, CNY 3), period, track, component, student category, cohort, academic year, estimate label and public source; the page reads the codes in words (`js/model.js#FEE_WORDS`, `cohortWords`) and never sums, averages or compares lines. A line the source marks as a component already included in a total says so (“รวมอยู่ในยอดรวมแล้ว”).
 - Quality observations (228, `08_QUALITY`): framework, programme or faculty, status, dates, authority, source link — verbatim.
 - Fee coverage of a university (`26_FEE_COVERAGE`): how many fee lines the research team holds and from how many sources.

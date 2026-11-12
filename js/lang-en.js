@@ -348,6 +348,11 @@ export default {
     'เขต': 'District',
     'อำเภอ': 'District',
     'ขอบอาคาร OpenStreetMap': 'outlines from OpenStreetMap',
+    'ขอบอาคาร CityMETER Building V4': 'outlines from CityMETER Building V4',
+    'ขอบอาคาร CityMETER Building V4 และ OpenStreetMap': 'outlines from CityMETER Building V4 and OpenStreetMap',
+    // MapLibre joins the attributions with “ | ”, so the terrain credit's label is one text node with the bar
+    '| ภูมิประเทศ:': '| Terrain:',
+    '| อาคาร:': '| Buildings:',
     'วิทยาเขตหลัก': 'main campus',
     'เนื้อที่ตามที่มหาวิทยาลัยเผยแพร่': 'Area as the university publishes it',
     'เนื้อที่ที่เผยแพร่': 'Published area',
@@ -417,6 +422,9 @@ export default {
     [re(`พื้นที่มหาวิทยาลัยที่ทีมวิจัยตรวจแล้ว(ในจังหวัดนี้)? · ${N} แห่ง มีจุด ${N} แห่ง`), (m) => `University sites the research team reviewed${m[1] ? ' in this province' : ''} · ${m[2]}, ${m[3]} with a point`],
     [re(`${N} แห่ง`), (m, t) => plural(t, m[1], 'campus', 'campuses')],
     [re(`${N} แหล่ง`), (m, t) => plural(t, m[1], 'source', 'sources')],
+    [/^OSM (.+)$/, (m, t) => `OSM ${t.date(m[1])}`],
+    // The tab title of a faculty building (js/app.js#pageTitle): the campus name stays as the data writes it
+    [re('อาคารคณะ (.+)'), (m, t) => `Faculty building · ${t.name(m[1])}`],
     [re(`สถานี(.+) ${N} แห่ง`), (m, t) => { const st = t.known(`สถานี${m[1]}`); return st ? `${st}, ${plural(t, m[2], 'campus', 'campuses')}` : null; }],
     [re(`${N} ระดับสีตามลำดับค่า ต่ำสุด ${N} สูงสุด ${N} ${U}`), (m, t) => `${m[1]} colour steps by value, lowest ${m[2]}, highest ${unitOf(t, m[3], m[4])}`],
     // A level bar's title: "ปริญญาตรี · 675,038 จาก 750,679 คน"

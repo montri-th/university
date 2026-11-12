@@ -293,7 +293,7 @@ function facultySection(d) {
     const roles = new Set(f.geometry.map(g => g.role));
     return roles.has('building') || roles.has('shared') ? 'มีอาคารบนแผนที่' : roles.has('area') ? 'มีพื้นที่บนแผนที่' : roles.has('point') ? 'มีจุดบนแผนที่' : '';
   };
-  const rows = d.faculties.map(f => `<li><span class="faculty-row"><span class="row-text"><strong>${esc(f.name)}</strong><span class="row-meta">${esc([Number.isFinite(f.students) ? `${num(f.students)} คน` : '', geomWord(f)].filter(Boolean).join(' · '))}</span></span>${f.info ? link(f.info, 'เว็บคณะ', 'source-link row-link') : ''}</span></li>`).join('');
+  const rows = d.faculties.map(f => `<li><span class="faculty-row"><span class="row-text"><strong>${esc(f.name)}</strong><span class="row-meta">${esc([Number.isFinite(f.students) ? `${num(f.students)} คนตามหน่วยรายงาน` : '', geomWord(f)].filter(Boolean).join(' · '))}</span></span>${f.info ? link(f.info, 'เว็บคณะ', 'source-link row-link') : ''}</span></li>`).join('');
   return `<section class="panel-section"><div class="section-heading">${heading('classroom', 'คณะในพื้นที่นี้')}<span class="hint" title="นักศึกษาของคณะตามแฟ้ม อว. ของหน่วยรายงาน">${num(d.faculties.length)} คณะ</span></div>
     <ul class="outlet-list faculty-list">${rows}</ul></section>`;
 }
@@ -478,7 +478,8 @@ export function renderBuilding(b, ctx = {}) {
   const height = b.height != null ? `<span title="ความสูงจาก ${esc(source)}">สูงราว ${num(Math.round(b.height))} ม.</span>` : '';
   const names = [...new Set(b.geoms.map(g => g.name).filter(Boolean))];
   const list = b.faculties.length
-    ? `<ul class="outlet-list faculty-list">${b.faculties.map(f => `<li><span class="faculty-row"><span class="row-text"><strong>${esc(f.name)}</strong><span class="row-meta">${esc([Number.isFinite(f.students) ? `${num(f.students)} คน` : ''].filter(Boolean).join(' · '))}</span></span>${f.info ? link(f.info, 'เว็บคณะ', 'source-link row-link') : ''}</span></li>`).join('')}</ul>`
+    // Names only: a faculty's students belong to its reporting unit, never to a building (DATA_METHOD.md §2).
+    ? `<ul class="outlet-list faculty-list">${b.faculties.map(f => `<li><span class="faculty-row"><span class="row-text"><strong>${esc(f.name)}</strong></span>${f.info ? link(f.info, 'เว็บคณะ', 'source-link row-link') : ''}</span></li>`).join('')}</ul>`
     : '<p class="hint">ไม่มีรายชื่อคณะของอาคารนี้</p>';
   return `<section class="detail-head building">
       <button type="button" class="btn quiet back" data-action="back">กลับ</button>
@@ -488,7 +489,7 @@ export function renderBuilding(b, ctx = {}) {
       ${actionBar({kind: 'building', site: b.site})}
     </section>
     <section class="panel-section"><div class="section-heading">${heading('classroom', 'คณะ')}<span class="hint">${num(b.faculties.length)}</span></div>${list}</section>
-    ${provenance(ctx, `อาคารของคณะใน ${b.site?.name || 'พื้นที่นี้'} · ขอบอาคาร ${source}`, {students: b.faculties.some(f => Number.isFinite(f.students)), osm: true, official: true})}`;
+    ${provenance(ctx, `อาคารของคณะใน ${b.site?.name || 'พื้นที่นี้'} · ขอบอาคาร ${source}`, {osm: true, official: true})}`;
 }
 
 /** Terrain chips (js/shell/terrain.js#terrainChips) as fact chips; '' when nothing is known. */

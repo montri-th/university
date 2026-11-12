@@ -8,8 +8,8 @@ Winning strategy ของชุดข้อมูลนี้ เขียน�
 |---|---|
 | Parent product | CityMETER (City Intelligence Base Layer ของ Landometer) · ทะเบียนกลาง `research.TH.university` · กลุ่ม Living (`R01_DATASETS.dataset_group`, อ่าน 12 พ.ย. 2569) · ยังไม่มีรหัสชุดข้อมูลใน production |
 | Feature / dataset | University — นักศึกษาตามแฟ้ม อว. รายจังหวัด และวิทยาเขตที่ทีมวิจัยตรวจ พร้อมกรอบพื้นที่ คณะและอาคารของคณะ ค่าธรรมเนียมตามประกาศ การรับรองคุณภาพ และบริบทรถไฟฟ้า |
-| รุ่นเอกสาร | 0.1.0 · 12 พฤศจิกายน 2569 |
-| สถานะ | Public demo รุ่น 0.1.0 บน GitHub Pages (`https://montri-th.github.io/university/`, ไทยและ English) · ชุดข้อมูลเป็นงานวิจัย ไม่ใช่ทะเบียนทางการของ อว. หรือสำมะโนวิทยาเขต |
+| รุ่นเอกสาร | 0.1.1 · 12 พฤศจิกายน 2569 |
+| สถานะ | Public demo รุ่น 0.1.1 บน GitHub Pages (`https://montri-th.github.io/university/`, ไทยและ English) · ชุดข้อมูลเป็นงานวิจัย ไม่ใช่ทะเบียนทางการของ อว. หรือสำมะโนวิทยาเขต |
 | ผู้รับผิดชอบ | Landometer · CityMETER (owner: Montri) |
 | คำขอ | **Owner-stated** 12 พ.ย. 2569: “…ขอให้ทำแบบเดียวกันให้กับ CityMETER: University แล้ว publish ที่ https://github.com/montri-th/university …” (`AGENTS.md`) |
 | ผู้ใช้หลัก | ทีมพัฒนาโครงการที่อยู่อาศัยและนักลงทุนที่ดินรอบมหาวิทยาลัย · ผู้ประกอบการค้าปลีกและบริการที่เลือกทำเลรอบวิทยาเขต · มหาวิทยาลัยและหน่วยงานที่วางแผนวิทยาเขต · ผู้ประเมินมูลค่าและสถาบันการเงิน (**Hypothesis** §7) |

@@ -698,7 +698,7 @@ def main():
         gids = [geom_idx[g] for g in jlist(r['selected_geometry_ids']) if g in geom_idx]
         ctx = r['academic_unit_context_id']
         site_faculties[si].append({'name': clean(r['faculty_name_th']), 'kind': clean(r['unit_kind']),
-                                   'students': unit_ctx_students.get(ctx), 'ctx': ctx,
+                                   'students': unit_ctx_students.get(ctx),
                                    'info': public_url(r['faculty_information_url']), 'source': public_url(r['membership_source_url']),
                                    'geoms': gids, 'coverage': clean(r['geometry_coverage']), 'checked': iso(r['checked_on'])})
     for si, lst in site_faculties.items():

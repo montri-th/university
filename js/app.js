@@ -544,7 +544,11 @@ function focusTarget() {
 /** Buildings drawn in the data colour: the open building, or every faculty building of the open campus. */
 function highlightIds() {
   if (state.panel.mode === 'building') return focusTarget()?.refs || [];
-  if (state.panel.mode === 'site' && state.join) return [...state.join.buildings.values()].flatMap(b => b.refs);
+  // A campus: only the drawn buildings that hold a faculty geometry's point (byBuilding), never every building the
+  // join was given (the whole focus, live 2026-11-12: 406 pieces lit at Kasetsart Bang Khen for 24 faculty buildings).
+  if (state.panel.mode === 'site' && state.join) {
+    return [...state.join.byBuilding.keys()].flatMap(key => state.join.buildings.get(key)?.refs || []);
+  }
   return [];
 }
 

@@ -1,6 +1,6 @@
 # CityMETER · University
 
-> Students the MHESI student file reports (academic year 2568, semester 2) per reporting unit and per province across Thailand, with the universities' campuses the research team reviewed: points, approximate extents from OpenStreetMap, faculties and faculty buildings, programmes and fee lines as the universities announce them (pilot areas), quality observations, logos, and straight-line distance to rail stations (CityMETER Transit). A Landometer CityMETER public demo, release 0.1.0 (2026-11-12), Thai with an English reading (?lang=en). Research master read and built 2026-11-12; the research team's checks run to 2026-11-10.
+> Students the MHESI student file reports (academic year 2568, semester 2) per reporting unit and per province across Thailand, with the universities' campuses the research team reviewed: points, approximate extents from OpenStreetMap, faculties and faculty buildings, programmes and fee lines as the universities announce them (pilot areas), quality observations, logos, and straight-line distance to rail stations (CityMETER Transit). A Landometer CityMETER public demo, release 0.1.1 (2026-11-12), Thai with an English reading (?lang=en). Research master read and built 2026-11-12; the research team's checks run to 2026-11-10.
 
 What one figure means:
 - students = the students the MHESI student file 2568/2 reports for a reporting unit, summed per province by the province the file names for the unit. Not people on a campus, unique persons, seats, capacity, demand, an enrolment rate or a market size. A unit's students are never allocated to a campus, a polygon, a building or a district.
@@ -16,7 +16,7 @@ What one figure means:
 - roster points = 2023 (B.E. 2566) MHESI roster points no reviewed site represents: quiet context, never counted.
 - distances = straight lines between reference points (operating stations within 1 km of a site); not walking routes, travel times or catchments.
 
-Snapshot (release 0.1.0; fixtures, recompute from data):
+Snapshot (release 0.1.1; fixtures, recompute from data):
 - 303 reporting units, 1,786,753 students, 170 universities shown, 68 provinces with a unit; 190 sites (188 with a point, 164 with an extent), 135 linked to a unit.
 - 55% of the students nationwide (988,359 of 1,786,753) are in Bangkok, Pathum Thani and Chiang Mai; without the two open-admission universities, 49% (710,594 of 1,460,444).
 - In Bangkok, 47% of the students (354,957 of 750,679) are with Ramkhamhaeng, Chulalongkorn and Kasetsart universities.

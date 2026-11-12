@@ -105,6 +105,8 @@ test('university, unit, station and building panels', () => {
   assert.match(text(out.station), /รัศมี 1 กม\. จากสถานี/);
   assert.match(text(out.building), /คณะในอาคารนี้/);
   assert.match(text(out.building), /สูงราว 18 ม\./);
+  assert.ok(!/[\d,]+ คน/.test(text(out.building)), 'a building carries no student figure: students belong to the reporting unit');
+  assert.match(text(out.site), /[\d,]+ คนตามหน่วยรายงาน · มีอาคารบนแผนที่/, 'a faculty’s figure is named as the reporting unit’s');
 });
 
 test('breadcrumb follows production: ประเทศไทย › จังหวัด › the campus (no production link on the campus)', () => {

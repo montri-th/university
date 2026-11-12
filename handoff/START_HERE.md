@@ -1,6 +1,6 @@
 # CityMETER University — Developer Handoff
 
-รุ่นเผยแพร่ 0.1.0 · 12 พ.ย. 2569 · ชีตวิจัยอ่านและสร้างข้อมูล 12 พ.ย. 2569 (ไฟล์ส่งออกของเจ้าของ) · ทีมวิจัยตรวจพื้นที่ถึง 10 พ.ย. 2569 · แฟ้มนักศึกษา อว. 2568/2
+รุ่นเผยแพร่ 0.1.1 · 12 พ.ย. 2569 · ชีตวิจัยอ่านและสร้างข้อมูล 12 พ.ย. 2569 (ไฟล์ส่งออกของเจ้าของ) · ทีมวิจัยตรวจพื้นที่ถึง 10 พ.ย. 2569 · แฟ้มนักศึกษา อว. 2568/2
 
 เริ่มอ่าน `source/handoff/README.md` จากนั้น Product Statement (`source/PRODUCT_STATEMENT.md` + `source/handoff/product-statement.json`), Product Brief และ Implementation Plan ในโฟลเดอร์ `source/handoff` ทั้ง `.md` และ `.json` ใช้คู่กัน
 

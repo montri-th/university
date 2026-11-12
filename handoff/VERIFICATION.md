@@ -1,5 +1,16 @@
 # CityMETER University — verification
 
+## Release 0.1.1 — 12 พ.ย. 2569
+
+Fixes from the first walk of the live site (0.1.0 on GitHub Pages, owner's Chrome, desktop, dark theme):
+
+- A campus lit every drawn building of its focus instead of its faculty buildings (Kasetsart Bang Khen: 406 pieces for 24 faculty buildings): `highlightIds` now takes the join's `byBuilding` only.
+- The building panel showed a faculty's students next to “คณะในอาคารนี้” (e.g. 5,937 คน), which reads as people in the building: it now lists faculty names only; on a campus the faculty figure reads “N คนตามหน่วยรายงาน” (`tests/views.test.js`).
+- English: the terrain credit (“| ภูมิประเทศ:”), the OSM date in the provenance line, the CityMETER Building V4 legend titles and the building tab title were Thai on the live site (none of them appear without the real basemap, terrain and building tiles): now translated.
+- The faculty records no longer carry the research master's academic-unit context id (`ctx`, unused by the page); `data/campus.json` rebuilt from the same inputs, otherwise equal; the other data files byte-identical.
+
+Local: 153 tests pass; English harvest of every view clean. Live results for 0.1.1 follow below once published.
+
 ## Release 0.1.0 — 12 พ.ย. 2569
 
 ผลตรวจของรุ่นแรก แยกสิ่งที่ตรวจในเครื่องสร้าง (build container) ออกจากสิ่งที่ตรวจบนเว็บจริง ผลในเครื่องไม่ใช่หลักฐานแทน live URL

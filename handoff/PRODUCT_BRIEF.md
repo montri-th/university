@@ -1,4 +1,4 @@
-# CityMETER University — Product Brief (0.1.0)
+# CityMETER University — Product Brief (0.1.1)
 
 สัญญาของหน้าจอในภาษาคน คู่กับ `product-brief.json` (เครื่องตรวจ) ต่อยอดจาก CityMETER · School 0.6.0 หลัง Phase 0 (montri-th/school @793da70): สัญญาของ engine — กล้อง basemap มวลอาคาร x-ray หน่วยอาคาร ภูมิประเทศ การ์ดเปิดเว็บ แจ้งข้อมูลไม่ครบ แผ่นข้อมูลบนมือถือ และชั้นภาษาอังกฤษ — ยกมาไม่เปลี่ยน ส่วนชั้นข้อมูลเป็นของใหม่
 
