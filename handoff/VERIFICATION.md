@@ -10,7 +10,9 @@ From the owner's walk of 0.1.1 (07:31): “ทำไมจุฬามีคณ�
 - Campus panel: the linked unit's other faculties without a location (`tests/views.test.js`, all 190 sites: never placed and unplaced at once).
 - Shell: citymeter-shell 0.6.1 over the family's released 0.6.0 (School @d644108); School's shell tests taken whole, with University in the English and Living lists.
 - Local: 160 tests pass. Chromium (Playwright, no basemap in the container): the Chula campus in Thai and English at 1440 × 900 light and 390 × 844 dark — 20 faculties, 6 named without a location, smallest panel text 12 px, no missing English, no page error.
-- Live results for 0.1.2 follow below once published.
+- Live, GitHub Pages: deployment of 3213c31 succeeded 2026-11-12 01:25 UTC; `npm run verify:live` 195 ok, 0 failed (every tracked public file equal to the repository's bytes).
+- Live, CityMETER Pages (`https://citymeter.pages.dev/university/`): University added to `montri-th/citymeter-pages-deploy` (3d397dc) and the demo hub (`montri-th/CityMETER` 9f0e3c7, 16 demos); release run 43135027348 (workflow_dispatch, publish on): 16 sources from their latest successful GitHub Pages deployments, each live index equal to its commit; 8,714 files assembled (release SHA-256 `9608f00f…e910`), 102 staged release files and 474 same-origin links checked, deployed, then 102 / 102 live checks passed (pages, `/release.json`, the versioned module path `/university/r/<digest>/js/app.js`, the policy headers, only `/r/` immutable).
+- Not verified yet: a walk of the live pages in a browser with the real basemap (3D round the campuses, CityMETER buildings, the camera square, phone layout): the owner's computer and Chrome were offline at the time; neither the build container nor its Playwright can reach the basemap tiles or citymeter.pages.dev.
 
 ## Release 0.1.1 — 12 พ.ย. 2569
 
