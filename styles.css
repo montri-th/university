@@ -761,6 +761,16 @@ td.num, th.num { text-align: right; }
 .school-label:hover { border-color: var(--map-hover-stroke); }
 .school-label:focus-visible { outline: 2px solid var(--interaction-focus-ring); outline-offset: 2px; opacity: 1; }
 @media (max-width: 760px) and (orientation: portrait) { .school-label { max-width: 160px; font-size: 11px; } }
+/* Faculty names of the open campus (js/faculty-labels.js, 0.1.3): placed before the campus labels, never a control. */
+.faculty-labels { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+.faculty-label { position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 3px; max-width: 200px; padding: 2px 7px 2px 4px; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 6px; font: 600 11px/1.25 var(--font-body); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .18s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, .18); }
+.faculty-label.is-on { opacity: 1; }
+.faculty-label::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 6px; height: 6px; background: var(--surface-card); border-right: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); transform: translateX(-50%) rotate(45deg); }
+.faculty-label.is-below::after { bottom: auto; top: -4px; transform: translateX(-50%) rotate(225deg); }
+.faculty-label .pictogram { width: 14px; height: 14px; font-size: 14px; vertical-align: 0; color: var(--map-active-layer); flex: none; }
+.faculty-label .fl-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.faculty-label .fl-more { flex: none; font: 400 11px/1 var(--font-mono); color: var(--text-secondary); }
+@media (max-width: 760px) and (orientation: portrait) { .faculty-label { max-width: 140px; } }
 /* Hover card: icon chips; the sentences live in the chip titles. */
 .school-card { position: absolute; left: 0; top: 0; z-index: 6; width: max-content; max-width: 300px; padding: 10px 12px; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 6px; font: 400 12px/1.45 var(--font-body); pointer-events: none; box-shadow: 0 4px 14px rgba(0, 0, 0, .18); }
 .school-card .hc-head { display: flex; align-items: center; gap: 8px; }

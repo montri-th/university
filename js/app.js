@@ -35,7 +35,7 @@ import {loadMapLibrary} from './shell/vendors.js';
 import {installBranchPins} from './pins.js';
 import {installAreaLabels, PROVINCE_VIEW_MIN_ZOOM} from './map-layers.js';
 import {installProvinceLayers, buildProvinceModel, provinceLocator, PROVINCE_FILL_MAX_ZOOM, PROVINCE_LABEL_MAX_ZOOM} from './provinces.js';
-import {buildOverview, buildSiteDetail, buildUniversityProfile, buildUnitProfile, buildStationProfile, buildBuildingProfile, STATION_RADIUS_M} from './profile-model.js';
+import {buildOverview, buildSiteDetail, buildUniversityProfile, buildUnitProfile, buildStationProfile, buildBuildingProfile, facultiesOf, STATION_RADIUS_M} from './profile-model.js';
 import {renderOverview, renderSite, renderUniversity, renderUnit, renderStation, renderBuilding, renderFilterChips, terrainChipsHTML, esc, num, pct, meters, districtName} from './panel.js';
 import {installStationLayer} from './stations.js';
 import {joinBuildings} from './shell/building-join.js';
@@ -50,6 +50,8 @@ import {buildBreadcrumb, renderBreadcrumb, breadcrumbText, DATASET} from './brea
 import {rampLegendHTML} from './scales.js';
 import {cueMarkup} from './cues.js';
 import {installSiteLabels} from './labels.js';
+import {extentPolygons, buildingsInExtent} from './campus-buildings.js';
+import {installFacultyLabels, facultyLabelRows} from './faculty-labels.js';
 import {installTerrain, terrainFacts, terrainChips} from './shell/terrain.js';
 import {createCodec, createNavigator} from './shell/url.js';
 import {pageTitle} from './shell/title.js';
@@ -74,9 +76,9 @@ const state = {
   panel: {mode: 'overview', id: ''}, history: [],
   map: null, loaded: false, mapTheme: '', popup: null, initialCameraDone: false, tileTemplate: '',
   view3d: true, showAreas: true,
-  pins: null, massing: null, siteLabels: null, provinceLayers: null, provinceLabels: null, provinceModel: null, campusLayers: null,
+  pins: null, massing: null, siteLabels: null, facultyLabels: null, provinceLayers: null, provinceLabels: null, provinceModel: null, campusLayers: null,
   siteById: new Map(), siteIndex: new Map(), uniById: new Map(), unitById: new Map(),
-  join: null, buildingSel: null, locateProvince: null, lastPreset: '', blueBuildings: false,
+  join: null, campusLit: null, buildingSel: null, locateProvince: null, lastPreset: '', blueBuildings: false,
   // Building camera: the x-ray solid, what was framed last ({id, key, refits}) and whether the user moved the map since.
   xray: null, framed: null, userCamera: false,
 };
@@ -152,8 +154,8 @@ function applyTheme() {
 }
 
 function disposeSpatial() {
-  for (const k of ['siteLabels', 'terrain', 'xray', 'massing', 'pins', 'stations', 'campusLayers']) { try { state[k]?.dispose(); } catch (e) { console.warn('dispose', k, e); } state[k] = null; }
-  state.provinceLayers = null; state.join = null; refreshJoin.key = ''; syncFocusBuilding.key = '';
+  for (const k of ['siteLabels', 'facultyLabels', 'terrain', 'xray', 'massing', 'pins', 'stations', 'campusLayers']) { try { state[k]?.dispose(); } catch (e) { console.warn('dispose', k, e); } state[k] = null; }
+  state.provinceLayers = null; state.join = null; state.campusLit = null; refreshJoin.key = ''; syncFocusBuilding.key = '';
 }
 
 /* ---------- selection ---------- */
@@ -517,7 +519,18 @@ function refreshJoin() {
   refreshJoin.key = key;
   const rows = pieces.length ? facultyPoints() : [];
   state.join = joinBuildings(pieces, rows, []);
+  state.campusLit = campusBuildings(site, pieces);
   return true;
+}
+
+/**
+ * The drawn buildings in the open campus's extent (js/campus-buildings.js: a piece's interior point inside the extent),
+ * lit with the campus (owner 2026-11-12 11:12); null for a campus without an extent.
+ */
+function campusBuildings(site, pieces) {
+  const g = site && state.campus && site.extent >= 0 ? state.campus.geometry[site.extent] : null;
+  if (!g || !pieces.length || !state.join) return null;
+  return buildingsInExtent(pieces, extentPolygons(g.g), state.join.keyOfPiece);
 }
 
 /** The faculty geometries whose point falls in a drawn building (display only — never a count). */
@@ -545,16 +558,23 @@ function focusTarget() {
   return {id: `building:${b.key}`, key: b.key, refs: state.join?.buildings.get(b.key)?.refs || b.footprint.refs || [], anchor: [(w + e) / 2, (s + n) / 2], near: false};
 }
 
-/** Buildings drawn in the data colour: the open building, or every faculty building of the open campus. */
+/**
+ * Buildings drawn in the active-layer colour: the open building; on an open campus, every drawn building in its extent
+ * (owner 2026-11-12 11:12: “ทำไมไม่แสดงอาคารทั้งหมดในกรอบเวลา highlight”) with the drawn buildings that hold a faculty
+ * geometry's point (byBuilding; a faculty building may stand outside the extent). Never the whole focus the join was
+ * given (0.1.1, live 2026-11-12: 406 pieces lit at Kasetsart Bang Khen for 24 faculty buildings).
+ */
 function highlightIds() {
   if (state.panel.mode === 'building') return focusTarget()?.refs || [];
-  // A campus: only the drawn buildings that hold a faculty geometry's point (byBuilding), never every building the
-  // join was given (the whole focus, live 2026-11-12: 406 pieces lit at Kasetsart Bang Khen for 24 faculty buildings).
   if (state.panel.mode === 'site' && state.join) {
-    return [...state.join.byBuilding.keys()].flatMap(key => state.join.buildings.get(key)?.refs || []);
+    const faculty = [...state.join.byBuilding.keys()].flatMap(key => state.join.buildings.get(key)?.refs || []);
+    return state.campusLit?.refs.length ? [...state.campusLit.refs, ...faculty] : faculty;
   }
   return [];
 }
+
+/** The open campus lights the buildings in its extent (not only its faculty buildings). */
+const campusLitOn = () => state.panel.mode === 'site' && Boolean(state.campusLit?.refs.length);
 
 /**
  * Drawn shape of the building being looked at: x-ray features, outer rings with heights, and fit points — the
@@ -708,7 +728,7 @@ function applyJoin() {
   state.blueBuildings = n > 0;
   document.querySelector('.map-panel')?.classList.toggle('has-open-building', state.blueBuildings);
   const label = $('legend-building-label');
-  if (label) label.textContent = currentBuilding() ? 'อาคารที่เปิด' : 'อาคารของคณะ';
+  if (label) label.textContent = currentBuilding() ? 'อาคารที่เปิด' : campusLitOn() ? 'อาคารในกรอบวิทยาเขต' : 'อาคารของคณะ';
   if (panelSpatialSig() !== state.renderedSig) { state.renderedSig = panelSpatialSig(); if (state.panel.mode === 'site') renderPanel(); }
   syncFocusBuilding();
   refitOnNewBuilding();
@@ -836,7 +856,7 @@ function renderLegend() {
   const terrainItem = $('legend-terrain');
   if (terrainItem) terrainItem.hidden = !state.terrainActive;
   const buildingItem = document.querySelector('.legend-building-item'), src = state.buildingSources || {};
-  if (buildingItem) buildingItem.title = `อาคารของคณะในวิทยาเขตที่เปิด · ขอบอาคาร ${src.cm && src.osm ? 'CityMETER Building V4 และ OpenStreetMap' : src.cm ? 'CityMETER Building V4' : 'OpenStreetMap'}`;
+  if (buildingItem) buildingItem.title = `${campusLitOn() ? 'อาคารในกรอบวิทยาเขตที่เปิด' : 'อาคารของคณะในวิทยาเขตที่เปิด'} · ขอบอาคาร ${src.cm && src.osm ? 'CityMETER Building V4 และ OpenStreetMap' : src.cm ? 'CityMETER Building V4' : 'OpenStreetMap'}`;
   const panel = document.querySelector('.map-panel');
   panel.dataset.metric = state.metric;
   panel.classList.toggle('is-3d', state.view3d);
@@ -873,6 +893,7 @@ function syncBottomPanel() {
   if (!tray) return;
   document.documentElement.style.setProperty('--bottom-panel-height', `${tray.getBoundingClientRect().height}px`);
   state.pins?.layout();
+  state.facultyLabels?.layout();
   state.siteLabels?.layout();
 }
 
@@ -1111,7 +1132,26 @@ function updateSpatialLayers() {
     state.massing?.update({regions, hosts: [], anchors, zones, enabled: true, city: state.view3d, zoom: state.map.getZoom(), latitude: state.map.getCenter().lat})?.catch(e => console.warn('Massing', e));
   }
   applyJoin();
+  state.facultyLabels?.update(facultyLabelItems());
   state.pins?.layout();
+}
+
+/**
+ * Labels of the open campus's located faculties at their places (js/faculty-labels.js; owner 2026-11-12 11:12): the
+ * site panel only — a building view lists its own faculties.
+ */
+function facultyLabelItems() {
+  const site = state.panel.mode === 'site' ? openSite() : null;
+  if (!site || !state.campus) return [];
+  return facultyLabelRows(facultiesOf(site, state.siteIndex.get(site.id), state.campus) || []);
+}
+
+/** Screen box of the open campus's pin (the faculty labels keep clear of it). */
+function openPinBox() {
+  const site = state.panel.mode === 'site' ? openSite() : null;
+  if (!site || !hasPoint(site) || !state.map) return [];
+  const p = state.map.project([site.longitude, site.latitude]), r = pinRadius(state.map.getZoom()) + 4;
+  return [{left: p.x - r, right: p.x + r, top: p.y - r, bottom: p.y + r}];
 }
 
 /** The province frame under a point (its code, or ''). Quiet frames still answer the query. */
@@ -1216,10 +1256,15 @@ function installSpatialLayers() {
     }, onLoaded: onGroundChange, site: () => (openSite() && hasPoint(openSite()) ? [openSite().longitude, openSite().latitude] : null), pool: state.budget.terrainPool});
     state.terrain.setEnabled(state.view3d && state.budget.terrain);
   } catch (e) { state.terrain = null; console.warn('Terrain unavailable', e); }
+  const labelBounds = () => state.pins?.bounds?.() || {left: 0, top: 0, right: map.getContainer().clientWidth, bottom: map.getContainer().clientHeight, exclusions: []};
+  state.facultyLabels = installFacultyLabels(map, $('map'), {bounds: labelBounds, avoid: openPinBox, isPhone: mobilePortrait});
   state.siteLabels = installSiteLabels(map, $('map'), {
     onSelect: s => selectSite(s.id, {fromPin: true, showPopup: true}),
-    bounds: () => state.pins?.bounds?.() || {left: 0, top: 0, right: map.getContainer().clientWidth, bottom: map.getContainer().clientHeight, exclusions: []},
-    avoid: () => { const b = buildingScreenBox(); return b ? [{left: b.minX - 4, right: b.maxX + 4, top: b.minY - 4, bottom: b.maxY + 4}] : []; },
+    bounds: labelBounds,
+    avoid: () => {
+      const b = buildingScreenBox();
+      return [...(b ? [{left: b.minX - 4, right: b.maxX + 4, top: b.minY - 4, bottom: b.maxY + 4}] : []), ...(state.facultyLabels?.boxes() || [])];
+    },
     radius: (s, zoom) => pinRadius(zoom),
     isPhone: mobilePortrait,
     finePointer: () => matchMedia('(hover: hover) and (pointer: fine)').matches,

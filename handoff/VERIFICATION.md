@@ -1,5 +1,13 @@
 # CityMETER University — verification
 
+## Release 0.1.3 — 12 พ.ย. 2569
+
+From the owner's walk of 0.1.2 (11:12, KMITL Ladkrabang and Chula): “กรอบมหาลัยโอเคนะ แต่ทำไมไม่แสดงอาคารทั้งหมดในกรอบเวลา highlight”, “และถ้ามีตำแหน่งคณะในแผนที่แล้วน่าจะโชว์ป้ายด้วย”, “apply ทุกมหาลัยได้มั้ย”.
+
+- Buildings in the extent (`js/campus-buildings.js`, `DATA_METHOD.md` §10b): every campus with an extent (164 of 190 sites); `tests/campus-buildings.test.js` (inside, hole, outside, a building straddling the edge by its interior point, a tile-cut building lit whole). `js/massing.js` membership by `match` (`tests/massing.test.js` updated).
+- Faculty labels (`js/faculty-labels.js`): every campus with a located faculty (24 sites, 178 faculties, 168 labels); `tests/faculty-labels.test.js` (place order, shared places, ranking, every placed faculty of every site on a label, Chula 20).
+- Local: 168 tests pass; LDS parity 124 ok, 0 failed (base `d3085cbc…`, profile `5d485604…`). Chromium (Playwright; no basemap or building tiles in the container, so no lit buildings): Chula 1440 × 900 dark Thai 14 labels, light English 14, 390 × 844 dark 4; KMITL (`NATIONAL-MHESI2566-R000089`) 1440 light 4, 390 light English 3; no label over another or over a campus label, no missing English, no horizontal scroll.
+
 ## Release 0.1.2 — 12 พ.ย. 2569
 
 From the owner's walk of 0.1.1 (07:31): “ทำไมจุฬามีคณะเดียว”, “อาคาร 3 มิติ นอกเขตมหาวิทยาลัยไม่แสดงเลย มันไม่เหมือนกับ demo ของ hotel เลย”, “ในต่างจังหวัดที่อาคาร 3d ของ OSM มีน้อยหรือไม่มี ไม่ได้เอา CityMETER มาเสริมให้”, and the same standard as citymeter.pages.dev; the Chula pilot approved at 07:56.

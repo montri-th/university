@@ -99,7 +99,7 @@ The owner approved it at 07:56 (“ทำ pilot ที่จุฬาฯ”) aft
 
 - Province totals of the measure under the filters (type, province, search); the national or provincial Aha (`js/area-insight.js`): at most three provinces (or universities in a province) with the most of the measure, never cutting through a tie and never every item that holds the measure; the share with numerator and denominator; the same share without the `open` type as a second bar; the provinces with no unit.
 - Ranks, type and level bars, the province chart (in the map's colour), the university ranking — all from the same units.
-- Sites near a site (≤ 3 km), other campuses of the university, sites round a station (≤ 1 km), the faculty buildings of a campus (the drawn buildings holding a faculty geometry's interior point).
+- Sites near a site (≤ 3 km), other campuses of the university, sites round a station (≤ 1 km), the faculty buildings of a campus (the drawn buildings holding a faculty geometry's interior point), the drawn buildings in a campus extent (§10b) and the faculty labels (§10b).
 
 ## 9. Colour and categorical rules
 
@@ -112,6 +112,13 @@ The owner approved it at 07:56 (“ทำ pilot ที่จุฬาฯ”) aft
 One pin per site with a point, coloured by type; extents dashed; faculty buildings outlined in the open campus; roster points quiet grey, never clickable; stations quiet rings. Campus names in the middle of the view (≤ 9, phone ≤ 5). Terrain from SRTM 30 m and OSM.
 
 **Where buildings are drawn in detail** (0.1.2; owner 2026-11-12 07:31, VERBATIM: “อาคาร 3 มิติ นอกเขตมหาวิทยาลัยไม่แสดงเลย มันไม่เหมือนกับ demo ของ hotel เลย”; `js/regions.js`): a campus is drawn with its surroundings — its extent and a square reaching 800 m past it, at least 1,000 m from its centre (a campus with only a point: 1,000 m); a faculty building adds a square round itself; a station a square 1.2 km round it. Wherever the reader moves the camera away from the subject, from zoom 12 in, a square 3 km round the camera joins (its centre snapped to 1.5 km, re-read after a move), so the detail follows the reader as the Hotel's district focus does; below zoom 12 nothing is read. The massing keeps the z14 tiles nearest the camera (16 on a desktop; a phone shapes the buildings within 900 m of the camera from zoom 14).
+
+## 10b. An open campus: buildings in its extent and faculty names (0.1.3)
+
+Owner 2026-11-12 11:12, VERBATIM: “กรอบมหาลัยโอเคนะ แต่ทำไมไม่แสดงอาคารทั้งหมดในกรอบเวลา highlight / และถ้ามีตำแหน่งคณะในแผนที่แล้วน่าจะโชว์ป้ายด้วย / apply ทุกมหาลัยได้มั้ย”. Both apply to every campus that has what they need — an extent (164 of 190 sites) or a located faculty (24 sites, 178 faculties on 168 labels in this build).
+
+- **Buildings in the extent** (`js/campus-buildings.js`): a drawn building (OpenStreetMap, or CityMETER Building V4 inside a CityMETER unit) is lit with the open campus when the interior point of one of its pieces lies inside the extent and outside its holes; all its pieces are lit. The faculty buildings are lit as well, even outside the extent. What it is: a building inside the approximate OpenStreetMap extent the research team selected. What it is not: a building the university owns or uses, a faculty building, a land boundary. Never counted on screen: how many are drawn depends on the device's map budget.
+- **Faculty names** (`js/faculty-labels.js`): each located faculty of the open campus (`31_DEMO_UNIT_SITES` → `30_DEMO_GEOMETRY`) is named at its reference point, else at the interior point of its building or shared building, else of its mapped area; faculties at one place share a label. A place is evidence of where a faculty is, never its territory, an entrance or a floor. The label carries the name only; the students stay in the panel with their source.
 
 ## 10a. Buildings per area round the campuses
 

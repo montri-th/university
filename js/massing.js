@@ -508,9 +508,14 @@ export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors
   }
   map.addSource(FOCUS_SOURCE, {type: 'geojson', data: {type: 'FeatureCollection', features: []}, maxzoom: GEOJSON_MAXZOOM});
   let occluderIds = [], highlightIds = [], scene = 'default', targets = [];
-  const notIn = ids => ['!', ['in', ['id'], ['literal', ids]]];
+  // Membership by `match` (a hash lookup per building): a lit campus can hold thousands of pieces (0.1.3), and `in` on a
+  // literal list scans it for every building. `match` needs at least one label, so an empty list is a constant.
+  // Labels must be unique integers (feature ids, CityMETER ones from 2^52).
+  const labels = ids => [...new Set(ids)].filter(Number.isSafeInteger);
+  const isIn = ids => { const l = labels(ids); return l.length ? ['match', ['id'], l, true, false] : false; };
+  const notIn = ids => { const l = labels(ids); return l.length ? ['match', ['id'], l, false, true] : true; };
   const focusFilter = () => ['all', notIn(occluderIds), notIn(highlightIds)];
-  const occluderFilter = () => (highlightIds.length ? ['all', ['in', ['id'], ['literal', occluderIds]], notIn(highlightIds)] : ['in', ['id'], ['literal', occluderIds]]);
+  const occluderFilter = () => ['all', isIn(occluderIds), notIn(highlightIds)];
   map.addLayer({
     id: FOCUS_LAYER, type: 'fill-extrusion', source: FOCUS_SOURCE, minzoom: CITY_MIN_ZOOM,
     filter: focusFilter(),
@@ -536,7 +541,7 @@ export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors
   // Added last of the three focus tiers, so it draws after them (the data layer is never cut away).
   map.addLayer({
     id: VENUE_LAYER, type: 'fill-extrusion', source: FOCUS_SOURCE, minzoom: CITY_MIN_ZOOM,
-    filter: ['in', ['id'], ['literal', highlightIds]],
+    filter: isIn(highlightIds),
     paint: {
       'fill-extrusion-color': palette.venue,
       'fill-extrusion-height': ['get', 'height'],
@@ -736,7 +741,7 @@ export function installMassing(map, {sourceId = 'openmaptiles', beforeId, colors
     highlightIds = next;
     if (map.getLayer(FOCUS_LAYER)) map.setFilter(FOCUS_LAYER, focusFilter());
     if (map.getLayer(OCCLUDER_LAYER)) map.setFilter(OCCLUDER_LAYER, occluderFilter());
-    if (map.getLayer(VENUE_LAYER)) map.setFilter(VENUE_LAYER, ['in', ['id'], ['literal', highlightIds]]);
+    if (map.getLayer(VENUE_LAYER)) map.setFilter(VENUE_LAYER, isIn(highlightIds));
     return highlightIds.length;
   }
   /** Drawn focus-tier features (rounded outline, height and base) of these building ids: the x-ray solid. */

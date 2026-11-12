@@ -262,7 +262,7 @@ test('venue-level eye scene: surroundings quiet, buildings standing between the 
   assert.equal(map.paint[FOCUS_LAYER]['fill-extrusion-opacity'], SCENE.eye.focus);
   assert.ok(massing.occluders.includes(b101.id), 'building 101 stands in front of the target → see-through');
   assert.ok(!massing.occluders.includes(feats.find(f => f.properties.osm_id !== 101)?.id), 'a building elsewhere is not an occluder');
-  assert.deepEqual(map.filters[OCCLUDER_LAYER], ['in', ['id'], ['literal', massing.occluders]]);
+  assert.deepEqual(map.filters[OCCLUDER_LAYER], ['all', ['match', ['id'], [...new Set(massing.occluders)], true, false], true]);
   // A target SOUTH of (in front of) the building is not hidden by it.
   massing.setScene('eye', [{ring: ring.map(([lon, lat]) => [lon, lat - dLat * 0.6]), height: 10}]);
   assert.deepEqual(massing.occluders, []);
@@ -317,8 +317,9 @@ test('venue highlight tier: chosen focus buildings move to the data-colour layer
   const v0 = massing.version;
   const target = list.find(b => b.osmId === 101);
   assert.equal(massing.setHighlight([target.id, 999]), 1, 'unknown ids are ignored');
-  assert.deepEqual(map.filters[VENUE_LAYER], ['in', ['id'], ['literal', [target.id]]]);
-  assert.deepEqual(map.filters[FOCUS_LAYER], ['all', ['!', ['in', ['id'], ['literal', []]]], ['!', ['in', ['id'], ['literal', [target.id]]]]]);
+  // Membership is a `match` (hash lookup; a lit campus holds thousands of pieces); an empty list is a constant.
+  assert.deepEqual(map.filters[VENUE_LAYER], ['match', ['id'], [target.id], true, false]);
+  assert.deepEqual(map.filters[FOCUS_LAYER], ['all', true, ['match', ['id'], [target.id], false, true]]);
   // Re-shaping at another zoom keeps the ids: the highlight stays on the same building.
   await massing.update({regions: [whole], hosts: [], zoom: 17.2, enabled: true, city: true, latitude: 13.75});
   assert.ok(massing.version > v0);
@@ -329,7 +330,7 @@ test('venue highlight tier: chosen focus buildings move to the data-colour layer
   map.queryRenderedFeatures = () => [];
   assert.equal(massing.hitTest({x: 1, y: 1}), null);
   massing.setHighlight([]);
-  assert.deepEqual(map.filters[VENUE_LAYER], ['in', ['id'], ['literal', []]]);
+  assert.equal(map.filters[VENUE_LAYER], false);
   massing.dispose();
   assert.equal(map.getLayer(VENUE_LAYER), undefined);
 });

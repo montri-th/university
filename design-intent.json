@@ -1,6 +1,6 @@
 {
   "artifact": "CityMETER University — 3D map of the students the MHESI student file reports per province, with the universities’ reviewed campuses (points, extents, faculties and faculty buildings), fee lines as announced for pilot areas, quality observations, logos and rail context from the same registry",
-  "productVersion": "0.1.2",
+  "productVersion": "0.1.3",
   "updatedOn": "2026-11-12",
   "ldsVersion": "0.9.7",
   "release": "v0.9.7-owner.1",
@@ -21,7 +21,7 @@
     "applied": "assets/theme.css — foundation pairs, semantic states, map roles, dataState (noData, zero), categorical series 1–10 (landometer-series-10-v8 soft fill + ink), count classes, basemap-only tokens",
     "analytical": "js/scales.js — li.supply for students (scaleVersion 671112f34b878219faf90fb3fd07cc05a919c134d798ff40fbc8ab278273c497) and count for reporting units (4ff5c1fb4be71ecd13c48685b38371b528bcd4ce369ce964a75354c2eb4d0980); exact 41-sample LUTs; identical HEX on both themes; all 41 samples by rank among the measured nonzero provinces (owner standing rule “Color scale ขอให้ใช้ 41 scales ตาม LDS เสมอ”)",
     "categorical": "js/cues.js — type id → series (autonomous 1 circle, rajabhat 2 square, private 3 triangle, open 4 diamond, rmut 5 cross, public 7 hexagon, outside 9 dash, private_other 10 plus); no star",
-    "campus": "extents: dashed border-emphasis; the open campus: map.selectedStroke; faculty buildings and areas: map.activeLayer; faculty points: map.activeLayer with the marker halo",
+    "campus": "extents: dashed border-emphasis; the open campus: map.selectedStroke; the drawn buildings in its extent, faculty buildings and areas: map.activeLayer; faculty points: map.activeLayer with the marker halo; faculty labels: surface-card chips, the faculty pictogram in map.activeLayer, text-primary names (0.1.3)",
     "logos": "on a plate of the surface the package names (--logo-plate-light #FFFFFF, --logo-plate-dark #182327)",
     "parity": "scripts/check-lds-parity.mjs against the LDS base file and the Location Intelligence Profile (handoff/VERIFICATION.md)",
     "notDistributed": "full LDS library, the Location Intelligence Profile, other analytical families"
