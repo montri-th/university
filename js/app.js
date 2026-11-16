@@ -55,6 +55,9 @@ import {installFacultyLabels, facultyLabelRows} from './faculty-labels.js';
 import {installTerrain, terrainFacts, terrainChips} from './shell/terrain.js';
 import {createCodec, createNavigator} from './shell/url.js';
 import {pageTitle} from './shell/title.js';
+import {createIndex} from './shell/fuzzy.js';
+import {installSearch} from './shell/search.js';
+import {SEARCH_KINDS, SEARCH_HEADS, SEARCH_HINT, searchEntries, searchNote} from './find.js';
 import {decodeCampus, installCampusLayers, extentCollection, facultyCollection} from './campus.js';
 
 const $ = id => document.getElementById(id);
@@ -215,6 +218,7 @@ function update({fit = false} = {}) {
   drawChart();
   syncList();
   saveURL();
+  state.finder?.sync();
   const s = state.unitScope.reduce((n, u) => n + u.students, 0);
   announce(`พบ ${num(state.unitScope.length)} หน่วยรายงาน นักศึกษา ${num(s)} คน`);
 }
@@ -1646,6 +1650,59 @@ function restoreFromHistory() {
   if (['site', 'uni'].includes(state.panel.mode)) ensureCampus();
 }
 
+/**
+ * The search box (0.2.0; owner 2026-11-12 12:05, VERBATIM: “ศึกษาแนวคิดเรื่อง Fuzzy search แล้ว implement กับ demo web
+ * ให้ได้ user benefit สูงสุดตาม user intent ในขณะนั้น และตาม product statement”; 13:15: “รวม university ไว้ด้วยกันเลย”).
+ * A name typed is listed with what it is and where (js/shell/search.js, names from js/find.js) and opens what answers
+ * the product statement's question for it: a province its students and reporting units, an institution type its
+ * filter, a university its campuses and units, a campus its page on the map, a reporting unit its students, a station
+ * the campuses round it. The map and the panel no longer change while the reader is still typing.
+ */
+function openFound(entry) {
+  // A filter chosen by name is shown for the whole page: the place being looked at is left and the filters that
+  // would leave it no row are lifted first (js/shell/search.js#makeWay). One the page does not offer is applied by
+  // name as the words of the text filter.
+  const offered = (field, id) => [...$(field).options].some(o => o.value === id);
+  const way = (field, id) => state.finder.makeWay(field, id);
+  const words = () => state.finder.filter(entry.name);
+  // A university or a reporting unit chosen by name always opens: the filters it does not pass — its province too —
+  // are lifted first, so its campuses are on the map and the breadcrumb is its own (a campus does that itself:
+  // selectSite).
+  const clear = passes => { if (state.finder.makeWayFor(passes).length) update(); };
+  if (entry.kind === 'province') selectProvince(entry.id);
+  else if (entry.kind === 'type') { if (offered('type', entry.id)) { way('type', entry.id); filterType(entry.id); } else words(); }
+  else if (entry.kind === 'uni') { const u = uniById(entry.id); if (u) clear(v => filterUnits(u.units || [], v).length + filterSites(u.sites || [], v).length); selectUni(entry.id); }
+  else if (entry.kind === 'site') selectSite(entry.id);
+  else if (entry.kind === 'unit') { const u = unitById(entry.id); if (u) clear(v => filterUnits([u], v).length); selectUnit(entry.id); }
+  else if (entry.kind === 'station') selectStation(entry.id);
+}
+function installFinder() {
+  try {
+    state.finder = installSearch({
+      input: $('search'),
+      index: createIndex({kinds: SEARCH_KINDS, heads: SEARCH_HEADS}),
+      entries: () => searchEntries({data: state.data}),
+      note: searchNote,
+      // What the reader is looking at comes first among equal names.
+      scope: () => ({province: $('province').value || ''}),
+      // The words keep reporting units (the measure); when they keep none, the campuses they keep are said instead.
+      rows: text => {
+        const f = {...values(), search: text}, units = filterUnits(state.data.units, f).length;
+        return units ? {n: units, unit: 'หน่วยรายงาน'} : {n: filterSites(state.data.sites, f).length, unit: 'วิทยาเขต'};
+      },
+      hint: SEARCH_HINT,
+      // The sheet stood tall for the typing: once a name is chosen it goes back to its resting height, so the map
+      // shows what was chosen (an item or an area has set its own height by then).
+      pick: entry => { openFound(entry); if (sheetOpen() && $('panel').dataset.sheet === 'full') setSheet(restSheet()); },
+      // A filter or words chosen from the list: the filters that may be lifted for it are these — never the province
+      // (a province without it is a reading of that province).
+      filters: {fields: ['type'], values, count: v => filterUnits(state.data.units, v).length + filterSites(state.data.sites, v).length},
+      // On a phone the open sheet stands tall while a name is typed, so the list has room above the keyboard.
+      onFocus: () => { if (sheetOpen()) setSheet('full'); },
+    });
+  } catch (e) { state.finder = null; console.warn('Search list unavailable', e); }
+}
+
 function wireEvents() {
   let timer;
   for (const f of FIELDS) $(f).addEventListener(f === 'search' ? 'input' : 'change', () => {
@@ -1655,7 +1712,11 @@ function wireEvents() {
       state.panel = overviewPanel();
       state.buildingSel = null;
       update({fit: true});
-    }, f === 'search' ? 450 : 0);
+      // Words applied from the search box on a phone: the sheet goes back to its resting height and the map shows
+      // them — unless the reader is still in the box (it was emptied, which lifts the words).
+      if (f === 'search' && document.activeElement !== state.finder?.box) setSheet(restSheet());
+      // With the list, the words arrive whole (Enter or the list's last row); without it the box filters as it is typed in.
+    }, f === 'search' && !state.finder ? 450 : 0);
   });
   $('filters').addEventListener('reset', () => setTimeout(resetToOverview, 0));
   const metrics = [...document.querySelectorAll('[data-metric]')];
@@ -1761,6 +1822,7 @@ async function init() {
     try { $('theme').value = localStorage.getItem(THEME_KEY) || 'auto'; } catch {}
     applyTheme();
     wireEvents();
+    installFinder();
     update();
     if (['site', 'uni'].includes(state.panel.mode)) ensureCampus();
     if (state.panel.mode !== 'overview') openMobilePanel();
@@ -1773,6 +1835,6 @@ async function init() {
 }
 
 // Developer hook for live tuning in a browser console (not an API; may change without notice).
-window.__citymeter = {state, get map() { return state.map; }, update, fitMap, updateSpatialLayers, applyPreset: (name, opts) => state.map && applyPreset(state.map, name, opts), fitPitched: (b, opts) => state.map && fitPitched(state.map, b, opts), cameraPadding, visibleBox, focusTarget: () => focusTarget(), focusShape: () => focusShape(), frameFocus, selectSite, selectUni, selectUnit, selectStation, selectBuilding, selectProvince, setMetric, buildMapStyle};
+window.__citymeter = {state, get map() { return state.map; }, get finder() { return state.finder; }, update, fitMap, updateSpatialLayers, applyPreset: (name, opts) => state.map && applyPreset(state.map, name, opts), fitPitched: (b, opts) => state.map && fitPitched(state.map, b, opts), cameraPadding, visibleBox, focusTarget: () => focusTarget(), focusShape: () => focusShape(), frameFocus, selectSite, selectUni, selectUnit, selectStation, selectBuilding, selectProvince, setMetric, buildMapStyle};
 
 init();
